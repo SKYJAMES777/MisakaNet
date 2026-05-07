@@ -4,6 +4,7 @@ Feishu WebSocket Client - 飞书长连接客户端
 """
 import asyncio
 import json
+import time
 import websocket
 import threading
 from typing import Callable, Optional
@@ -55,13 +56,17 @@ class FeishuWSClient:
         print("[FeishuWS] 长连接已启动")
 
     def _run_ws(self):
-        """运行 WebSocket 客户端"""
+        """运行 WebSocket 客户端，异常时指数退避重连"""
+        retry_delay = 1      # 初始 1 秒
+        max_delay = 300      # 最大 5 分钟
+
         while self.running:
             try:
                 token = self._get_token()
                 if not token:
-                    print("[FeishuWS] 获取 token 失败，5秒后重试")
-                    threading.Event().wait(5)
+                    print("[FeishuWS] 获取 token 失败，等待重试...")
+                    time.sleep(retry_delay)
+                    retry_delay = min(retry_delay * 2, max_delay)
                     continue
 
                 ws_url = self._get_websocket_url()
@@ -76,12 +81,15 @@ class FeishuWSClient:
                 )
 
                 self.ws.run_forever(ping_interval=30)
+                # run_forever 正常退出（非异常），重置退避
+                retry_delay = 1
             except Exception as e:
                 print(f"[FeishuWS] 连接异常: {e}")
 
             if self.running:
-                print("[FeishuWS] 5秒后重连...")
-                threading.Event().wait(5)
+                print(f"[FeishuWS] {retry_delay}秒后重连...")
+                time.sleep(retry_delay)
+                retry_delay = min(retry_delay * 2, max_delay)
 
     def _on_open(self, ws):
         print("[FeishuWS] WebSocket 连接已建立")

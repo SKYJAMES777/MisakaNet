@@ -105,7 +105,6 @@ class SubscriptionManager:
         """获取所有订阅记录"""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
-        cursor.cursor()
         cursor.execute("""
             SELECT id, agent_id, domain, created_at, active FROM subscriptions
             WHERE active = 1 ORDER BY created_at DESC

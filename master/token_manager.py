@@ -63,15 +63,18 @@ class TokenManager:
         Returns:
             Token string if secret is valid, None otherwise
         """
-        # Validate secret from config
-        config_path = os.path.join(os.path.dirname(__file__), '..', 'config.yaml')
-        try:
-            import yaml
-            with open(config_path, 'r') as f:
-                cfg = yaml.safe_load(f)
-            expected_secret = cfg.get("master", {}).get("shared_secret", "")
-        except Exception:
-            expected_secret = ""
+        # Validate secret from environment variable (preferred) or config
+        expected_secret = os.environ.get("MISAKANET_MASTER_SECRET", "")
+        if not expected_secret:
+            # Fallback to config.yaml (deprecated — use env var instead)
+            try:
+                import yaml
+                config_path = os.path.join(os.path.dirname(__file__), '..', 'config.yaml')
+                with open(config_path, 'r') as f:
+                    cfg = yaml.safe_load(f)
+                expected_secret = cfg.get("master", {}).get("shared_secret", "")
+            except Exception:
+                expected_secret = ""
         if not expected_secret:
             raise ValueError("master.shared_secret not configured in config.yaml")
         if secret != expected_secret:

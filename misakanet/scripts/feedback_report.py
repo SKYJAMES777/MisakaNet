@@ -61,10 +61,14 @@ def _mark_reported(skill, session_ref):
 def _get_token():
     """从 git credentials 提取 GitHub token"""
     try:
+        import re
         creds = open(GIT_CREDS_PATH).read().strip()
-        # format: https://user:token@github.com
-        token = creds.split("://")[1].split("@")[0].split(":")[1]
-        return token
+        # format: https://user:token@github.com 或 https://token@github.com
+        m = re.match(r"https?://(?:[^:]+:)?([^@]+)@", creds)
+        if m:
+            return m.group(1)
+        print(f"[error] 无法从 git credentials 解析 token", file=sys.stderr)
+        return None
     except Exception as e:
         print(f"[error] 无法读取 token ({GIT_CREDS_PATH}): {e}", file=sys.stderr)
         return None
