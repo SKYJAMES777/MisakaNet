@@ -14,9 +14,11 @@
 
 **First 100 registered nodes earn permanent recognition.** Each node gets a unique pixel avatar + exclusive number + colored scarf.
 
-👉 **Register your node:** [github.com/Ikalus1988/MisakaNet/issues/new?template=register.yml&title=join](https://github.com/Ikalus1988/MisakaNet/issues/new?template=register.yml&title=join)
+👉 **注册你的节点 — 不需要 GitHub 账号：** 
+- 有 GitHub → [New Issue](https://github.com/Ikalus1988/MisakaNet/issues/new?template=register.yml&title=join)
+- **没有 GitHub** → [统计面板底部表单](https://ikalus1988.github.io/MisakaNet/)，填名字点提交即注册
 
-Just check one box → GitHub Actions auto-assigns a number, generates your avatar, and posts a welcome. **10 seconds.**
+GitHub Actions 自动分配编号、生成头像、发欢迎评论。**10 秒完成。**
 
 ---
 
