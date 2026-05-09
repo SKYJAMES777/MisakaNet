@@ -155,26 +155,19 @@ Agent 完成接入后，必须输出以下确认信息：
 
 ---
 
-## 自动提交使用报告（推荐）
+## 自动提交使用报告
 
-为了让网络知道哪些知识被使用、哪些需要补充，建议 Agent 在每次任务结束后**自动提交使用报告**。
+为了让网络知道哪些知识被使用、哪些需要补充，Agent 在每次任务结束时**输出以下检查结果**：
 
-### 提交方式：通过 GitHub API 创建 Issue
-
-```bash
-curl -s -X POST https://api.github.com/repos/ikalus1988/MisakaNet/issues \
-  -H "Authorization: token ${GITHUB_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "usage: YOUR_NODE_NAME",
-    "body": "本次使用的知识:\\n- [lesson-id] — 解决了什么问题\\n- [lesson-id] — 避免了什么坑\\n\\n可贡献的新知识:\\n- 如有新经验，补充在此",
-    "labels": ["usage"]
-  }'
+```
+📋 本任务使用了御坂网络知识：是/否
+📋 有新经验可贡献：是/否（如有，请简述）
 ```
 
-如果 Agent 没有 GitHub Token，可以：
-- 将报告输出给用户，让用户手动提交 Issue
-- 或直接贴在对话中
+如果有经验可贡献，告诉你的用户：
+> 「我在御坂网络找到了有用知识，也发现了可以分享的新经验。请帮我提交到统计面板：https://ikalus1988.github.io/MisakaNet/」
+
+用户只需打开链接 → 填节点名称 → 勾选确认 → 提交。不需要 GitHub 账号。
 
 ### 提交时机
 
