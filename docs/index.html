@@ -294,6 +294,12 @@
     <div class="loading-item">加载中...</div>
   </div>
   
+  <!-- Contributors Leaderboard -->
+  <div class="section-title" id="contrib-title" style="display:none;">🏆 贡献排行 <span id="contrib-count"></span></div>
+  <div class="recent-list" id="contrib-list" style="display:none;">
+    <div class="loading-item">加载中...</div>
+  </div>
+  
   <div class="footer">
     <a href="https://github.com/Ikalus1988/MisakaNet" target="_blank">Ikalus1988/MisakaNet</a>
     · Apache 2.0 · 数据来自 GitHub API
@@ -559,6 +565,84 @@ async function loadAvatarGallery(current) {
   }
 }
 
+// ── 贡献排行 ──
+async function loadContributors() {
+  const title = document.getElementById("contrib-title");
+  const list = document.getElementById("contrib-list");
+  
+  try {
+    // Get usage reports
+    const issues = await fetchJSON(`${BASE}/issues?labels=usage&state=all&sort=created&direction=desc&per_page=50`);
+    const realIssues = issues.filter(i => !i.pull_request);
+    
+    if (realIssues.length === 0) return;
+    
+    // Count contributions per node
+    const contribMap = {};
+    const issueMap = {};
+    
+    realIssues.forEach(i => {
+      const body = i.body || '';
+      const title_text = i.title || '';
+      const nodeName = title_text.replace('usage:', '').trim() || i.user.login;
+      
+      if (!contribMap[nodeName]) {
+        contribMap[nodeName] = 0;
+        issueMap[nodeName] = [];
+      }
+      contribMap[nodeName]++;
+      issueMap[nodeName].push(i);
+    });
+    
+    // Sort by contribution count
+    const sorted = Object.entries(contribMap)
+      .sort((a, b) => b[1] - a[1]);
+    
+    const totalContributions = realIssues.length;
+    
+    title.style.display = "";
+    title.innerHTML = `🏆 感谢贡献 <span>${totalContributions} 条使用报告</span>`;
+    
+    // Badges
+    const badges = ["🥇", "🥈", "🥉"];
+    const specialBadges = {
+      "太阳": "🌟 首次公开贡献",
+      "Misaka10004": "🌟 首次公开贡献",
+      "sun": "🌟 首次公开贡献"
+    };
+    
+    list.style.display = "";
+    list.innerHTML = sorted.map(([node, count], idx) => {
+      const rank = idx < 3 ? badges[idx] : `#${idx + 1}`;
+      const badge = specialBadges[node] || (count >= 3 ? "🔥 活跃贡献" : "👍 有贡献");
+      const lastIssue = issueMap[node][issueMap[node].length - 1];
+      const lastDate = getTimeAgo(new Date(lastIssue.created_at));
+      
+      return `
+        <div class="recent-item">
+          <div style="font-size:20px;flex-shrink:0;">${rank}</div>
+          <div class="recent-order" style="background:#f0c04020;color:#f0c040;">${count}</div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:14px;color:#f0f6fc;">${node}</div>
+            <div style="font-size:12px;color:#8b949e;margin-top:2px;">${badge} · 最近 ${lastDate}</div>
+          </div>
+        </div>
+      `;
+    }).join("");
+    
+    // Add a "why contribute?" footer
+    list.innerHTML += `
+      <div class="empty-state" style="grid-column:1/-1;margin-top:8px;">
+        <div class="desc" style="font-size:12px;color:#484f58;">
+          📖 每一条使用报告都帮助网络成长——其他节点将知道哪些知识真正有用。
+        </div>
+      </div>`;
+    
+  } catch (err) {
+    console.log("Contributors not available:", err.message);
+  }
+}
+
 function getTimeAgo(date) {
   const seconds = Math.floor((new Date() - date) / 1000);
   if (seconds < 60) return '刚刚';
@@ -640,6 +724,7 @@ async function registerNode() {
 
 loadStats();
 loadUsagePulse();
+loadContributors();
 setInterval(loadUsagePulse, PULSE_INTERVAL);
 </script>
 </body>
