@@ -1377,12 +1377,16 @@ async function loadContributors() {
     if (sorted.length === 0) return;
 
     const badges = ["🥇", "🥈", "🥉"];
+    // Skip repo owner from contributor wall (自产自销不计入排行)
+    const SKIP_OWNER = new Set(["Ikalus1988", "ikalus1988"]);
 
     title.style.display = "";
     title.innerHTML = `🏆 ${t('contribSection')} <span>${sorted.length}</span>`;
 
     list.style.display = "";
-    list.innerHTML = sorted.slice(0, 10).map(([node, data], idx) => {
+    list.innerHTML = sorted
+      .filter(([node, data]) => !SKIP_OWNER.has(node) && !SKIP_OWNER.has(data.user))
+      .slice(0, 10).map(([node, data], idx) => {
       const rank = idx < 3 ? badges[idx] : `#${idx + 1}`;
       const total = data.count;
       const score = data.count * 2 + data.lessons.length;
