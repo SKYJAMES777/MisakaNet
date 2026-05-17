@@ -996,6 +996,7 @@ const I18N = {
     onboardStep3Desc: 'Agent 自动开始\n检索知识 + 贡献经验',
     activeLabel: '活跃',
     reportedLabel: '有报告',
+    updated: '更新',
     nodeNameLabel: '节点名称（可选）',
     nodeNameHint: '留空则使用默认名称',
     nodeNamePlaceholder: '例如：太阳',
@@ -1064,6 +1065,7 @@ const I18N = {
     onboardStep3Desc: 'Agent starts automatically\nSearch knowledge + contribute',
     activeLabel: 'active',
     reportedLabel: 'reported',
+    updated: 'Updated',
     nodeNameLabel: 'Node Name (optional)',
     nodeNameHint: 'Leave empty for default',
     nodeNamePlaceholder: 'e.g. Sun',
@@ -1185,7 +1187,7 @@ async function loadStats() {
     document.getElementById("total-nodes").classList.remove("loading");
     document.getElementById("total-suffix").textContent = ``;
     document.getElementById("latest-number").textContent = current;
-    document.getElementById("latest-time").textContent = `更新 ${counter.updated.slice(0, 10)}`;
+    document.getElementById("latest-time").textContent = `${t('updated')} ${counter.updated.slice(0, 10)}`;
 
     try {
       const lessons = await fetchJSON(`${RAW_BASE}/lessons.json`);
