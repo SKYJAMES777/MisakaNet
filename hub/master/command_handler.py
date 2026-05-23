@@ -2,8 +2,7 @@
 Master Command Handler - Integration for any agent
 Provides /fool unlock capability for all nodes
 
-⚠️  DEAD CODE — 未接入任何实际 agent。Master 权限通过 master_cli.py 实现。
-保留作为集成参考。
+预留 — Master 命令处理框架，待 agent 接入后激活
 """
 import asyncio
 from typing import Callable, Optional

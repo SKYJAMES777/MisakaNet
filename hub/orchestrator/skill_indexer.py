@@ -18,10 +18,8 @@ class SkillIndexer:
     Auto-maintains KnowledgeGraph on skill changes.
     """
 
-    _embedding_model = None
-    _embedding_tokenizer = None
     _embedding_model_name = "BAAI/bge-m3"
-    _graph = None
+    # Class-level singletons replaced by module-level _MODEL_CACHE dict (instantiation in __init__)
 
     def __init__(self, index_path: str = "./storage/skill_index.json",
                  graph_path: str = "./storage/knowledge_graph/graph.gpickle",
@@ -38,37 +36,54 @@ class SkillIndexer:
 
     def _init_embedding_model(self):
         """Lazy load BGE-m3 embedding model with fallback"""
-        if SkillIndexer._embedding_model is not None:
+        # Use module-level cache to share across instances
+        import sys
+        module = sys.modules[__name__]
+        cache = module.__dict__.setdefault('_MODEL_CACHE', {})
+        
+        if cache.get('embedding_model') is not None:
+            self._embedding_model = cache['embedding_model']
+            self._embedding_tokenizer = cache['embedding_tokenizer']
             return
+            
         print(f"[Embedding] Loading model: {self._embedding_model_path}")
         model_path = self._embedding_model_path
         is_local = os.path.isdir(model_path) or os.path.isfile(model_path + "/config.json")
         try:
             kwargs = {"local_files_only": True} if is_local else {}
-            SkillIndexer._embedding_tokenizer = AutoTokenizer.from_pretrained(
-                model_path, **kwargs
-            )
-            SkillIndexer._embedding_model = AutoModel.from_pretrained(
-                model_path, **kwargs
-            )
-            SkillIndexer._embedding_model.eval()
+            tokenizer = AutoTokenizer.from_pretrained(model_path, **kwargs)
+            model = AutoModel.from_pretrained(model_path, **kwargs)
+            model.eval()
+            cache['embedding_model'] = model
+            cache['embedding_tokenizer'] = tokenizer
+            self._embedding_model = model
+            self._embedding_tokenizer = tokenizer
             source = "local" if is_local else "hub (auto-download)"
             print(f"[Embedding] BGE-m3 loaded from {source}!")
         except Exception as e:
             print(f"[Embedding] 加载失败: {e}")
             print("[Embedding] 降级运行 — 语义去重和搜索将不可用")
-            SkillIndexer._embedding_model = None
-            SkillIndexer._embedding_tokenizer = None
+            self._embedding_model = None
+            self._embedding_tokenizer = None
 
     def _init_graph(self):
         """Lazy load knowledge graph"""
-        if SkillIndexer._graph is None:
-            from storage.knowledge_graph import KnowledgeGraph
-            SkillIndexer._graph = KnowledgeGraph(persist_path=self.graph_path)
+        import sys
+        module = sys.modules[__name__]
+        cache = module.__dict__.setdefault('_MODEL_CACHE', {})
+        
+        if cache.get('graph') is not None:
+            self._graph = cache['graph']
+            return
+            
+        from storage.knowledge_graph import KnowledgeGraph
+        graph = KnowledgeGraph(persist_path=self.graph_path)
+        cache['graph'] = graph
+        self._graph = graph
 
     def _update_graph(self, skill: dict, action: str, target_id: str = None):
         """Update knowledge graph when skills change"""
-        if SkillIndexer._graph is None:
+        if self._graph is None:
             return
 
         sid = skill.get('id')
@@ -78,41 +93,41 @@ class SkillIndexer:
 
         if action == "added":
             # Add domain node
-            if not SkillIndexer._graph.graph.has_node(domain):
-                SkillIndexer._graph.graph.add_node(domain, type='domain', name=domain)
+            if not self._graph.graph.has_node(domain):
+                self._graph.graph.add_node(domain, type='domain', name=domain)
             # Add agent node
-            if not SkillIndexer._graph.graph.has_node(source):
-                SkillIndexer._graph.graph.add_node(source, type='agent', name=source)
+            if not self._graph.graph.has_node(source):
+                self._graph.graph.add_node(source, type='agent', name=source)
             # Add skill node
-            if not SkillIndexer._graph.graph.has_node(sid):
-                SkillIndexer._graph.graph.add_node(sid, type='skill', name=name,
+            if not self._graph.graph.has_node(sid):
+                self._graph.graph.add_node(sid, type='skill', name=name,
                                                    domain=domain, source=source)
                 # Edges
-                SkillIndexer._graph.graph.add_edge(sid, domain, type='belongs_to', weight=1.0)
-                SkillIndexer._graph.graph.add_edge(source, sid, type='owns', weight=1.0)
+                self._graph.graph.add_edge(sid, domain, type='belongs_to', weight=1.0)
+                self._graph.graph.add_edge(source, sid, type='owns', weight=1.0)
                 # Same-domain edges
-                for node in SkillIndexer._graph.graph.nodes:
-                    if (SkillIndexer._graph.graph.nodes[node].get('type') == 'skill'
+                for node in self._graph.graph.nodes:
+                    if (self._graph.graph.nodes[node].get('type') == 'skill'
                             and node != sid
-                            and SkillIndexer._graph.graph.nodes[node].get('domain') == domain):
-                        if not SkillIndexer._graph.graph.has_edge(sid, node):
-                            SkillIndexer._graph.graph.add_edge(sid, node, type='same_domain', weight=0.5)
+                            and self._graph.graph.nodes[node].get('domain') == domain):
+                        if not self._graph.graph.has_edge(sid, node):
+                            self._graph.graph.add_edge(sid, node, type='same_domain', weight=0.5)
 
         elif action == "merged":
-            if target_id and SkillIndexer._graph.graph.has_node(sid):
-                SkillIndexer._graph.graph.add_edge(sid, target_id, type='merged_to', weight=1.0)
+            if target_id and self._graph.graph.has_node(sid):
+                self._graph.graph.add_edge(sid, target_id, type='merged_to', weight=1.0)
 
-        SkillIndexer._graph.save()
+        self._graph.save()
 
     def _generate_embedding(self, texts: List[str]) -> List[List[float]]:
         """Generate BGE-m3 embeddings for texts. Returns empty list if model unavailable."""
-        if SkillIndexer._embedding_model is None:
+        if self._embedding_model is None:
             return []
         with torch.no_grad():
-            inputs = SkillIndexer._embedding_tokenizer(
+            inputs = self._embedding_tokenizer(
                 texts, return_tensors='pt', padding=True, truncation=True, max_length=512
             )
-            outputs = SkillIndexer._embedding_model(**inputs)
+            outputs = self._embedding_model(**inputs)
             embeddings = outputs.last_hidden_state.mean(dim=1)
             embeddings = torch.nn.functional.normalize(embeddings, p=2, dim=1)
             return embeddings.numpy().tolist()
@@ -122,7 +137,12 @@ class SkillIndexer:
         import numpy as np
         e1 = np.array(emb1)
         e2 = np.array(emb2)
-        return float(np.dot(e1, e2) / (np.linalg.norm(e1) * np.linalg.norm(e2)))
+        n1 = np.linalg.norm(e1)
+        n2 = np.linalg.norm(e2)
+        # Guard against zero vectors — similarity is 0 when either vector has no magnitude
+        if n1 == 0.0 or n2 == 0.0:
+            return 0.0
+        return float(np.dot(e1, e2) / (n1 * n2))
 
     def _load_index(self) -> dict:
         """Load index from disk, migrate old formats"""
@@ -135,16 +155,47 @@ class SkillIndexer:
         idx.setdefault("skills", {})
         idx.setdefault("tools", {})
         idx.setdefault("users", {})
+        # Create automatic backup on successful load
+        try:
+            import shutil
+            backup_path = self.index_path + ".bak"
+            shutil.copy2(self.index_path, backup_path)
+        except (FileNotFoundError, OSError):
+            pass
         idx.setdefault("version", "0")
         idx.setdefault("last_updated", None)
         idx.setdefault("sync_version", 0)
         return idx
 
     def _save_index(self):
-        """Persist index to disk"""
+        """Persist index to disk atomically (write to temp, then rename)"""
+        import tempfile
+        import shutil
+        import fcntl
+        
         os.makedirs(os.path.dirname(self.index_path), exist_ok=True)
-        with open(self.index_path, 'w') as f:
-            json.dump(self.index, f, indent=2, default=str)
+        
+        # Use file locking to prevent concurrent write corruption
+        lock_path = self.index_path + ".lock"
+        try:
+            with open(lock_path, 'w') as lock_f:
+                fcntl.flock(lock_f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                # Write to temp file first, then atomic rename
+                fd, tmp_path = tempfile.mkstemp(dir=os.path.dirname(self.index_path))
+                try:
+                    with os.fdopen(fd, 'w') as f:
+                        json.dump(self.index, f, indent=2, default=str)
+                    shutil.move(tmp_path, self.index_path)
+                except:
+                    if os.path.exists(tmp_path):
+                        os.unlink(tmp_path)
+                    raise
+                finally:
+                    fcntl.flock(lock_f, fcntl.LOCK_UN)
+        except IOError:
+            # Lock not available (another process writing), fall back to direct write
+            with open(self.index_path, 'w') as f:
+                json.dump(self.index, f, indent=2, default=str)
 
     def _get_skill_text_for_embedding(self, skill: dict) -> str:
         """Combine skill fields for embedding text"""
@@ -328,7 +379,7 @@ class SkillIndexer:
     def stats(self) -> dict:
         """Get index statistics"""
         skills = self.index["skills"].values()
-        graph_stats = SkillIndexer._graph.stats() if SkillIndexer._graph else {}
+        graph_stats = self._graph.stats() if self._graph else {}
         return {
             "total_skills": len(skills),
             "total_tools": len(self.index["tools"]),
@@ -343,14 +394,14 @@ class SkillIndexer:
 
     def graph_stats(self) -> dict:
         """Get graph statistics"""
-        if SkillIndexer._graph:
-            return SkillIndexer._graph.stats()
+        if self._graph:
+            return self._graph.stats()
         return {"nodes": 0, "edges": 0, "skills": 0, "agents": 0}
 
     def get_skill_related(self, skill_id: str, depth: int = 2) -> list[dict]:
         """Get skills related to given skill via graph"""
-        if SkillIndexer._graph:
-            return SkillIndexer._graph.get_skill_related(skill_id, depth=depth)
+        if self._graph:
+            return self._graph.get_skill_related(skill_id, depth=depth)
         return []
 
     def _count_by_field(self, field: str) -> dict:

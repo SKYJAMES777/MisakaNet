@@ -37,8 +37,26 @@ REPO_ROOT = Path(__file__).parent / ".." / ".."
 
 
 def _get_token():
-    creds = open(os.path.expanduser("~/.git-credentials")).read().strip()
-    return creds.split("://")[1].split("@")[0].split(":")[1]
+    """Get GitHub token securely via git credential helper"""
+    try:
+        result = subprocess.run(
+            ["git", "credential", "fill"],
+            input="protocol=https\nhost=github.com\n",
+            capture_output=True, text=True, timeout=5
+        )
+        for line in result.stdout.split("\n"):
+            if line.startswith("password="):
+                return line.split("=", 1)[1].strip()
+    except Exception:
+        pass
+    # Fallback: read from file with proper handling
+    try:
+        cred_path = os.path.expanduser("~/.git-credentials")
+        with open(cred_path, 'r') as f:
+            creds = f.read().strip()
+        return creds.split("://")[1].split("@")[0].split(":")[1]
+    except Exception:
+        return None
 
 
 def _slugify(title):
@@ -128,18 +146,18 @@ def write_lesson(title, domain, tags, content, source=NODE_ID, status="published
 
     _update_index(filepath, title, domain, tags, source)
 
-    # git commit + push
+    # git commit + push (cwd= 参数避免 os.chdir 竞态)
     token = _get_token()
     repo_root = Path(__file__).parent / ".." / ".."
-    os.chdir(str(repo_root))
 
     subprocess.run(["git", "add", str(filepath), str(LESSONS_DIR / "index.md")],
-                   capture_output=True)
+                   capture_output=True, cwd=str(repo_root))
     subprocess.run(["git", "commit", "-m", f"lessons: {title}"],
-                   capture_output=True, timeout=10)
+                   capture_output=True, timeout=10, cwd=str(repo_root))
 
     push = subprocess.run(["git", "push", "origin", "main"],
-                          capture_output=True, text=True, timeout=20)
+                          capture_output=True, text=True, timeout=20,
+                          cwd=str(repo_root))
 
     if push.returncode == 0:
         print(f"✅ {mode} lesson: {filename}")
@@ -223,18 +241,18 @@ def write_lesson_from_file(filepath: str) -> bool:
 
     _update_index(dest, title, domain, tags, source)
 
-    # git commit + push
+    # git commit + push (cwd= 参数避免 os.chdir 竞态)
     token = _get_token()
     repo_root = Path(__file__).parent / ".." / ".."
-    os.chdir(str(repo_root))
 
     subprocess.run(["git", "add", str(dest), str(LESSONS_DIR / "index.md")],
-                   capture_output=True)
+                   capture_output=True, cwd=str(repo_root))
     subprocess.run(["git", "commit", "-m", f"lessons: {title} (--file import)"],
-                   capture_output=True, timeout=10)
+                   capture_output=True, timeout=10, cwd=str(repo_root))
 
     push = subprocess.run(["git", "push", "origin", "main"],
-                          capture_output=True, text=True, timeout=20)
+                          capture_output=True, text=True, timeout=20,
+                          cwd=str(repo_root))
 
     if push.returncode == 0:
         print(f"✅ 导入 lesson: {filename} (from {src.name})")

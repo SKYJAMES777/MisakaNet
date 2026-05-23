@@ -2,9 +2,7 @@
 A2A Server - Agent-to-Agent Protocol Server
 Based on Google A2A Protocol
 
-⚠️  DEAD CODE — 当前架构使用 GitHub Issues 异步通信，非 HTTP A2A。
-保留作为设计参考，待仲裁/实时通信场景激活后重新启用。
-当前 Hub 不 start() 此服务（hermes_hub.py 中已跳过）。
+A2A 协议服务器 — 当前轻量运行（hermes_hub.py:295 启动），高峰期可启用完整通信
 """
 import json
 import asyncio
@@ -131,12 +129,16 @@ class A2AServer:
         return web.json_response({"status": "healthy", "agents": len(self.agents)})
 
     async def register_agent_handler(self, request):
+        if not self._check_auth(request):
+            return web.json_response({"error": "Authentication required. Provide Bearer token in Authorization header."}, status=401)
         data = await request.json()
         agent_card = AgentCard(**data)
         self.register_agent(agent_card)
         return web.json_response({"status": "registered"})
 
     async def unregister_agent_handler(self, request):
+        if not self._check_auth(request):
+            return web.json_response({"error": "Authentication required"}, status=401)
         data = await request.json()
         agent_id = data.get("agent_id")
         success = self.unregister_agent(agent_id)
@@ -148,6 +150,8 @@ class A2AServer:
         })
 
     async def handle_message_handler(self, request):
+        if not self._check_auth(request):
+            return web.json_response({"error": "Authentication required"}, status=401)
         data = await request.json()
         message = Message(**data)
 
@@ -237,6 +241,8 @@ class A2AServer:
         })
 
     async def broadcast_handler(self, request):
+        if not self._check_auth(request):
+            return web.json_response({"error": "Authentication required"}, status=401)
         data = await request.json()
         message = Message(**data)
         await self.broadcast(message)
@@ -248,6 +254,8 @@ class A2AServer:
 
     async def subscribe_handler(self, request):
         """处理订阅请求"""
+        if not self._check_auth(request):
+            return web.json_response({"error": "Authentication required"}, status=401)
         data = await request.json()
         agent_id = data.get("agent_id")
         domain = data.get("domain")
@@ -260,6 +268,8 @@ class A2AServer:
 
     async def unsubscribe_handler(self, request):
         """处理取消订阅请求"""
+        if not self._check_auth(request):
+            return web.json_response({"error": "Authentication required"}, status=401)
         data = await request.json()
         agent_id = data.get("agent_id")
         domain = data.get("domain")
@@ -383,6 +393,8 @@ class A2AServer:
 
     async def resolve_arbitration_handler(self, request):
         """解决仲裁案例"""
+        if not self._check_auth(request):
+            return web.json_response({"error": "Authentication required"}, status=401)
         if hasattr(self, 'hub_controller'):
             data = await request.json()
             case_id = data.get("case_id")

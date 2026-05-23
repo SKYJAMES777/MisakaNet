@@ -3,7 +3,7 @@ Knowledge Graph - NetworkX-based knowledge graph
 """
 import networkx as nx
 from typing import Optional
-import pickle
+import json
 from datetime import datetime
 
 
@@ -31,21 +31,36 @@ class KnowledgeGraph:
             self._load()
 
     def _load(self):
-        """Load graph from disk"""
+        """Load graph from disk (JSON node-link format)"""
         try:
-            with open(self.persist_path, 'rb') as f:
-                self.graph = pickle.load(f)
+            with open(self.persist_path, 'r') as f:
+                data = json.load(f)
+            self.graph = nx.node_link_graph(data)
             print(f"Loaded graph with {len(self.graph.nodes)} nodes")
         except FileNotFoundError:
             print("Starting with empty graph")
+        except (json.JSONDecodeError, KeyError) as e:
+            print(f"[warn] Graph file corrupted ({e}), starting fresh")
+            self.graph = nx.DiGraph()
 
     def save(self):
-        """Persist graph to disk"""
+        """Persist graph to disk (JSON node-link format)"""
         if self.persist_path:
             import os
             os.makedirs(os.path.dirname(self.persist_path), exist_ok=True)
-            with open(self.persist_path, 'wb') as f:
-                pickle.dump(self.graph, f)
+            data = nx.node_link_data(self.graph)
+            # Write atomically: temp file + rename
+            import tempfile
+            import shutil
+            fd, tmp_path = tempfile.mkstemp(dir=os.path.dirname(self.persist_path))
+            try:
+                with os.fdopen(fd, 'w') as f:
+                    json.dump(data, f, default=str)
+                shutil.move(tmp_path, self.persist_path)
+            except:
+                if os.path.exists(tmp_path):
+                    os.unlink(tmp_path)
+                raise
 
     def add_skill_node(self, skill_id: str, name: str,
                        metadata: dict) -> bool:

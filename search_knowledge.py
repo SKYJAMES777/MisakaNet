@@ -233,11 +233,33 @@ def _format_output(scored: list[tuple[float, CachedDoc]],
         if titles_only:
             continue
         rel_dir = "lessons" if doc.is_lesson else "reference"
-        print(f"  {'':>20} → less {rel_dir}/{doc.filename}  (score: {score:.3f})")
+        print(f"  {'':>20} → see {rel_dir}/{doc.filename}  (score: {score:.3f})")
         if ref_tag:
             print(f"  {'':>20} 参考: {ref_tag}")
         print()
     return True
+
+
+def _get_preview(content: str, max_chars: int = 100) -> str:
+    """Extract first meaningful line of body as preview"""
+    if not content:
+        return ''
+    # Skip frontmatter (--- ... ---)
+    lines = content.split('\n')
+    start = 0
+    if lines and lines[0].strip() == '---':
+        for i in range(1, len(lines)):
+            if lines[i].strip() == '---':
+                start = i + 1
+                break
+    # Find first non-empty, non-heading line
+    for line in lines[start:]:
+        line = line.strip()
+        if line and not line.startswith('#') and not line.startswith('- **'):
+            if len(line) > max_chars:
+                return line[:max_chars] + '...'
+            return line
+    return ''
 
 
 def _show_timing(elapsed: float, num_docs: int):
@@ -305,6 +327,10 @@ def main():
         print(f"    python3 misakanet/scripts/queue_lesson.py -t \"{query}\" ...")
         print()
     _show_timing(time.time() - t0, total_docs)
+    if found_any:
+        print(f"  💡 查看完整内容: cat lessons/<filename>.md")
+        print(f"  💡 贡献新知识: python3 misakanet/scripts/queue_lesson.py -t "标题" -d domain "内容..."")
+        print()
 
 
 if __name__ == "__main__":

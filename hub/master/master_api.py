@@ -119,8 +119,9 @@ class MasterAPI:
         try:
             self.hub.knowledge_graph.graph.remove_node(skill_id)
             self.hub.knowledge_graph.save()
-        except Exception:
-            pass
+        except Exception as e:
+            import logging
+            logging.error(f"[MasterAPI] Failed to remove skill {skill_id} from graph: {e}", exc_info=True)
 
         self.audit_logger.log("REMOVE_SKILL", token, {"skill_id": skill_id})
         return {"status": "removed", "skill_id": skill_id}

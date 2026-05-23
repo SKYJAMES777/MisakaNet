@@ -4,6 +4,11 @@ on:
   issues:
     types: [opened]
 
+# 串行化：同一时间只处理一个注册请求，避免 counter.json 竞态
+concurrency:
+  group: register-node
+  cancel-in-progress: false
+
 jobs:
   register:
     # 只处理标题以 "join" 开头的 Issue
@@ -33,7 +38,7 @@ jobs:
           ATTEMPT=0
           while [ $ATTEMPT -lt 5 ]; do
             ATTEMPT=$((ATTEMPT + 1))
-            # Read current counter
+            # 读取当前 counter（concurrency group 保证串行，不会读到过期值）
             current=$(python3 -c "import json; print(json.load(open('counter.json'))['current'])")
             next=$((current + 1))
             user="Misaka$(printf '%05d' $next)"
@@ -58,7 +63,7 @@ jobs:
             git add --force counter.json avatars/${user}.png
             git commit -m "register: ${user}" || true
 
-            if git push --force; then
+            if git push --force-with-lease; then
               echo "NEXT=$next" >> $GITHUB_OUTPUT
               echo "USER=$user" >> $GITHUB_OUTPUT
               echo "Assigned $user (attempt $ATTEMPT)"

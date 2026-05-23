@@ -60,22 +60,22 @@ def _fill_template(filepath: Path, category: str, node: str, error_msg: str):
 def _git_commit_template(filepath: Path, node: str, category: str):
     """将模板填充变更提交到仓库（数据无变化时跳过）"""
     try:
-        os.chdir(str(REPO_ROOT))
-        subprocess.run(["git", "add", str(filepath)], capture_output=True, timeout=10)
+        subprocess.run(["git", "add", str(filepath)], capture_output=True, timeout=10,
+                       cwd=str(REPO_ROOT))
         # 检查是否有实际变更
         has_changes = subprocess.run(
             ["git", "diff", "--cached", "--quiet", "--", str(filepath)],
-            capture_output=True
+            capture_output=True, cwd=str(REPO_ROOT)
         ).returncode == 1
         if not has_changes:
             print(f"  - {filepath.name} 无变化，跳过 commit")
             return
         subprocess.run(
             ["git", "commit", "-m", f"lessons: auto-fill {filepath.name} from {node}/{category} trigger"],
-            capture_output=True, timeout=10,
+            capture_output=True, timeout=10, cwd=str(REPO_ROOT),
         )
         subprocess.run(["git", "push", "origin", "main"],
-                       capture_output=True, timeout=20)
+                       capture_output=True, timeout=20, cwd=str(REPO_ROOT))
         print(f"  → 已推送到仓库")
     except Exception as e:
         print(f"  ⚠ git push 失败: {e}")
@@ -175,8 +175,23 @@ def cmd_reject(draft_name: str):
 
 
 def _get_token():
+    """Get GitHub token securely via git credential helper"""
     try:
-        creds = open(os.path.expanduser("~/.git-credentials")).read().strip()
+        result = subprocess.run(
+            ["git", "credential", "fill"],
+            input="protocol=https\nhost=github.com\n",
+            capture_output=True, text=True, timeout=5
+        )
+        for line in result.stdout.split("\n"):
+            if line.startswith("password="):
+                return line.split("=", 1)[1].strip()
+    except Exception:
+        pass
+    # Fallback: read from file with proper handling
+    try:
+        cred_path = os.path.expanduser("~/.git-credentials")
+        with open(cred_path, 'r') as f:
+            creds = f.read().strip()
         return creds.split("://")[1].split("@")[0].split(":")[1]
     except Exception:
         return None
@@ -207,7 +222,10 @@ def cmd_trigger(node, category, hit=None, error=None):
     print(f"  ✓ 记录: {node}/{category} {hit_status}")
 
     if hit:
-        lesson_path = LESSONS_DIR / hit
+        # Path traversal protection
+        import os as _os
+        safe_hit = _os.path.basename(_os.path.realpath(_os.path.join(str(LESSONS_DIR), hit)))
+        lesson_path = LESSONS_DIR / safe_hit
         if lesson_path.exists():
             if _is_template_lesson(lesson_path):
                 _fill_template(lesson_path, category, node, error or "(错误信息未记录)")
@@ -263,19 +281,19 @@ def cmd_flush(node):
     stats_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
 
     # git push（只有数据变化时才 commit，防止 git 日志刷屏）
-    os.chdir(str(REPO_ROOT))
-    subprocess.run(["git", "add", str(stats_path)], capture_output=True)
+    subprocess.run(["git", "add", str(stats_path)], capture_output=True, cwd=str(REPO_ROOT))
     has_changes = subprocess.run(
         ["git", "diff", "--cached", "--quiet", "--", str(stats_path)],
-        capture_output=True
+        capture_output=True, cwd=str(REPO_ROOT)
     ).returncode == 1  # 0=无变化, 1=有变化
     if not has_changes:
         print(f"  - hook_stats 无变化，跳过 commit")
         return
     subprocess.run(["git", "commit", "-m", f"hook_stats: {node} — {total} triggers"],
-                   capture_output=True, timeout=10)
+                   capture_output=True, timeout=10, cwd=str(REPO_ROOT))
     push = subprocess.run(["git", "push", "origin", "main"],
-                          capture_output=True, text=True, timeout=20)
+                          capture_output=True, text=True, timeout=20,
+                          cwd=str(REPO_ROOT))
 
     if push.returncode == 0:
         print(f"  ✓ 已推送: .hook_stats/{node}.json ({total} triggers)")

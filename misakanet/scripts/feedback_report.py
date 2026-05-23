@@ -59,12 +59,25 @@ def _mark_reported(skill, session_ref):
 
 
 def _get_token():
-    """从 git credentials 提取 GitHub token"""
+    """从 git credentials 安全获取 GitHub token"""
+    import subprocess as _sp
+    # 优先用 git credential fill（不暴露在进程列表）
     try:
-        creds = open(GIT_CREDS_PATH).read().strip()
-        # format: https://user:token@github.com
-        token = creds.split("://")[1].split("@")[0].split(":")[1]
-        return token
+        result = _sp.run(
+            ["git", "credential", "fill"],
+            input="protocol=https\nhost=github.com\n",
+            capture_output=True, text=True, timeout=5
+        )
+        for line in result.stdout.split("\n"):
+            if line.startswith("password="):
+                return line.split("=", 1)[1].strip()
+    except Exception:
+        pass
+    # 降级：直接从文件读（使用 with 确保关闭）
+    try:
+        with open(GIT_CREDS_PATH, 'r') as f:
+            creds = f.read().strip()
+        return creds.split("://")[1].split("@")[0].split(":")[1]
     except Exception as e:
         print(f"[error] 无法读取 token ({GIT_CREDS_PATH}): {e}", file=sys.stderr)
         return None
@@ -117,27 +130,33 @@ def create_feedback_issue(skill, result, scenario, tags=None, related_skills=Non
     print(f"[上报] {skill} → {result}")
     print(f"  scenario: {scenario[:80]}...")
 
-    proc = subprocess.run(
-        ["curl", "-s", "-X", "POST",
-         f"https://api.github.com/repos/{REPO}/issues",
-         "-H", f"Authorization: Bearer {token}",
-         "-H", "Accept: application/vnd.github.v3+json",
-         "-H", "User-Agent: MisakaNet-Node",
-         "-d", payload],
-        capture_output=True, text=True, timeout=20,
+    # 用 Python requests 代替 curl（避免 token 在进程列表中泄漏）
+    import urllib.request as _ur
+    req = _ur.Request(
+        f"https://api.github.com/repos/{REPO}/issues",
+        data=payload.encode('utf-8'),
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github.v3+json",
+            "User-Agent": "MisakaNet-Node",
+            "Content-Type": "application/json",
+        },
+        method="POST",
     )
-
-    resp = json.loads(proc.stdout) if proc.stdout else {}
-
-    if "number" in resp:
-        url = resp["html_url"]
-        print(f"  ✅ Issue #{resp['number']}: {url}")
-        _write_local_cache(skill, result, scenario, extra, url)
-        _mark_reported(skill, session_ref)
-        return url
-    else:
-        msg = resp.get("message", proc.stdout[:200])
-        print(f"  ❌ {msg}", file=sys.stderr)
+    try:
+        with _ur.urlopen(req, timeout=20) as resp:
+            resp_data = json.loads(resp.read().decode('utf-8'))
+            if "number" in resp_data:
+                url = resp_data["html_url"]
+                print(f"  ✅ Issue #{resp_data['number']}: {url}")
+                _write_local_cache(skill, result, scenario, extra, url)
+                _mark_reported(skill, session_ref)
+                return url
+            else:
+                print(f"  ❌ 未知响应", file=sys.stderr)
+                return None
+    except Exception as e:
+        print(f"  ❌ {e}", file=sys.stderr)
         return None
 
 
@@ -186,18 +205,27 @@ def _create_inventory_issue(node_id, skills, removed):
     labels = ["feedback", "inventory", f"node:{node_id}"]
 
     payload = json.dumps({"title": title, "body": body, "labels": labels})
-    proc = subprocess.run(
-        ["curl", "-s", "-X", "POST",
-         f"https://api.github.com/repos/{REPO}/issues",
-         "-H", f"Authorization: Bearer {token}",
-         "-H", "Accept: application/vnd.github.v3+json",
-         "-d", payload],
-        capture_output=True, text=True, timeout=20,
+    import urllib.request as _ur2
+    req = _ur2.Request(
+        f"https://api.github.com/repos/{REPO}/issues",
+        data=payload.encode('utf-8'),
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github.v3+json",
+            "User-Agent": "MisakaNet-Node",
+            "Content-Type": "application/json",
+        },
+        method="POST",
     )
-    resp = json.loads(proc.stdout) if proc.stdout else {}
-    if "number" in resp:
-        print(f"  inventory Issue #{resp['number']}: {resp['html_url']}")
-        return resp["html_url"]
+    try:
+        with _ur2.urlopen(req, timeout=20) as resp:
+            resp_data = json.loads(resp.read().decode('utf-8'))
+            if "number" in resp_data:
+                print(f"  inventory Issue #{resp_data['number']}: {resp_data['html_url']}")
+                return resp_data["html_url"]
+    except Exception as e:
+        print(f"  ❌ 创建 inventory Issue 失败: {e}", file=sys.stderr)
+        return None
     else:
         print(f"  [error] inventory Issue 创建失败: {resp.get('message', '')}")
         return None

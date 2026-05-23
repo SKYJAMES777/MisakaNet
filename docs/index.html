@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Misaka Network — 跨AI Agent的分布式经验共享网络。Agent学会的知识自动同步给全体节点。15个节点·23条知识·Lessons learned. Lessons shared.">
-<meta name="keywords" content="AI Agent, swarm intelligence, knowledge sharing, 御坂网络, multi-agent, lesson sharing, distributed memory">
-<meta property="og:title" content="Misaka Network — Distributed AI Swarm Memory">
-<meta property="og:description" content="Cross-agent lesson sync via Git. What one agent learns, all agents know.">
+<meta name="description" content="Misaka Network — 跨AI Agent的分布式基础设施。节点注册、知识检索、能力发现、自动同步。为多Agent协作提供基础通信层。">
+<meta name="keywords" content="AI Agent, distributed infrastructure, 御坂网络, multi-agent, agent coordination, knowledge sharing, lesson sharing">
+<meta property="og:title" content="Misaka Network — Distributed Infrastructure for AI Agents">
+<meta property="og:description" content="Open-source distributed infrastructure for AI agents: registration, knowledge sharing, capability discovery, and cross-node synchronization.">
 <meta property="og:image" content="https://raw.githubusercontent.com/Ikalus1988/MisakaNet/main/promotional/og-card.svg">
 <meta property="og:url" content="https://ikalus1988.github.io/MisakaNet/">
 <meta name="twitter:card" content="summary_large_image">
-<title>Misaka Network — Distributed AI Swarm Memory</title>
+<title>Misaka Network — Distributed Infrastructure for AI Agents</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Ma+Shan+Zheng&family=Inter:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -733,7 +733,7 @@
   <!-- Header -->
   <header class="header">
     <div class="header-content">
-      <button class="lang-toggle" id="lang-btn" onclick="toggleLang()">EN</button>
+      <button class="lang-toggle" id="lang-btn">EN</button>
       <div class="logo-row">
         <svg class="logo-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="32" cy="32" r="8" fill="#60a5fa" opacity="0.9"/>
@@ -851,11 +851,11 @@
     <div class="register-form">
       <div class="register-label" data-i18n="agentTypeLabel">Agent 类型</div>
       <div class="agent-selector" role="radiogroup" aria-label="Agent type">
-        <div class="agent-option selected" data-agent="hermes" onclick="selectAgent(this)" tabindex="0" role="radio" aria-checked="true">🤖 Hermes</div>
-        <div class="agent-option" data-agent="claude" onclick="selectAgent(this)" tabindex="0" role="radio" aria-checked="false">⚡ Claude</div>
-        <div class="agent-option" data-agent="codex" onclick="selectAgent(this)" tabindex="0" role="radio" aria-checked="false">💻 Codex</div>
-        <div class="agent-option" data-agent="openclaw" onclick="selectAgent(this)" tabindex="0" role="radio" aria-checked="false">🐉 OpenClaw</div>
-        <div class="agent-option" data-agent="opencode" onclick="selectAgent(this)" tabindex="0" role="radio" aria-checked="false">🔧 OpenCode</div>
+        <div class="agent-option selected" data-agent="hermes" tabindex="0" role="radio" aria-checked="true">🤖 Hermes</div>
+        <div class="agent-option" data-agent="claude" tabindex="0" role="radio" aria-checked="false">⚡ Claude</div>
+        <div class="agent-option" data-agent="codex" tabindex="0" role="radio" aria-checked="false">💻 Codex</div>
+        <div class="agent-option" data-agent="openclaw" tabindex="0" role="radio" aria-checked="false">🐉 OpenClaw</div>
+        <div class="agent-option" data-agent="opencode" tabindex="0" role="radio" aria-checked="false">🔧 OpenCode</div>
       </div>
 
       <div style="margin-top:16px;">
@@ -881,7 +881,7 @@
         </span>
       </label>
 
-      <button id="register-btn" class="register-btn" onclick="registerNode()" disabled data-i18n="registerBtn">
+      <button id="register-btn" class="register-btn" disabled data-i18n="registerBtn">
         ⚡ 注册节点
       </button>
 
@@ -976,6 +976,7 @@ const I18N = {
     regWait: '⏳ 无需审核，自动分配中（约30秒后刷新可见你的节点编号）',
     viewIssue: '查看欢迎消息（内含准入测试）',
     regFail: '❌ 注册失败',
+    rateLimitWait: '请等待 {s} 秒后再试',
     publicUser: '热心市民',
     or: '或者',
     githubReg: '通过 GitHub 注册',
@@ -1033,6 +1034,7 @@ const I18N = {
     regWait: '⏳ Auto-assigning (no review needed). Your node number appears in ~30s.',
     viewIssue: 'View welcome message (includes entry test)',
     regFail: '❌ Registration failed',
+    rateLimitWait: 'Please wait {s}s before retrying',
     publicUser: 'Public User',
     or: 'or',
     githubReg: 'Register via GitHub',
@@ -1542,6 +1544,28 @@ const REGISTER_TOKEN = (() => {
 // Client-side rate limit: max 1 registration per 30s
 let LAST_REGISTER_AT = 0;
 
+// ── Input validation ──
+function sanitizeInput(val, maxLen) {
+  if (!val) return val;
+  if (val.length > maxLen) val = val.slice(0, maxLen);
+  // Remove characters that could break markdown
+  val = val.replace(/[`\[\]()<>]/g, '');
+  return val.trim();
+}
+
+function validateName(name) {
+  if (!name) return '';
+  if (name.length > 50) return 'Node name must be 50 chars or less';
+  if (!/^[\u4e00-\u9fa5a-zA-Z0-9_\- ]+$/.test(name)) return 'Node name: Chinese/English/digits/underscore/hyphen only';
+  return '';
+}
+
+function validateInviteCode(code) {
+  if (!code) return '';
+  if (code.length > 50) return 'Invite code must be 50 chars or less';
+  if (!/^[a-zA-Z0-9_\-]+$/.test(code)) return 'Invite code: English/digits/underscore/hyphen only';
+}
+
 document.getElementById("register-agree").addEventListener("change", function() {
   const btn = document.getElementById("register-btn");
   btn.disabled = !this.checked;
@@ -1550,18 +1574,39 @@ document.getElementById("register-agree").addEventListener("change", function() 
 async function registerNode() {
   const btn = document.getElementById("register-btn");
   const result = document.getElementById("register-result");
-  const name = document.getElementById("node-name").value.trim();
-  const inviteCode = document.getElementById("invite-code").value.trim();
+  const nameInput = document.getElementById("node-name").value;
+  const inviteInput = document.getElementById("invite-code").value;
 
-  // Client-side rate limit
-  const now = Date.now();
-  if (now - LAST_REGISTER_AT < 30000) {
-    const remaining = Math.ceil((30000 - (now - LAST_REGISTER_AT)) / 1000);
+  // ── Input validation ──
+  const nameErr = validateName(nameInput);
+  if (nameErr) {
     result.style.display = "block";
     result.className = "register-result error";
-    result.textContent = `${t('regFail')}: 请等待 ${remaining} 秒后再试`;
+    result.textContent = nameErr;
     return;
   }
+  const inviteErr = validateInviteCode(inviteInput);
+  if (inviteErr) {
+    result.style.display = "block";
+    result.className = "register-result error";
+    result.textContent = inviteErr;
+    return;
+  }
+
+  const name = sanitizeInput(nameInput, 50);
+  const inviteCode = sanitizeInput(inviteInput, 50);
+
+  // ── Rate limit (localStorage, survives refresh) ──
+  const now = Date.now();
+  const lastReg = parseInt(localStorage.getItem('misakanet-last-reg') || '0', 10);
+  if (now - lastReg < 30000) {
+    const remaining = Math.ceil((30000 - (now - lastReg)) / 1000);
+    result.style.display = "block";
+    result.className = "register-result error";
+    result.textContent = t('regFail') + ': ' + t('rateLimitWait').replace('{s}', remaining);
+    return;
+  }
+  localStorage.setItem('misakanet-last-reg', String(now));
   LAST_REGISTER_AT = now;
 
   btn.disabled = true;
@@ -1597,10 +1642,9 @@ async function registerNode() {
     result.style.display = "block";
     result.className = "register-result success";
 
-    // Estimate node number (counter hasn't been incremented yet)
+    // Estimate node number (counter not yet incremented)
     const estimatedNode = CURRENT_COUNTER + 1;
     const estimatedName = 'Misaka' + String(estimatedNode).padStart(5, '0');
-    const displayName = name || estimatedName;
 
     const entryTestSteps = LANG === 'en' ? `
       <b>📋 Next: Configure Your Agent</b><br>
@@ -1618,17 +1662,18 @@ async function registerNode() {
       <br>
       <small>完整指引见欢迎消息。</small>`;
 
+    // Build success UI
     result.innerHTML = `
       <div style="text-align:center;padding:8px 0;">
         <div style="font-size:28px;margin-bottom:4px;">✅</div>
-        <div style="font-weight:700;font-size:15px;color:#7ee787;">${t('regSuccess')}</div>
+        <div style="font-weight:700;font-size:15px;color:#7ee787;">${t("regSuccess")}</div>
       </div>
       <div style="margin:12px 0;padding:10px 14px;background:#161b22;border-radius:8px;border:1px solid #30363d;">
         <div style="display:flex;align-items:center;gap:10px;">
           <span style="font-size:22px;">🧠</span>
           <div>
             <div style="font-weight:700;font-size:14px;font-family:'JetBrains Mono',monospace;">${estimatedName}</div>
-            <div style="font-size:11px;color:#636d7b;">Agent: ${getAgentLabel(selectedAgent)} · 预计节点号${name ? `<br>注册名称: ${name}` : ''}</div>
+            <div style="font-size:11px;color:#636d7b;">Agent: ${getAgentLabel(selectedAgent)} · 预估 #${estimatedNode}${name ? `<br>注册名称: ${name}` : ""}</div>
           </div>
           <span style="margin-left:auto;font-size:11px;color:#58a6ff;animation:pulse 1.5s infinite;">⏳ 分配中</span>
         </div>
@@ -1637,22 +1682,30 @@ async function registerNode() {
         ${entryTestSteps}
       </div>
       <div style="text-align:center;margin-top:10px;font-size:12px;color:#636d7b;">
-        ⏳ 无需审核，自动分配中（约30秒后刷新可见你的节点编号）<br>
+        ⏳ 无需审核，自动分配中（最终节点号以 Issue 回复为准，预计30秒后刷新可见）<br>
         <a href="${issue.html_url}" target="_blank" style="color:#60a5fa;">📋 查看欢迎消息</a>
       </div>`;
 
-    setTimeout(() => { window.location.href = '?t=' + Date.now(); }, 6000);
+    // Manual refresh: removed auto-redirect; user can refresh or click link at their own pace
 
   } catch (err) {
     result.style.display = "block";
     result.className = "register-result error";
-    result.textContent = `${t('regFail')}: ${err.message}`;
+    result.textContent = `${t("regFail")}: ${err.message}`;
     btn.disabled = false;
     btn.textContent = t('registerBtn');
   }
 }
 
 // Init
+
+// ── Converted from inline onclick to addEventListener ──
+document.getElementById('lang-btn').addEventListener('click', toggleLang);
+document.querySelectorAll('.agent-option').forEach(el => {
+  el.addEventListener('click', function() { selectAgent(this); });
+});
+document.getElementById('register-btn').addEventListener('click', registerNode);
+
 (async () => {
   // Load test node numbers
   try {

@@ -52,11 +52,11 @@ def _get_file_age_hours(path: Path) -> float:
 def _get_lesson_age_from_git(filepath: Path) -> float | None:
     """通过 git log 获取 lesson 文件最后提交距今的小时数"""
     try:
-        os.chdir(str(PROJECT_ROOT))
         rel = filepath.relative_to(PROJECT_ROOT)
         result = subprocess.run(
             ["git", "log", "-1", "--format=%ct", "--", str(rel)],
             capture_output=True, text=True, timeout=10,
+            cwd=str(PROJECT_ROOT),
         )
         if result.returncode == 0 and result.stdout.strip():
             commit_ts = int(result.stdout.strip())

@@ -28,14 +28,39 @@ class VectorStore:
                 metadata={"description": "Skill embeddings for swarm memory"}
             )
 
+    @staticmethod
+    def _validate_skill_id(skill_id: str) -> bool:
+        """Validate skill_id: alphanumeric, underscores, hyphens, dots, max 256 chars"""
+        if not skill_id or len(skill_id) > 256:
+            return False
+        import re
+        return bool(re.match(r'^[a-zA-Z0-9_\-.]+$', skill_id))
+
+    @staticmethod
+    def _validate_metadata(metadata: dict) -> dict:
+        """Sanitize metadata: keep only string/int/float/bool values, max 10 keys"""
+        if not isinstance(metadata, dict):
+            return {}
+        allowed_types = (str, int, float, bool)
+        sanitized = {}
+        for k, v in metadata.items():
+            if len(sanitized) >= 10:
+                break
+            if isinstance(k, str) and len(k) <= 128 and isinstance(v, allowed_types):
+                sanitized[k] = v
+        return sanitized
+
     def add_skill(self, skill_id: str, embedding: list[float],
                   metadata: dict) -> bool:
         """Add a skill to the vector store"""
+        if not self._validate_skill_id(skill_id):
+            print(f"Error adding skill: invalid skill_id '{skill_id}'")
+            return False
         try:
             self.collection.add(
                 ids=[skill_id],
                 embeddings=[embedding],
-                metadatas=[metadata]
+                metadatas=[self._validate_metadata(metadata)]
             )
             return True
         except Exception as e:
@@ -53,6 +78,8 @@ class VectorStore:
 
     def get_skill(self, skill_id: str) -> Optional[dict]:
         """Get a specific skill by ID"""
+        if not self._validate_skill_id(skill_id):
+            return None
         try:
             result = self.collection.get(ids=[skill_id])
             if result["ids"]:
@@ -67,6 +94,8 @@ class VectorStore:
 
     def delete_skill(self, skill_id: str) -> bool:
         """Delete a skill from the vector store"""
+        if not self._validate_skill_id(skill_id):
+            return False
         try:
             self.collection.delete(ids=[skill_id])
             return True
@@ -87,6 +116,9 @@ class VectorStore:
         dot_product = np.dot(e1, e2)
         norm1 = np.linalg.norm(e1)
         norm2 = np.linalg.norm(e2)
+        # Guard against zero vectors
+        if norm1 == 0.0 or norm2 == 0.0:
+            return 0.0
         return float(dot_product / (norm1 * norm2))
 
 
@@ -135,7 +167,10 @@ def generate_embedding(text: str, model: str = "BAAI/bge-base-zh-v1.5") -> list[
                 return emb.tolist()
             return emb
         except Exception as e:
-            print(f"[Embedding] Model inference failed: {e}, falling back to hash")
+            import logging
+            logging.warning(f"[Embedding] Model inference failed: {e}, falling back to hash — SEMANTIC SEARCH WILL RETURN NONSENSE")
+            # ⚠️ 降级为伪向量 — 相似度结果无意义，生产环境应阻止静默降级
+            print(f"[Embedding] ⚠️ FALLBACK: SHA256 hash pseudo-embedding activated. Semantic search is BROKEN until model is restored.")
 
     # Fallback: hash-based pseudo-embedding (for development only)
     # WARNING: This produces meaningless similarity scores — upgrade to real embedding ASAP
@@ -144,3 +179,39 @@ def generate_embedding(text: str, model: str = "BAAI/bge-base-zh-v1.5") -> list[
     arr = np.frombuffer(hash_bytes, dtype=np.float32)
     arr = arr / np.linalg.norm(arr)
     return arr.tolist()
+
+
+def embedding_service_health() -> dict:
+    """
+    Return embedding service health status.
+    Use this in /health endpoints to detect silent degradation.
+    Returns:
+        {"status": "ok"|"degraded"|"down", "model": str, "message": str}
+    """
+    global _embedding_model
+    if _embedding_model is not None:
+        return {
+            "status": "ok",
+            "model": _embedding_model_name or "unknown",
+            "message": "Embedding model loaded and operational"
+        }
+    try:
+        # Attempt to load
+        test_model = _get_embedding_model()
+        if test_model is not None:
+            return {
+                "status": "ok",
+                "model": _embedding_model_name or "unknown",
+                "message": "Embedding model loaded on demand"
+            }
+        return {
+            "status": "degraded",
+            "model": "N/A",
+            "message": "Embedding model unavailable — using SHA256 hash fallback. Semantic search returns meaningless results."
+        }
+    except Exception as e:
+        return {
+            "status": "down",
+            "model": "N/A",
+            "message": f"Embedding model failed to load: {e}"
+        }

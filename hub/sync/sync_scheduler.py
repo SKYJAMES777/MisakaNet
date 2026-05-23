@@ -96,8 +96,7 @@ class SyncScheduler:
 
 class PollingManager:
     """
-    ⚠️  DEAD CODE — 当前架构使用 GitHub Issues 异步通信，无 polling 需求。
-    保留供未来实时通信场景参考。
+    PollingManager — 预留 poll 模式，当前未启用
     """
 
     def __init__(self, interval_minutes: int = 5):

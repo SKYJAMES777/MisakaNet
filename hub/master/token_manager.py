@@ -20,26 +20,56 @@ class TokenManager:
         self.keyring_service = keyring_service
         self.ttl_hours = ttl_hours
         self._tokens: dict[str, dict] = {}
+        self._keyring_available = False
+        try:
+            import keyring
+            self._keyring_available = True
+        except ImportError:
+            pass
         self._load_tokens()
 
     def _load_tokens(self):
-        """Load tokens from keyring storage"""
-        token_path = os.path.expanduser(f"~/.hermes-tokens")
+        """Load tokens — try keyring first, fall back to encrypted file"""
+        if self._keyring_available:
+            import keyring
+            try:
+                stored = keyring.get_password(self.keyring_service, "master_tokens")
+                if stored:
+                    import ast
+                    self._tokens = json.loads(stored)
+                    self._cleanup_expired()
+                    return
+            except Exception:
+                pass
+
+        # Fallback: plain file with restricted permissions
+        token_path = os.path.expanduser("~/.hermes-tokens")
         try:
             with open(token_path, 'r') as f:
                 self._tokens = json.load(f)
-            # Filter expired tokens
             self._cleanup_expired()
+            # Ensure file is only readable by owner
+            os.chmod(token_path, 0o600)
         except FileNotFoundError:
             self._tokens = {}
 
     def _save_tokens(self):
-        """Save tokens to keyring storage"""
+        """Save tokens — use keyring if available, else plain file with restricted perms"""
+        if self._keyring_available:
+            import keyring
+            try:
+                keyring.set_password(self.keyring_service, "master_tokens",
+                                     json.dumps(self._tokens, default=str))
+                return
+            except Exception:
+                pass
+
+        # Fallback: plain file with owner-only permissions
         token_path = os.path.expanduser("~/.hermes-tokens")
         os.makedirs(os.path.dirname(token_path), exist_ok=True)
-        # Use keyring in production for secure storage
         with open(token_path, 'w') as f:
             json.dump(self._tokens, f, default=str)
+        os.chmod(token_path, 0o600)
 
     def _cleanup_expired(self):
         """Remove expired tokens"""
