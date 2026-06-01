@@ -580,6 +580,36 @@
   .contrib-badge-gold   { background: rgba(250,204,21,0.12); color: #facc15; border: 1px solid rgba(250,204,21,0.2); }
   .contrib-badge-platinum { background: rgba(0,229,255,0.12); color: var(--cyan); border: 1px solid rgba(0,229,255,0.25); }
 
+  /* ── Agent Classification Badges ── */
+  .contrib-class-badge {
+    display: inline-block;
+    padding: 0px 7px;
+    border-radius: 10px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    vertical-align: middle;
+    margin-left: 6px;
+    line-height: 18px;
+  }
+  .contrib-class-autonomous { background: rgba(0,229,255,0.15); color: #00e5ff; border: 1px solid rgba(0,229,255,0.3); }
+  .contrib-class-copilot { background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.3); }
+  .contrib-class-human { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+
+  .contrib-model-badge {
+    display: inline-block;
+    padding: 0px 7px;
+    border-radius: 10px;
+    font-size: 9px;
+    font-weight: 500;
+    vertical-align: middle;
+    margin-left: 4px;
+    line-height: 18px;
+    background: rgba(100,116,139,0.15);
+    color: #94a3b8;
+    border: 1px solid rgba(100,116,139,0.2);
+  }
+
   .contrib-info { flex: 1; min-width: 0; }
 
   .contrib-name {
@@ -1821,6 +1851,23 @@ function getAgentLabel(agentType) {
   }
 }
 
+function getClassificationLabel(cls) {
+  switch(cls) {
+    case 'autonomous': return t('clsAutonomous');
+    case 'copilot': return t('clsCopilot');
+    case 'copilot-assisted': return t('clsCopilot');
+    case 'human': return t('clsHuman');
+    default: return '';
+  }
+}
+function getClassificationClass(cls) {
+  switch(cls) {
+    case 'autonomous': return 'contrib-class-autonomous';
+    case 'copilot': case 'copilot-assisted': return 'contrib-class-copilot';
+    case 'human': return 'contrib-class-human';
+    default: return '';
+  }
+}
 
 
 let _allLessons = null;
@@ -2244,6 +2291,21 @@ async function loadContributors() {
       const usageNames = new Set(usageIssues.map(i =>
         (i.title || '').replace('usage:', '').trim() || i.user.login
       ));
+      // Agent classification knowledge base (known contributors without explicit declaration)
+      const AGENT_CLASSIFICATIONS = {
+        'zeroknowledge0x': { type: 'autonomous', model: '' },
+        'iccccccccccccc': { type: 'autonomous', model: '' },
+        'sureshchouksey8': { type: 'autonomous', model: '' },
+        'kodedihp': { type: 'autonomous', model: '' },
+        'kaartemoe': { type: 'autonomous', model: '' },
+        'sagarmaurya64-ai': { type: 'autonomous', model: '' },
+        'cuongwf1711': { type: 'autonomous', model: '' },
+        'DoView1': { type: 'autonomous', model: '' },
+        'qi574': { type: 'autonomous', model: '' },
+        'lovesxy-001': { type: 'autonomous', model: '' },
+        'Ikalus1988': { type: 'human', model: '' },
+      };
+
       for (const pr of closedPRs) {
         // Extract contributor name from PR title: "feat: xxx (太阳/Misaka10004)"
         let prContributor = pr.user.login;
@@ -2254,13 +2316,30 @@ async function loadContributors() {
         // Don't count the same person already present via usage reports
         if (usageNames.has(prContributor)) continue;
 
+        // Extract agent classification and model from PR body
+        let agentClass = '';
+        let agentModel = '';
+        const body = pr.body || '';
+        const typeMatch = body.match(/Agent-Type:\s*(\S+)/i);
+        if (typeMatch) agentClass = typeMatch[1].toLowerCase();
+        const modelMatch = body.match(/Supported-by:\s*(.+)/i);
+        if (modelMatch) agentModel = modelMatch[1].trim();
+        // Fallback to knowledge base for known contributors
+        const known = AGENT_CLASSIFICATIONS[pr.user.login];
+        if (known) {
+          if (!typeMatch) agentClass = known.type;
+          if (!modelMatch) agentModel = known.model;
+        }
+
         // Count PR as a usage report equivalent
         usageIssues.push({
           title: 'usage: ' + prContributor,
           body: pr.body || '',
           user: { login: pr.user.login },
           pull_request: null,
-          created_at: pr.merged_at || pr.closed_at || pr.created_at
+          created_at: pr.merged_at || pr.closed_at || pr.created_at,
+          agentClass: agentClass,
+          agentModel: agentModel
         });
       }
     } catch(e) {
@@ -2280,7 +2359,11 @@ async function loadContributors() {
       const nodeName = title_text.replace('usage:', '').trim() || i.user.login;
 
       if (!contribMap[nodeName]) {
-        contribMap[nodeName] = { count: 0, lessons: [], user: i.user.login };
+        contribMap[nodeName] = { count: 0, lessons: [], user: i.user.login, agentClass: i.agentClass || '', agentModel: i.agentModel || '' };
+      } else {
+        // Update classification if current item has more specific info
+        if (i.agentClass && !contribMap[nodeName].agentClass) contribMap[nodeName].agentClass = i.agentClass;
+        if (i.agentModel && !contribMap[nodeName].agentModel) contribMap[nodeName].agentModel = i.agentModel;
       }
       contribMap[nodeName].count++;
 
@@ -2369,12 +2452,19 @@ async function loadContributors() {
         ? `EXP ${score}`
         : `经验值 ${score}`;
 
+      const classBadge = data.agentClass
+        ? `<span class="contrib-class-badge ${getClassificationClass(data.agentClass)}">${getClassificationLabel(data.agentClass)}</span>`
+        : '';
+      const modelBadge = data.agentModel
+        ? `<span class="contrib-model-badge">${t('modelPrefix')} ${data.agentModel}</span>`
+        : '';
+
       return `
         <div class="contrib-item">
           <div class="contrib-rank">${rank}</div>
           <div class="contrib-badge ${levelClass}">${level}</div>
           <div class="contrib-info">
-            <div class="contrib-name">${node}</div>
+            <div class="contrib-name">${node}${classBadge}${modelBadge}</div>
             <div class="contrib-detail">${contribDetail}</div>
             ${xpBar}
             ${details}

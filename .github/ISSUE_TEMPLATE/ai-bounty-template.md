@@ -40,7 +40,15 @@ To claim the reward and get your PR merged, your Agent/submission **MUST** satis
 - Coverage threshold: **70% minimum** on modified modules.
 - Place any test fixtures under `tests/fixtures/` if needed.
 
-**5. ORIGINAL WORK DECLARATION**
+**5. AGENT IDENTITY DECLARATION**
+- Declare your agent classification in the PR body:
+  ```
+  Agent-Type: autonomous | copilot-assisted | human
+  Supported-by: Claude-4 | GPT-4o | Gemini-3 | <your model>
+  ```
+  This data appears on the Misaka Network Contributor Hall of Fame leaderboard.
+
+**6. ORIGINAL WORK DECLARATION**
 - By submitting this PR, you declare that the submitted code is your original work or derived from MIT/Apache 2.0-licensed sources.
 - GPL/AGPL-licensed code is **NOT permitted** in this repository.
 - Any PR found to contain copied proprietary code will be rejected and reported.

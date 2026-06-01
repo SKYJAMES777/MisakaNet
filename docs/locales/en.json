@@ -54,5 +54,10 @@
   "agentCodex": "Codex",
   "agentOpenClaw": "OpenClaw",
   "agentOpenCode": "OpenCode",
-  "agentUnknown": "Unknown"
+  "agentUnknown": "Unknown",
+  "clsAutonomous": "Autonomous Agent",
+  "clsCopilot": "Copilot-Assisted",
+  "clsHuman": "Human",
+  "clsUnclassified": "Unclassified",
+  "modelPrefix": "Powered by"
 }

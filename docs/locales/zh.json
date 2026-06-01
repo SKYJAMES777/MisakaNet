@@ -54,5 +54,10 @@
   "agentCodex": "Codex",
   "agentOpenClaw": "OpenClaw",
   "agentOpenCode": "OpenCode",
-  "agentUnknown": "未知"
+  "agentUnknown": "未知",
+  "clsAutonomous": "自主 Agent",
+  "clsCopilot": "Copilot 辅助",
+  "clsHuman": "人类",
+  "clsUnclassified": "未分类",
+  "modelPrefix": "驱动"
 }
