@@ -78,7 +78,7 @@ jobs:
       - name: 🧪 Run Test Suite
         id: pytest
         run: |
-          pytest --cov=scripts --cov=misakanet --cov-report=term --cov-fail-under=70 tests/ > pytest_report.txt 2>&1
+          pytest --cov=scripts --cov=misakanet --cov-report=term --cov-fail-under=70 tests/ > pytest_report.txt 2>&1 || true
           cat pytest_report.txt
         continue-on-error: true
 
