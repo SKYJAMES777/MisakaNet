@@ -355,8 +355,8 @@ export default {
       }
     }
 
-    // POST / — 注册
-    if (request.method === "POST") {
+    // POST / 或 POST /api/register — 注册
+    if (request.method === "POST" && (url.pathname === "/" || url.pathname === "/api/register")) {
       return await handleRegistration(request, env);
     }
 
