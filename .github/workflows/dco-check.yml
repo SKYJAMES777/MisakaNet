@@ -25,19 +25,28 @@ jobs:
           git fetch upstream ${{ github.base_ref }}
 
       - name: DCO Check — require Signed-off-by on all commits
+        id: dco-check
         shell: bash
         run: |
           set +e
           bad=0
+          FAILED_LOG=""
           for commit in $(git log --format='%H' upstream/${{ github.base_ref }}..HEAD 2>/dev/null); do
             msg=$(git log --format='%B' -1 "$commit")
             if ! echo "$msg" | grep -qi 'Signed-off-by:'; then
               echo "❌ Commit $commit is missing Signed-off-by:"
               echo "   $(git log --format='%s' -1 "$commit")"
+              FAILED_LOG="${FAILED_LOG}$(git log -1 --format='%h | %s | %an <%ae>' "$commit")\n"
               bad=$((bad + 1))
             fi
           done
-          if [ "$bad" -gt 0 ]; then
+
+          # Capture failed commits for downstream comment step
+          if [ -n "$FAILED_LOG" ]; then
+            echo "failed_commits_log<<DCO_EOF" >> "$GITHUB_OUTPUT"
+            printf "%b" "$FAILED_LOG" >> "$GITHUB_OUTPUT"
+            echo "DCO_EOF" >> "$GITHUB_OUTPUT"
+
             echo ""
             echo "⚠️  All commits must include a Signed-off-by line."
             echo "   Fix: git commit --amend --signoff  (for latest commit)"
@@ -77,3 +86,41 @@ jobs:
             } catch (e) {
               console.log('Skipping DCO status check (fork PR permission):', e.message);
             }
+
+      - name: Post Industrial DCO Comment
+        if: failure() && steps.dco-check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FAILED_COMMITS: ${{ steps.dco-check.outputs.failed_commits_log }}
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          {
+            echo '### AUTOMATED AUDIT SYSTEM: REGULATORY BLOCK'
+            echo ''
+            echo '**[STATUS]** AUTO-MERGE: PINNED (BLOCKED)'
+            echo '**[REASON]** Developer Certificate of Origin (DCO) validation failed.'
+            echo ''
+            echo '---'
+            echo ''
+            echo '#### 1. COMMIT SIGN-OFF SNAPSHOT'
+            echo 'The following commits in this Pull Request are missing the required `Signed-off-by` line:'
+            echo ''
+            echo '```'
+            echo "$FAILED_COMMITS"
+            echo '```'
+            echo ''
+            echo '#### 2. REMEDIATION PROTOCOL FOR AGENT / CONTRIBUTOR'
+            echo 'Execute the following commands locally within your repository to re-sign and update the branch:'
+            echo ''
+            echo '```bash'
+            echo '# Step 1: Rebase to add sign-off to all commits in this PR'
+            echo "git rebase -i origin/${BASE_REF} --exec \"git commit --amend --no-edit --signoff\""
+            echo ''
+            echo '# Step 2: Force-push the corrected history back to the remote branch'
+            echo "git push --force origin ${HEAD_REF}"
+            echo '```'
+            echo ''
+            echo '*Note: This is an automated gate. Once all commits conform to the DCO specification, the Auto-Merge controller will resume execution immediately.*'
+          } > dco_comment.md
+          gh pr comment ${{ github.event.pull_request.number }} --body-file dco_comment.md
