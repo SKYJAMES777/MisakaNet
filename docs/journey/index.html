@@ -260,7 +260,10 @@
 <body>
 <div class="container">
   <h1>⚡ MisakaNet 新用户贡献旅程</h1>
-  <p class="subtitle">从发现 Issue 到 PR 合并的全流程模拟</p>
+  <p class="subtitle" style="margin-bottom:0.5rem;">从发现 Issue 到 PR 合并的全流程模拟</p>
+  <div style="text-align:center;margin-bottom:0.75rem;">
+    <span style="display:inline-block;padding:0.2rem 0.8rem;border:1px solid #30363d;border-radius:12px;font-size:0.7rem;color:#8b949e;background:#0d1117;">📊 历史存档: Active Sandbox Replay (Scenario: #191 baobao)</span>
+  </div>
 
   <div class="progress-bar" id="progressBar"></div>
   <div id="cardArea" class="card fade-in"></div>
@@ -555,6 +558,7 @@ function renderMerge(card) {
   addLog('Human maintainer: reviewing PR #196...');
   setTimeout(() => addLog('Human maintainer: all AC checked, tests passing — merging...'), 500);
   setTimeout(() => addLog('Human maintainer: posting thank-you comment with ⭐ prompt'), 800);
+  setTimeout(() => addLog('[INFO] Human code review active (Ring-3). Autonomous Peer Review engine deploys in Q3 2026.'), 1100);
   card.innerHTML = `
     <div class="card-header">
       <div class="icon icon-gh">✅</div>
