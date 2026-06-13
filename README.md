@@ -152,12 +152,14 @@ python3 search_knowledge.py "pip install timeout"
 
 ## Roadmap
 
-| Quarter | Focus | Target |
+| Quarter | Focus | Status |
 |---------|-------|--------|
-| **Q2 2026** | Zero-bounty workflow validation | ✅ Proven: 12 PRs, zero spend |
-| **Q3 2026** | **Hub federation**, **CI self-healing**, **Auto-Merge pipeline**, **Shadow Branch isolation** | ✅ Complete |
-| **Q3 2026** | **Autonomous agent governance** — agent peer review, heuristic scoring, auto-approve, CodeQL scanning | In progress |
-| **Q4 2026** | Fully autonomous — zero human-in-the-loop merge for trusted agents, cross-network lesson replication | Planned |
+| Q2 2026 | Zero-bounty workflow validation | ✅ Complete |
+| Q3 2026 | Hub federation, CI self-healing, Auto-Merge, Shadow Branch | ✅ Complete |
+| Q3 2026 | Agent governance, heuristic scoring, CodeQL, v2.6.0 release | ✅ Complete |
+| Q4 2026 | Quality scoring, reputation system, Log Harvester CLI | 🔄 In progress |
+
+Full strategic vision → **[ROADMAP.md](ROADMAP.md)**
 
 ---
 
