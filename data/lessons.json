@@ -1,5 +1,18 @@
 [
   {
+    "id": "TEMPLATE",
+    "title": "<English Title: 4-120 chars>",
+    "domain": "<domain>",
+    "tags": [
+      "tag1",
+      "tag2",
+      "tag3"
+    ],
+    "summary": "<!-- What went wrong? What was the symptom? Be specific. -->",
+    "url": "lessons/TEMPLATE.md",
+    "updated": "<YYYY-MM-DD>"
+  },
+  {
     "id": "context-compaction-earlier-turns-in-this-convers",
     "title": "CONTEXT COMPACTION] Earlier turns in this convers",
     "domain": "rag",
@@ -707,6 +720,46 @@
     "updated": ""
   },
   {
+    "id": "agent-manual-update-timeout",
+    "title": "Agent 手动更新步骤（update 超时处理）",
+    "domain": "devops",
+    "tags": [],
+    "summary": "Agent 框架在通过内置更新命令更新时，因网络原因或镜像源问题，可能出现 update 超时，导致无法自动完成更新。",
+    "url": "lessons/contrib/agent-manual-update-timeout.md",
+    "updated": "2026-05-03"
+  },
+  {
+    "id": "agent-state-database-lock-cleanup",
+    "title": "Agent State Database Lock Issues — Cleanup Protocol",
+    "domain": "devops",
+    "tags": [
+      "database",
+      "lock",
+      "state",
+      "cleanup",
+      "lesson-written"
+    ],
+    "summary": "Agent framework uses a SQLite-based state database to persist conversation context, session metadata, and operational st...",
+    "url": "lessons/contrib/agent-state-database-lock-cleanup.md",
+    "updated": "2026-05-16 00:00:00 UTC"
+  },
+  {
+    "id": "agent-write-file-sandbox-worktree-path-breakage",
+    "title": "Agent Write File 写入不落地 + Worktree Git 链接路径断裂",
+    "domain": "devops",
+    "tags": [
+      "agent-mode",
+      "write-file",
+      "worktree",
+      "wsl",
+      "git",
+      "lesson-written"
+    ],
+    "summary": "在对项目进行代码修改的过程中，使用 Agent 模式操作。操作环境为 WSL (Windows Subsystem for Linux)，仓库使用 worktree 管理。",
+    "url": "lessons/contrib/agent-write-file-sandbox-worktree-path-breakage.md",
+    "updated": "2026-05-13 01:01:52 UTC"
+  },
+  {
     "id": "ai-agent-project-outreach-guide",
     "title": "AI Agent 项目宣发引流指南",
     "domain": "marketing",
@@ -724,12 +777,12 @@
     "updated": "2026-05-11"
   },
   {
-    "id": "aily-飞书-mcp-通道-只能拉取不能推送",
+    "id": "aily-feishu-mcp-pull-only",
     "title": "aily 飞书 MCP 通道：只能拉取不能推送",
     "domain": "feishu",
     "tags": [],
     "summary": "虫群架构设计时，误以为 aily 飞书侧支持 MCP Server 暴露给 Hub 调用。",
-    "url": "lessons/contrib/aily-飞书-mcp-通道-只能拉取不能推送.md",
+    "url": "lessons/contrib/aily-feishu-mcp-pull-only.md",
     "updated": "2026-05-03"
   },
   {
@@ -740,6 +793,19 @@
     "summary": "internal-gateway.local API 端点 (`https://api.internal-gateway.local/v1`) 只接受 OpenAI 格式 (`/v1/chat/compositions`)，不支持 Anth...",
     "url": "lessons/contrib/anthropic-proxy-internal-gateway.md",
     "updated": "2026-04-30 09:00 UTC"
+  },
+  {
+    "id": "api-gateway-anthropic-incompatibility",
+    "title": "InternalGateway API 网关不兼容 Anthropic 原生格式",
+    "domain": "devops",
+    "tags": [
+      "project:rag",
+      "severity:medium",
+      "node:hermes_wsl"
+    ],
+    "summary": "Hermes Agent 配置 Anthropic provider 使用 internal-gateway.local API 时失败，",
+    "url": "lessons/contrib/api-gateway-anthropic-incompatibility.md",
+    "updated": "2026-05-03"
   },
   {
     "id": "api-rate-limit-handling-best-practices",
@@ -770,19 +836,6 @@
     "updated": ""
   },
   {
-    "id": "api-网关不兼容-anthropic-原生格式",
-    "title": "InternalGateway API 网关不兼容 Anthropic 原生格式",
-    "domain": "devops",
-    "tags": [
-      "project:rag",
-      "severity:medium",
-      "node:hermes_wsl"
-    ],
-    "summary": "Hermes Agent 配置 Anthropic provider 使用 internal-gateway.local API 时失败，",
-    "url": "lessons/contrib/api-网关不兼容-anthropic-原生格式.md",
-    "updated": "2026-05-03"
-  },
-  {
     "id": "audit-sampling-stratified-sampling-for-kb-inspection",
     "title": "巡检题库分层抽样策略",
     "domain": "rag",
@@ -798,7 +851,7 @@
     "updated": "2026-05-21"
   },
   {
-    "id": "bge-embedding-模型需要降级-fallback-避免启动崩溃",
+    "id": "bge-embedding-fallback-crash",
     "title": "BGE embedding 模型需要降级 fallback 避免启动崩溃",
     "domain": "rag",
     "tags": [
@@ -807,7 +860,7 @@
       "node:hermes_wsl"
     ],
     "summary": "HermesHub 启动时如果 BGE-m3 模型未下载到本地路径，SkillIndexer 直接崩溃。",
-    "url": "lessons/contrib/bge-embedding-模型需要降级-fallback-避免启动崩溃.md",
+    "url": "lessons/contrib/bge-embedding-fallback-crash.md",
     "updated": "2026-05-03"
   },
   {
@@ -838,15 +891,6 @@
     "updated": "2026-05-19"
   },
   {
-    "id": "cc-connect-飞书机器人完整配置指南",
-    "title": "cc-connect 飞书机器人完整配置指南",
-    "domain": "feishu",
-    "tags": [],
-    "summary": "cc-connect 是一个连接 AI 编码代理（如 Claude Code）与消息平台（如飞书）的桥接工具。本文档记录完整的配置过程和常见问题解决方案。",
-    "url": "lessons/contrib/cc-connect-飞书机器人完整配置指南.md",
-    "updated": "2026-05-19 08:59:26 UTC"
-  },
-  {
     "id": "ccswitch-hermes-switch",
     "title": "ccswitch-hermes-switch 踩坑记录",
     "domain": "devops",
@@ -856,6 +900,15 @@
     "updated": "2026-05-02"
   },
   {
+    "id": "chroma-rebuild-no-checkpoint-cn",
+    "title": "Chroma 建库无 Checkpoint — 进程一死全部丢失",
+    "domain": "rag",
+    "tags": [],
+    "summary": "Agent 内跑 BGE-large-zh 建库（约30分钟），Gateway 重启后整个数据库为空，0条向量入库。",
+    "url": "lessons/contrib/chroma-rebuild-no-checkpoint-cn.md",
+    "updated": "2026-04-01"
+  },
+  {
     "id": "chroma-rebuild-no-checkpoint",
     "title": "Chroma 建库无 Checkpoint — 进程一死全部丢失",
     "domain": "rag",
@@ -863,29 +916,6 @@
     "summary": "Agent 内跑 BGE-large-zh 建库（约30分钟），Gateway 重启后整个数据库为空，0条向量入库。",
     "url": "lessons/contrib/chroma-rebuild-no-checkpoint.md",
     "updated": "2026-04-01"
-  },
-  {
-    "id": "chroma-建库无-checkpoint-进程一死全部丢失",
-    "title": "Chroma 建库无 Checkpoint — 进程一死全部丢失",
-    "domain": "rag",
-    "tags": [],
-    "summary": "Agent 内跑 BGE-large-zh 建库（约30分钟），Gateway 重启后整个数据库为空，0条向量入库。",
-    "url": "lessons/contrib/chroma-建库无-checkpoint-进程一死全部丢失.md",
-    "updated": "2026-04-01"
-  },
-  {
-    "id": "chromadb-不能放在-ntfs-文件系统",
-    "title": "ChromaDB 不能放在 NTFS 文件系统",
-    "domain": "rag",
-    "tags": [
-      "project:self-grow-wiki",
-      "severity:critical",
-      "platform:wsl",
-      "node:hermes_wsl"
-    ],
-    "summary": "ChromaDB 在 WSL 的 /mnt/d/ （NTFS 挂载点）上运行时出现 SQLite  compaction 错误，向量库损坏。",
-    "url": "lessons/contrib/chromadb-不能放在-ntfs-文件系统.md",
-    "updated": "2026-05-03"
   },
   {
     "id": "chrome-relay-browser-automation",
@@ -982,23 +1012,6 @@
     "updated": ""
   },
   {
-    "id": "deepseek-tui-agent-模式下-write-file-写入不落地-worktree-git-链接路径断裂",
-    "title": "DeepSeek TUI Agent 模式下 write_file 写入不落地 + worktree git 链接路径断裂",
-    "domain": "devops",
-    "tags": [
-      "deepseek-tui",
-      "agent-mode",
-      "write-file",
-      "worktree",
-      "wsl",
-      "git",
-      "lesson-written"
-    ],
-    "summary": "在 Agent-Medici 项目的 search_knowledge.py v2 升级过程中，使用 DeepSeek TUI Agent 模式进行代码修改。操作环境为 WSL (Windows Subsystem for Linux)，仓...",
-    "url": "lessons/contrib/deepseek-tui-agent-模式下-write-file-写入不落地-worktree-git-链接路径断裂.md",
-    "updated": "2026-05-13 01:01:52 UTC"
-  },
-  {
     "id": "deepseek-tui-write-file-sandbox-worktree-git-path",
     "title": "DeepSeek TUI Agent 模式下 write_file 写入不落地 + worktree git 链接路径断裂",
     "domain": "devops",
@@ -1025,39 +1038,21 @@
     "updated": "2026-05-01 08:00 UTC"
   },
   {
-    "id": "fanuc-kl-1086-是代码行号而非错误码",
-    "title": "FANUC KL: 1086 是代码行号而非错误码",
-    "domain": "fanuc",
-    "tags": [],
-    "summary": "分析 FANUC 1086 报错时，误将 1086 当作某种错误码，一路追错方向。",
-    "url": "lessons/contrib/fanuc-kl-1086-是代码行号而非错误码.md",
-    "updated": "2026-05-03"
-  },
-  {
-    "id": "fanuc-kl-bytes-ahead-是-karel-内置-procedure",
-    "title": "FANUC KL: BYTES_AHEAD 是 Karel 内置 Procedure",
-    "domain": "fanuc",
-    "tags": [],
-    "summary": "KL 编译报错时，误认为 BYTES_AHEAD 是禁用标识符或非法调用，将其从 MM_RCV_NTFY.kl 中删除。",
-    "url": "lessons/contrib/fanuc-kl-bytes-ahead-是-karel-内置-procedure.md",
-    "updated": "2026-05-03"
-  },
-  {
-    "id": "fanuc-kl-err-abort-vs-err-pause-行为差异",
+    "id": "fanuc-kl-err-abort-vs-err-pause",
     "title": "FANUC KL: ERR_ABORT vs ERR_PAUSE 行为差异",
     "domain": "fanuc",
     "tags": [],
     "summary": "IPC 通信错误时未区分 ERR_ABORT 和 ERR_PAUSE，导致程序号丢失。",
-    "url": "lessons/contrib/fanuc-kl-err-abort-vs-err-pause-行为差异.md",
+    "url": "lessons/contrib/fanuc-kl-err-abort-vs-err-pause.md",
     "updated": "2026-05-03"
   },
   {
-    "id": "fanuc-kl-mm-module-h-kl-禁止-routine-声明",
+    "id": "fanuc-kl-mm-module-h-no-routine",
     "title": "FANUC KL: mm_module_h.kl 禁止 ROUTINE 声明",
     "domain": "fanuc",
     "tags": [],
     "summary": "mm_module_h.kl（头文件）末尾有 `ROUTINE Check_Status(params) FROM MM_MODULE`（带参数版），导致 MM_MODULE.kl 中同名 routine 报\"already defined...",
-    "url": "lessons/contrib/fanuc-kl-mm-module-h-kl-禁止-routine-声明.md",
+    "url": "lessons/contrib/fanuc-kl-mm-module-h-no-routine.md",
     "updated": "2026-05-03"
   },
   {
@@ -1068,6 +1063,60 @@
     "summary": "访问者问\"fanuc r-2000ic 系列所有机器人的最大速度\"，RAG 返回了 KUKA Series 2000 的数据。",
     "url": "lessons/contrib/fanuc-r-2000ic-retrieval-fix.md",
     "updated": "2026-04-30 08:50 UTC"
+  },
+  {
+    "id": "feishu-agent-display-settings",
+    "title": "飞书 Agent 显示优化：禁用工具调用和上下文提示",
+    "domain": "feishu",
+    "tags": [],
+    "summary": "某些 Agent 默认会在飞书聊天中显示工具调用信息（如 \"🔧 工具 #5: Bash\"）和上下文占用提示（如 \"[ctx: ~0%]\"），影响用户体验。",
+    "url": "lessons/contrib/feishu-agent-display-settings.md",
+    "updated": "2026-05-19"
+  },
+  {
+    "id": "feishu-block-api-false-success",
+    "title": "飞书 Block API 假成功特征",
+    "domain": "feishu",
+    "tags": [],
+    "summary": "调用飞书 block API 时，限流场景下返回 `code=0` 但 `blocks_created=0`，看似成功实际失败。",
+    "url": "lessons/contrib/feishu-block-api-false-success.md",
+    "updated": "2026-05-03"
+  },
+  {
+    "id": "feishu-block-batch-limit",
+    "title": "飞书 Block 批量写入上限",
+    "domain": "feishu",
+    "tags": [],
+    "summary": "批量创建 block 时，每次超过约 20 个触发限流或静默截断。",
+    "url": "lessons/contrib/feishu-block-batch-limit.md",
+    "updated": "2026-05-03"
+  },
+  {
+    "id": "feishu-block-type-values-limits",
+    "title": "飞书 Block Type 正确值与已知限制",
+    "domain": "feishu",
+    "tags": [],
+    "summary": "飞书 block API 的 type 字段使用数字 ID，错误值导致静默失败或 400。",
+    "url": "lessons/contrib/feishu-block-type-values-limits.md",
+    "updated": "2026-05-03"
+  },
+  {
+    "id": "feishu-bot-setup-complete",
+    "title": "飞书机器人完整配置指南",
+    "domain": "feishu",
+    "tags": [],
+    "summary": "本文档记录飞书机器人的完整配置过程，以及 Agent 与飞书消息平台的桥接设置。",
+    "url": "lessons/contrib/feishu-bot-setup-complete.md",
+    "updated": "2026-05-19"
+  },
+  {
+    "id": "feishu-doc-url-use-api-return",
+    "title": "Feishu 文档 URL：必须用 API 返回值，不要拼接",
+    "domain": "feishu",
+    "tags": [],
+    "summary": "创建 Feishu 云文档后，猜测 URL 格式为 `https://feishu.cn/document/...`，用户连续3次无法打开文档。",
+    "url": "lessons/contrib/feishu-doc-url-use-api-return.md",
+    "updated": "2026-03-29"
   },
   {
     "id": "feishu-markdown-table-not-rendered",
@@ -1100,6 +1149,28 @@
     "updated": "2026-05-19"
   },
   {
+    "id": "feishu-upload-file-type-opus",
+    "title": "Feishu 文件上传：file_type 必须用 opus",
+    "domain": "feishu",
+    "tags": [],
+    "summary": "Feishu `im/v1/files` 上传接口调用失败，返回 `234001 Invalid request param`。",
+    "url": "lessons/contrib/feishu-upload-file-type-opus.md",
+    "updated": "2026-03-29"
+  },
+  {
+    "id": "feishu-webhook-url-env-config",
+    "title": "飞书 webhook URL 必须用环境变量或 gitignored 的 config.yaml",
+    "domain": "devops",
+    "tags": [
+      "project:agent-medici",
+      "severity:critical",
+      "node:hermes_wsl"
+    ],
+    "summary": "Feishu webhook URL、app_id、app_secret 被误提交到 git 仓库，",
+    "url": "lessons/contrib/feishu-webhook-url-env-config.md",
+    "updated": "2026-05-03"
+  },
+  {
     "id": "feishu-websocket-404-error-http-webhook-required",
     "title": "Feishu WebSocket 404 Error - HTTP Webhook Required",
     "domain": "feishu-integration",
@@ -1109,59 +1180,73 @@
     "updated": "2026-05-19 01:19:29 UTC"
   },
   {
-    "id": "feishu-wiki批量下载-文件类型处理策略",
+    "id": "feishu-wiki-batch-download",
     "title": "Feishu Wiki批量下载：文件类型处理策略",
     "domain": "devops",
     "tags": [
       "feishu, wiki, batch-download, file-type, pdf, docx, safari"
     ],
     "summary": "从企业知识库批量下载文件时，不同文件类型需要不同的提取策略。直接API调用无法处理所有类型。",
-    "url": "lessons/contrib/feishu-wiki批量下载-文件类型处理策略.md",
+    "url": "lessons/contrib/feishu-wiki-batch-download.md",
     "updated": "2026-05-19 15:40:11 UTC"
   },
   {
-    "id": "feishu-凭证轮换后-gateway-必须重启",
-    "title": "Feishu 凭证轮换后 Gateway 必须重启",
-    "domain": "feishu",
-    "tags": [],
-    "summary": "飞书应用凭证（app_secret）轮换后，Gateway 仍用旧 secret 连接，导致 401 auth 失败。",
-    "url": "lessons/contrib/feishu-凭证轮换后-gateway-必须重启.md",
-    "updated": "2026-04-01"
-  },
-  {
-    "id": "feishu文件上传-file-type-必须用opus",
-    "title": "Feishu 文件上传：file_type 必须用 opus",
-    "domain": "feishu",
-    "tags": [],
-    "summary": "Feishu `im/v1/files` 上传接口调用失败，返回 `234001 Invalid request param`。",
-    "url": "lessons/contrib/feishu文件上传-file-type-必须用opus.md",
-    "updated": "2026-03-29"
-  },
-  {
-    "id": "feishu文档url-必须用api返回值不要拼接",
-    "title": "Feishu 文档 URL：必须用 API 返回值，不要拼接",
-    "domain": "feishu",
-    "tags": [],
-    "summary": "创建 Feishu 云文档后，猜测 URL 格式为 `https://feishu.cn/document/...`，用户连续3次无法打开文档。",
-    "url": "lessons/contrib/feishu文档url-必须用api返回值不要拼接.md",
-    "updated": "2026-03-29"
-  },
-  {
-    "id": "ffmpeg音频转码-必须用libopus而非format-ogg",
+    "id": "ffmpeg-audio-libopus-not-ogg",
     "title": "FFmpeg 音频转码：必须用 libopus 而非 -format ogg",
     "domain": "audio",
     "tags": [],
     "summary": "FFmpeg 输出 OGG 文件为 0 字节。",
-    "url": "lessons/contrib/ffmpeg音频转码-必须用libopus而非format-ogg.md",
+    "url": "lessons/contrib/ffmpeg-audio-libopus-not-ogg.md",
     "updated": "2026-03-29"
   },
   {
-    "id": "gateway-进程挂死未崩溃-watchdog-自动恢复",
+    "id": "firewall-port-open-not-public",
+    "title": "防火墙端口开放不等于内网穿透",
+    "domain": "devops",
+    "tags": [
+      "project:rag",
+      "platform:wsl",
+      "node:hermes_wsl",
+      "scope:broad"
+    ],
+    "summary": "为 wcferry 开放 Windows 防火墙端口 10086 时，误以为这是\"内网穿透\"操作，担心安全性。",
+    "url": "lessons/contrib/firewall-port-open-not-public.md",
+    "updated": "2026-05-03"
+  },
+  {
+    "id": "game-mcp-end-turn-conflict-409",
+    "title": "Game MCP: End Turn Returns 409 Conflict",
+    "domain": "mcp",
+    "tags": [],
+    "summary": "When sending an end_turn command via MCP, the game returns a 409 Conflict HTTP status. However, the game state still pro...",
+    "url": "lessons/contrib/game-mcp-end-turn-conflict-409.md",
+    "updated": ""
+  },
+  {
+    "id": "game-mcp-game-over-restart-flow",
+    "title": "Game MCP: GAME OVER Restart Flow",
+    "domain": "mcp",
+    "tags": [],
+    "summary": "After reaching a GAME OVER state, restarting the game via MCP requires a specific sequence of commands. Using the wrong ...",
+    "url": "lessons/contrib/game-mcp-game-over-restart-flow.md",
+    "updated": ""
+  },
+  {
+    "id": "game-mcp-rare-relic-freeze",
+    "title": "Game MCP: Rare Relic Selection Freeze",
+    "domain": "mcp",
+    "tags": [],
+    "summary": "When using MCP to play a turn-based strategy game, selecting a rare relic option causes the game client to freeze or han...",
+    "url": "lessons/contrib/game-mcp-rare-relic-freeze.md",
+    "updated": ""
+  },
+  {
+    "id": "gateway-hang-watchdog-recovery",
     "title": "Gateway 进程挂死未崩溃 — watchdog 自动恢复",
     "domain": "devops",
     "tags": [],
     "summary": "Hermes Agent 频繁崩溃，用户反映\"卡死\"。实际调查发现是 **WSL PTY 断连**导致 CLI 崩溃，而非 Gateway 本身问题。",
-    "url": "lessons/contrib/gateway-进程挂死未崩溃-watchdog-自动恢复.md",
+    "url": "lessons/contrib/gateway-hang-watchdog-recovery.md",
     "updated": "2026-04-01"
   },
   {
@@ -1178,6 +1263,20 @@
     ],
     "summary": "执行 `git push` 时卡住或报错：",
     "url": "lessons/contrib/git-credential-helper-gh-path-mismatch.md",
+    "updated": ""
+  },
+  {
+    "id": "git-credentials-and-node-id-setup",
+    "title": "Git Credentials 和 Node ID 配置",
+    "domain": "devops",
+    "tags": [
+      "git",
+      "credentials",
+      "node-id",
+      "setup"
+    ],
+    "summary": "在新环境中使用 git 操作时，如果没有正确配置凭证和节点标识，会遇到：",
+    "url": "lessons/contrib/git-credentials-and-node-id-setup.md",
     "updated": ""
   },
   {
@@ -1209,6 +1308,21 @@
     "updated": ""
   },
   {
+    "id": "git-push-without-shell-agent",
+    "title": "Git Push 的正确方式 — 在受限 Agent 环境中推送代码",
+    "domain": "devops",
+    "tags": [
+      "git",
+      "push",
+      "agent",
+      "gh-cli",
+      "lesson"
+    ],
+    "summary": "在某些 Agent 平台的安全模式下，shell 工具不可用。需要执行 `git push` 时，不能直接用 shell 命令。",
+    "url": "lessons/contrib/git-push-without-shell-agent.md",
+    "updated": ""
+  },
+  {
     "id": "git-tls-handshake-failure",
     "title": "GitHub TLS 握手失败 — gnutls_handshake() 错误",
     "domain": "devops",
@@ -1222,15 +1336,6 @@
     "summary": "`git pull` 或 `git push` 时报：",
     "url": "lessons/contrib/git-tls-handshake-failure.md",
     "updated": ""
-  },
-  {
-    "id": "git-凭证和-node-id-node2-加网后必须设置",
-    "title": "Git 凭证和 Node ID — Node2 加网后必须设置",
-    "domain": "devops",
-    "tags": [],
-    "summary": "Node2（魔术师）加入虫群前需要配置 Git 身份和节点标识。",
-    "url": "lessons/contrib/git-凭证和-node-id-node2-加网后必须设置.md",
-    "updated": "2026-04-01"
   },
   {
     "id": "github-401-credential-lookup",
@@ -1266,61 +1371,48 @@
     "updated": ""
   },
   {
-    "id": "gpt-sovits-hubert-必须16khz且get-model返回单体",
+    "id": "gpt-sovits-hubert-16khz",
     "title": "GPT-SoVITS：HuBERT 必须 16kHz 且 get_model() 返回单体",
     "domain": "tts",
     "tags": [],
     "summary": "HuBERT SSL 特征提取失败，音频克隆效果异常。",
-    "url": "lessons/contrib/gpt-sovits-hubert-必须16khz且get-model返回单体.md",
+    "url": "lessons/contrib/gpt-sovits-hubert-16khz.md",
     "updated": "2026-04-05"
   },
   {
-    "id": "gpt-sovits-ref-free-bug-prompt-text为空时参数被覆盖",
-    "title": "GPT-SoVITS：ref_free bug——prompt_text 为空时参数被覆盖",
-    "domain": "tts",
-    "tags": [],
-    "summary": "提供了女声样本，生成出来却是男声或通用音色。",
-    "url": "lessons/contrib/gpt-sovits-ref-free-bug-prompt-text为空时参数被覆盖.md",
-    "updated": "2026-04-06"
-  },
-  {
-    "id": "gpt-sovits训练-2-name2text格式必须用arpabet音素",
+    "id": "gpt-sovits-name2text-arpabet",
     "title": "GPT-SoVITS 训练：2-name2text 格式必须用 ARPABET 音素而非中文原文",
     "domain": "tts",
     "tags": [],
     "summary": "训练时数据加载器逐字查 phoneme 词典，全部 KeyError。",
-    "url": "lessons/contrib/gpt-sovits训练-2-name2text格式必须用arpabet音素.md",
+    "url": "lessons/contrib/gpt-sovits-name2text-arpabet.md",
     "updated": "2026-04-06"
   },
   {
-    "id": "hermes-agent-手动更新步骤-update-超时",
-    "title": "Hermes Agent 手动更新步骤（update 超时）",
-    "domain": "devops",
-    "tags": [
-      "project:agent-medici",
-      "severity:medium",
-      "node:hermes_wsl"
-    ],
-    "summary": "hermes update 因为 git 分叉（diverged branches）或 uv 超时而失败。",
-    "url": "lessons/contrib/hermes-agent-手动更新步骤-update-超时.md",
-    "updated": "2026-05-03"
-  },
-  {
-    "id": "hub-feishuwsclient-start-从未调用-websocket-接收死代码",
-    "title": "Hub FeishuWSClient.start() 从未调用 — WebSocket 接收死代码",
-    "domain": "feishu",
+    "id": "gpt-sovits-ref-free-bug",
+    "title": "GPT-SoVITS：ref_free bug——prompt_text 为空时参数被覆盖",
+    "domain": "tts",
     "tags": [],
-    "summary": "Hub 配置了 `im.message.receive_v1` 和 `p2p_card_action.trigger` 回调，但从未收到飞书消息。",
-    "url": "lessons/contrib/hub-feishuwsclient-start-从未调用-websocket-接收死代码.md",
-    "updated": "2026-04-01"
+    "summary": "提供了女声样本，生成出来却是男声或通用音色。",
+    "url": "lessons/contrib/gpt-sovits-ref-free-bug.md",
+    "updated": "2026-04-06"
   },
   {
-    "id": "hub-hermes-凭证体系-gateway-vs-hub-各自读哪里",
+    "id": "hub-credential-gateway-vs-hub",
     "title": "Hub Hermes 凭证体系 — Gateway vs Hub 各自读哪里",
     "domain": "devops",
     "tags": [],
     "summary": "Hub 有两套配置体系，Gateway 和 Hub 读取不同的凭证位置，容易混淆。",
-    "url": "lessons/contrib/hub-hermes-凭证体系-gateway-vs-hub-各自读哪里.md",
+    "url": "lessons/contrib/hub-credential-gateway-vs-hub.md",
+    "updated": "2026-04-01"
+  },
+  {
+    "id": "hub-feishu-wsclient-start-never-called",
+    "title": "Hub FeishuWSClient.start() 从未调用 — WebSocket 接收死代码",
+    "domain": "feishu",
+    "tags": [],
+    "summary": "Hub 配置了 `im.message.receive_v1` 和 `p2p_card_action.trigger` 回调，但从未收到飞书消息。",
+    "url": "lessons/contrib/hub-feishu-wsclient-start-never-called.md",
     "updated": "2026-04-01"
   },
   {
@@ -1370,6 +1462,19 @@
     "updated": ""
   },
   {
+    "id": "kb-4sigma-quality-audit-pipeline",
+    "title": "知识库 4σ 质量审计流水线",
+    "domain": "rag",
+    "tags": [
+      "project:self-grow-wiki",
+      "severity:medium",
+      "node:hermes_wsl"
+    ],
+    "summary": "RAG 知识库在持续导入文档后出现数据污染、版本混乱、来源不一致等问题，",
+    "url": "lessons/contrib/kb-4sigma-quality-audit-pipeline.md",
+    "updated": "2026-05-03"
+  },
+  {
     "id": "knowledge-graph-ux-patterns-from-high-star-projects",
     "title": "知识图谱 UX 增强: 从高星项目提炼的 7 个交互模式",
     "domain": "development",
@@ -1385,12 +1490,12 @@
     "updated": ""
   },
   {
-    "id": "lessons-md-修正-4-处-项目-旧结论-修正后-heading-block-type-4",
+    "id": "lessons-md-fix-heading-block-type",
     "title": "lessons.md 修正（4 处） 项目 旧结论 修正后 heading block（type=4",
     "domain": "rag",
     "tags": [],
     "summary": "[assistant] 还有一处需要修正：image block 的描述不准确——它返回了有效的 block_id（blocks_created=1），只是 token 被清空导致图片不显示。",
-    "url": "lessons/contrib/lessons-md-修正-4-处-项目-旧结论-修正后-heading-block-type-4.md",
+    "url": "lessons/contrib/lessons-md-fix-heading-block-type.md",
     "updated": "2026-04-01"
   },
   {
@@ -1417,13 +1522,13 @@
     "updated": "2026-05-01 08:00 UTC"
   },
   {
-    "id": "node2-配置完成-git-credentials-和-node-id-设置",
-    "title": "Node2 配置完成 — git credentials 和 NODE_ID 设置",
+    "id": "model-switch-script-pattern",
+    "title": "多模型切换脚本模式 — 双 Agent 模型管理",
     "domain": "devops",
     "tags": [],
-    "summary": "踩坑：queue_lesson.py 依赖 ~/.git-credentials，但 WSL 默认没有这个文件。",
-    "url": "lessons/contrib/node2-配置完成-git-credentials-和-node-id-设置.md",
-    "updated": "2026-05-01 03:19:35 UTC"
+    "summary": "> Domain: devops | Tags: model-switching, proxy, config-management",
+    "url": "lessons/contrib/model-switch-script-pattern.md",
+    "updated": "2026-05-02"
   },
   {
     "id": "node_10049",
@@ -1488,14 +1593,14 @@
     "updated": ""
   },
   {
-    "id": "openclaw-gateway-动态模块缺失-导致飞书消息分发失败",
+    "id": "openclaw-gateway-dynamic-module-missing",
     "title": "OpenClaw Gateway 动态模块缺失 — 飞书消息分发失败",
     "domain": "feishu",
     "tags": [
       "node:misaka10004\", \"platform:wsl\", \"severity:critical\", \"project:misakanet"
     ],
     "summary": "飞书单聊和群聊均无回应。飞书长连接正常（WebSocket 显示 ON · OK），消息能收到，但 Bot 不回复。",
-    "url": "lessons/contrib/openclaw-gateway-动态模块缺失-导致飞书消息分发失败.md",
+    "url": "lessons/contrib/openclaw-gateway-dynamic-module-missing.md",
     "updated": "2026-05-18"
   },
   {
@@ -1513,12 +1618,12 @@
     "updated": ""
   },
   {
-    "id": "openclaw-重装教训-删除前先停服务清残留",
+    "id": "openclaw-reinstall-lesson",
     "title": "OpenClaw 重装教训 — 删除前先停服务清残留",
     "domain": "devops",
     "tags": [],
     "summary": "愚者飞书机器人无反应，尝试重装 OpenClaw。",
-    "url": "lessons/contrib/openclaw-重装教训-删除前先停服务清残留.md",
+    "url": "lessons/contrib/openclaw-reinstall-lesson.md",
     "updated": "2026-04-01"
   },
   {
@@ -1674,6 +1779,19 @@
     "updated": ""
   },
   {
+    "id": "rag-alarm-code-mandatory-recall",
+    "title": "RAG 报警代码检索需要关键词强制召回",
+    "domain": "rag",
+    "tags": [
+      "project:self-grow-wiki",
+      "severity:high",
+      "node:hermes_wsl"
+    ],
+    "summary": "查询 \"SRVO-023 机器人报警\" 时 RAG 返回了不相关结果，没有返回正确的 FANUC 报警文档。",
+    "url": "lessons/contrib/rag-alarm-code-mandatory-recall.md",
+    "updated": "2026-05-03"
+  },
+  {
     "id": "rag-brand-contamination-detection-and-fix",
     "title": "RAG 知识库品牌污染检测与治理",
     "domain": "rag",
@@ -1705,7 +1823,38 @@
     "updated": "2026-05-29"
   },
   {
-    "id": "rag-cross-encoder-reranker-cpu-瓶颈-与-llm-确定性调优",
+    "id": "rag-build-strategy-batch",
+    "title": "RAG 建库策略：不可一次性加载全部数据到显存/内存",
+    "domain": "rag",
+    "tags": [],
+    "summary": "建库（chunks_v3, 34,100 docs）时一次性把所有数据加载到显存/WSL 内存，导致 LM Studio context overflow，后续引发 Summarization 超时 ×4 → LLM timeout → 驱...",
+    "url": "lessons/contrib/rag-build-strategy-batch.md",
+    "updated": "2026-04-13"
+  },
+  {
+    "id": "rag-chinese-encoding-pymupdf",
+    "title": "RAG 检索中文乱码 — pymupdf4llm 默认编码问题",
+    "domain": "rag",
+    "tags": [],
+    "summary": "构建 FANUC 知识库 RAG 时，检索中文报警码出现乱码。",
+    "url": "lessons/contrib/rag-chinese-encoding-pymupdf.md",
+    "updated": "2026-04-01"
+  },
+  {
+    "id": "rag-chunk-params-800-100",
+    "title": "RAG 分块参数：800 字符 + 100 重叠 + 每文件最多 100 分块",
+    "domain": "rag",
+    "tags": [
+      "project:self-grow-wiki",
+      "severity:medium",
+      "node:hermes_wsl"
+    ],
+    "summary": "FANUC PDF 文档导入 RAG 后，检索质量不稳定，长文档召回率低。",
+    "url": "lessons/contrib/rag-chunk-params-800-100.md",
+    "updated": "2026-05-03"
+  },
+  {
+    "id": "rag-cross-encoder-cpu-bottleneck",
     "title": "RAG Cross-Encoder Reranker CPU 瓶颈与 LLM 确定性调优",
     "domain": "rag",
     "tags": [
@@ -1715,7 +1864,7 @@
       "severity:high"
     ],
     "summary": "RAG 知识库回答速度太慢（冷启动 113s，热查询 44s），且相同问题在不同场景下得到不同回答。",
-    "url": "lessons/contrib/rag-cross-encoder-reranker-cpu-瓶颈-与-llm-确定性调优.md",
+    "url": "lessons/contrib/rag-cross-encoder-cpu-bottleneck.md",
     "updated": "2026-05-28"
   },
   {
@@ -1735,7 +1884,7 @@
     "updated": "2026-05-21"
   },
   {
-    "id": "rag-三通道-llm-容灾方案",
+    "id": "rag-three-channel-llm-disaster-recovery",
     "title": "RAG 三通道 LLM 容灾方案",
     "domain": "rag",
     "tags": [
@@ -1744,52 +1893,8 @@
       "scope:broad"
     ],
     "summary": "RAG 知识库对外服务（Gradio Web UI / 微信机器人）时，单路 LLM API 可能因网络、配额、服务端故障而不可用，导致整个服务不可用。",
-    "url": "lessons/contrib/rag-三通道-llm-容灾方案.md",
+    "url": "lessons/contrib/rag-three-channel-llm-disaster-recovery.md",
     "updated": "2026-05-03"
-  },
-  {
-    "id": "rag-分块参数-800-字符-100-重叠-每文件最多-100-分块",
-    "title": "RAG 分块参数：800 字符 + 100 重叠 + 每文件最多 100 分块",
-    "domain": "rag",
-    "tags": [
-      "project:self-grow-wiki",
-      "severity:medium",
-      "node:hermes_wsl"
-    ],
-    "summary": "FANUC PDF 文档导入 RAG 后，检索质量不稳定，长文档召回率低。",
-    "url": "lessons/contrib/rag-分块参数-800-字符-100-重叠-每文件最多-100-分块.md",
-    "updated": "2026-05-03"
-  },
-  {
-    "id": "rag-报警代码检索需要关键词强制召回",
-    "title": "RAG 报警代码检索需要关键词强制召回",
-    "domain": "rag",
-    "tags": [
-      "project:self-grow-wiki",
-      "severity:high",
-      "node:hermes_wsl"
-    ],
-    "summary": "查询 \"SRVO-023 机器人报警\" 时 RAG 返回了不相关结果，没有返回正确的 FANUC 报警文档。",
-    "url": "lessons/contrib/rag-报警代码检索需要关键词强制召回.md",
-    "updated": "2026-05-03"
-  },
-  {
-    "id": "rag-检索中文乱码-pymupdf4llm-默认编码问题",
-    "title": "RAG 检索中文乱码 — pymupdf4llm 默认编码问题",
-    "domain": "rag",
-    "tags": [],
-    "summary": "构建 FANUC 知识库 RAG 时，检索中文报警码出现乱码。",
-    "url": "lessons/contrib/rag-检索中文乱码-pymupdf4llm-默认编码问题.md",
-    "updated": "2026-04-01"
-  },
-  {
-    "id": "rag建库策略-不可一次性加载全部数据",
-    "title": "RAG 建库策略：不可一次性加载全部数据到显存/内存",
-    "domain": "rag",
-    "tags": [],
-    "summary": "建库（chunks_v3, 34,100 docs）时一次性把所有数据加载到显存/WSL 内存，导致 LM Studio context overflow，后续引发 Summarization 超时 ×4 → LLM timeout → 驱...",
-    "url": "lessons/contrib/rag建库策略-不可一次性加载全部数据.md",
-    "updated": "2026-04-13"
   },
   {
     "id": "readme-seven-traps-fix-checklist",
@@ -1977,33 +2082,6 @@
     "updated": ""
   },
   {
-    "id": "st2-danielstarman-mcp-选rare-relic会卡死",
-    "title": "ST2 danielstarman MCP：选 Rare Relic 会卡死",
-    "domain": "mcp",
-    "tags": [],
-    "summary": "选择 Neow Rare Relic 选项后，游戏进入 `overlay` 状态，`screen: UNKNOWN`，`available_actions: []`，自动化卡死。",
-    "url": "lessons/contrib/st2-danielstarman-mcp-选rare-relic会卡死.md",
-    "updated": "2026-03-27"
-  },
-  {
-    "id": "st2-mcp-end-turn返回409但游戏正常推进",
-    "title": "ST2 MCP：end_turn 返回 409 Conflict 但游戏正常推进",
-    "domain": "mcp",
-    "tags": [],
-    "summary": "`end_turn` API 调用返回 HTTP 409 Conflict，以为操作失败。",
-    "url": "lessons/contrib/st2-mcp-end-turn返回409但游戏正常推进.md",
-    "updated": "2026-03-27"
-  },
-  {
-    "id": "st2-mcp从game-over重开必须走特定流程",
-    "title": "ST2 MCP：从 GAME_OVER 重开必须走特定流程",
-    "domain": "mcp",
-    "tags": [],
-    "summary": "```",
-    "url": "lessons/contrib/st2-mcp从game-over重开必须走特定流程.md",
-    "updated": "2026-03-27"
-  },
-  {
     "id": "static-page-github-api-403-rate-limit",
     "title": "静态页面调用外部 API 的容错设计原则",
     "domain": "frontend",
@@ -2047,12 +2125,12 @@
     "updated": ""
   },
   {
-    "id": "tts中文编码-powerhsell传参必须用txt文件",
+    "id": "tts-chinese-encoding-powershell",
     "title": "TTS 中文编码：PowerShell 传参必须用 .txt 文件中转",
     "domain": "tts",
     "tags": [],
     "summary": "中文文本通过 PowerShell 脚本内联传给 mmx CLI，TTS 返回空音频（\"嗯嗯\"声）。",
-    "url": "lessons/contrib/tts中文编码-powerhsell传参必须用txt文件.md",
+    "url": "lessons/contrib/tts-chinese-encoding-powershell.md",
     "updated": "2026-04-18"
   },
   {
@@ -2071,7 +2149,7 @@
     "updated": "2026-05-19"
   },
   {
-    "id": "wcferry-微信版本锁定-3-9-12-51-才能用",
+    "id": "wcferry-wechat-version-lock",
     "title": "wcferry 微信版本锁定 — 3.9.12.51 才能用",
     "domain": "devops",
     "tags": [
@@ -2081,7 +2159,7 @@
       "scope:narrow"
     ],
     "summary": "wxauto 不够稳定时，考虑切换到 wcferry (WeChatFerry) 方案。但安装后无法 hook 微信进程。",
-    "url": "lessons/contrib/wcferry-微信版本锁定-3-9-12-51-才能用.md",
+    "url": "lessons/contrib/wcferry-wechat-version-lock.md",
     "updated": "2026-05-03"
   },
   {
@@ -2099,6 +2177,36 @@
     "updated": ""
   },
   {
+    "id": "wecom-robot-long-connect-no-ngrok",
+    "title": "企业微信机器人：长连接模式不需要 ngrok",
+    "domain": "devops",
+    "tags": [
+      "project:rag",
+      "platform:windows",
+      "node:hermes_wsl",
+      "scope:narrow"
+    ],
+    "summary": "配置企业微信机器人回调时，传统方案需要 ngrok/frp 做内网穿透，增加复杂度、暴露端口、需要 HTTPS 证书。",
+    "url": "lessons/contrib/wecom-robot-long-connect-no-ngrok.md",
+    "updated": "2026-05-03"
+  },
+  {
+    "id": "write-file-sandbox-worktree-git-path",
+    "title": "Agent Write File 写入不落地 + Worktree Git 链接路径断裂",
+    "domain": "devops",
+    "tags": [
+      "agent-mode",
+      "write-file",
+      "worktree",
+      "wsl",
+      "git",
+      "lesson-written"
+    ],
+    "summary": "在对项目进行代码修改的过程中，使用 Agent 模式操作。操作环境为 WSL (Windows Subsystem for Linux)，仓库使用 worktree 管理。",
+    "url": "lessons/contrib/write-file-sandbox-worktree-git-path.md",
+    "updated": "2026-05-13 01:01:46 UTC"
+  },
+  {
     "id": "wsl-permission-ntfs-fix",
     "title": "Permission Denied / WSL NTFS 跨文件系统权限修复",
     "domain": "devops",
@@ -2114,7 +2222,7 @@
     "updated": ""
   },
   {
-    "id": "wsl-pip-install-gbk-编码导致-hub-poller-崩溃",
+    "id": "wsl-pip-gbk-hub-poller-crash",
     "title": "WSL pip install GBK 编码导致 hub_poller 崩溃",
     "domain": "devops",
     "tags": [
@@ -2124,7 +2232,21 @@
       "node:hermes_wsl"
     ],
     "summary": "Windows Hub 的 hub_poller.py 读取 config.yaml 时崩溃，错误信息为 UnicodeDecodeError。",
-    "url": "lessons/contrib/wsl-pip-install-gbk-编码导致-hub-poller-崩溃.md",
+    "url": "lessons/contrib/wsl-pip-gbk-hub-poller-crash.md",
+    "updated": "2026-05-03"
+  },
+  {
+    "id": "wsl-proxy-huggingface-external",
+    "title": "WSL 需要代理配置才能访问 HuggingFace 和外部网络",
+    "domain": "devops",
+    "tags": [
+      "project:self-grow-wiki",
+      "severity:high",
+      "platform:wsl",
+      "node:hermes_wsl"
+    ],
+    "summary": "WSL 内 Python 脚本无法下载 HuggingFace 模型（sentence-transformers/BGE），",
+    "url": "lessons/contrib/wsl-proxy-huggingface-external.md",
     "updated": "2026-05-03"
   },
   {
@@ -2165,29 +2287,6 @@
     "updated": ""
   },
   {
-    "id": "wsl-终端编辑配置危险-tty粘贴吞下划线",
-    "title": "WSL 终端编辑配置危险 — TTy粘贴吞下划线",
-    "domain": "devops",
-    "tags": [],
-    "summary": "需要修改 WSL 中的配置文件（如 `.env`、`config.yaml`），通过 Windows Terminal 粘贴时出现神秘失败。",
-    "url": "lessons/contrib/wsl-终端编辑配置危险-tty粘贴吞下划线.md",
-    "updated": "2026-04-01"
-  },
-  {
-    "id": "wsl-需要代理配置才能访问-huggingface-和外部网络",
-    "title": "WSL 需要代理配置才能访问 HuggingFace 和外部网络",
-    "domain": "devops",
-    "tags": [
-      "project:self-grow-wiki",
-      "severity:high",
-      "platform:wsl",
-      "node:hermes_wsl"
-    ],
-    "summary": "WSL 内 Python 脚本无法下载 HuggingFace 模型（sentence-transformers/BGE），",
-    "url": "lessons/contrib/wsl-需要代理配置才能访问-huggingface-和外部网络.md",
-    "updated": "2026-05-03"
-  },
-  {
     "id": "wsl2-memory-leak-fix",
     "title": "WSL2 内存泄漏 / 内存占用过高",
     "domain": "devops",
@@ -2219,7 +2318,7 @@
     "updated": "2026-05-21"
   },
   {
-    "id": "wxauto-必须在-windows-python-下安装-不能走-wsl-pip",
+    "id": "wxauto-windows-python-not-wsl",
     "title": "wxauto 必须在 Windows Python 下安装，不能走 WSL pip",
     "domain": "devops",
     "tags": [
@@ -2229,7 +2328,7 @@
       "scope:narrow"
     ],
     "summary": "在 WSL2 中 `pip install wxauto` 报错 `No matching distribution found`。wxauto 是 Windows-only 库。",
-    "url": "lessons/contrib/wxauto-必须在-windows-python-下安装-不能走-wsl-pip.md",
+    "url": "lessons/contrib/wxauto-windows-python-not-wsl.md",
     "updated": "2026-05-03"
   },
   {
@@ -2247,87 +2346,6 @@
     "summary": "---{\"title\": \"零赏金开源项目运营 — 用 Merge 荣誉驱动 AI Agent 竞标\", \"domain\": \"devops\", \"tags\": [\"open-source\", \"ai-agent\", \"bounty\", \"...",
     "url": "lessons/contrib/zero-bounty-open-source-workflow.md",
     "updated": "2026-06-03 08:00:00 UTC"
-  },
-  {
-    "id": "企业微信机器人-长连接模式不需要-ngrok",
-    "title": "企业微信机器人：长连接模式不需要 ngrok",
-    "domain": "devops",
-    "tags": [
-      "project:rag",
-      "platform:windows",
-      "node:hermes_wsl",
-      "scope:narrow"
-    ],
-    "summary": "配置企业微信机器人回调时，传统方案需要 ngrok/frp 做内网穿透，增加复杂度、暴露端口、需要 HTTPS 证书。",
-    "url": "lessons/contrib/企业微信机器人-长连接模式不需要-ngrok.md",
-    "updated": "2026-05-03"
-  },
-  {
-    "id": "知识库-4-质量审计流水线",
-    "title": "知识库 4σ 质量审计流水线",
-    "domain": "rag",
-    "tags": [
-      "project:self-grow-wiki",
-      "severity:medium",
-      "node:hermes_wsl"
-    ],
-    "summary": "RAG 知识库在持续导入文档后出现数据污染、版本混乱、来源不一致等问题，",
-    "url": "lessons/contrib/知识库-4-质量审计流水线.md",
-    "updated": "2026-05-03"
-  },
-  {
-    "id": "防火墙端口开放不等于内网穿透",
-    "title": "防火墙端口开放不等于内网穿透",
-    "domain": "devops",
-    "tags": [
-      "project:rag",
-      "platform:wsl",
-      "node:hermes_wsl",
-      "scope:broad"
-    ],
-    "summary": "为 wcferry 开放 Windows 防火墙端口 10086 时，误以为这是\"内网穿透\"操作，担心安全性。",
-    "url": "lessons/contrib/防火墙端口开放不等于内网穿透.md",
-    "updated": "2026-05-03"
-  },
-  {
-    "id": "飞书-block-api-假成功特征",
-    "title": "飞书 Block API 假成功特征",
-    "domain": "feishu",
-    "tags": [],
-    "summary": "调用飞书 block API 时，限流场景下返回 `code=0` 但 `blocks_created=0`，看似成功实际失败。",
-    "url": "lessons/contrib/飞书-block-api-假成功特征.md",
-    "updated": "2026-05-03"
-  },
-  {
-    "id": "飞书-block-type-正确值与已知限制",
-    "title": "飞书 Block Type 正确值与已知限制",
-    "domain": "feishu",
-    "tags": [],
-    "summary": "飞书 block API 的 type 字段使用数字 ID，错误值导致静默失败或 400。",
-    "url": "lessons/contrib/飞书-block-type-正确值与已知限制.md",
-    "updated": "2026-05-03"
-  },
-  {
-    "id": "飞书-block-批量写入上限",
-    "title": "飞书 Block 批量写入上限",
-    "domain": "feishu",
-    "tags": [],
-    "summary": "批量创建 block 时，每次超过约 20 个触发限流或静默截断。",
-    "url": "lessons/contrib/飞书-block-批量写入上限.md",
-    "updated": "2026-05-03"
-  },
-  {
-    "id": "飞书-webhook-url-必须用环境变量或-gitignored-的-config-yaml",
-    "title": "飞书 webhook URL 必须用环境变量或 gitignored 的 config.yaml",
-    "domain": "devops",
-    "tags": [
-      "project:agent-medici",
-      "severity:critical",
-      "node:hermes_wsl"
-    ],
-    "summary": "Feishu webhook URL、app_id、app_secret 被误提交到 git 仓库，",
-    "url": "lessons/contrib/飞书-webhook-url-必须用环境变量或-gitignored-的-config-yaml.md",
-    "updated": "2026-05-03"
   },
   {
     "id": "contributor-engagement-retention",
