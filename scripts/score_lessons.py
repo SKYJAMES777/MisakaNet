@@ -1,185 +1,264 @@
 #!/usr/bin/env python3
-"""Lesson 质量评分器 — 完整性 / 可验证性 / 结构评分。
+"""Score all lessons for quality and compute contributor quality metrics.
 
-用法:
-  python3 scripts/score_lessons.py            # 评分全部 lessons
-  python3 scripts/score_lessons.py --html     # 输出 HTML 报告
-  python3 scripts/score_lessons.py --bottom=5 # 只看最低分 5 条
+Output:
+  - stdout: per-lesson score breakdown
+  - data/quality_scores.json: machine-readable report
+  - contributor quality stats for frontend leaderboard
+
+Scoring dimensions (each 0-2, total 0-10):
+  - Frontmatter completeness: has title, domain, tags, status
+  - Structure: has problem section (背景/Root Cause) + solution section (方案/Solution)
+  - Content depth: body length + code block presence
+  - Maintenance: has created + updated timestamps
 """
-import argparse
+from __future__ import annotations
+
 import json
 import re
 import sys
 from pathlib import Path
 
-REPO = Path(__file__).resolve().parent.parent
-LESSONS_DIR = REPO / "lessons"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+LESSONS_DIR = REPO_ROOT / "lessons"
+TASKS_DIR = REPO_ROOT / "tasks"
+OUTPUT_PATH = REPO_ROOT / "data" / "quality_scores.json"
+DRY_RUN = "--dry-run" in sys.argv
+VERBOSE = "-v" in sys.argv or "--verbose" in sys.argv
+
+# Required sections in body
+PROBLEM_HEADINGS = re.compile(r"^##\s+(背景|问题|Root Cause|Problem|Issue|Motivation)", re.MULTILINE | re.IGNORECASE)
+SOLUTION_HEADINGS = re.compile(r"^##\s+(方案|Solution|Fix|修复|Implementation|Approach)", re.MULTILINE | re.IGNORECASE)
+VERIFY_HEADINGS = re.compile(r"^##\s+(验证|验证方式|Verify|验证结果|Result|效果|Impact)", re.MULTILINE | re.IGNORECASE)
 
 
-def parse_frontmatter(text: str) -> dict:
-    meta = {}
-    m = re.match(r'^---\s*\n?(\{.*?\})\n?---', text, re.DOTALL)
-    if m:
-        try:
-            return json.loads(m.group(1))
-        except json.JSONDecodeError:
-            pass
-    m = re.match(r'^---\s*\n(.*?)\n---', text, re.DOTALL)
-    if m:
-        for line in m.group(1).split('\n'):
-            if ':' not in line:
-                continue
-            k, _, v = line.partition(':')
-            meta[k.strip()] = v.strip().strip('"').strip("'")
-    return meta
+def score_frontmatter(fm: dict | None) -> tuple[int, list[str]]:
+    """0-2 points for frontmatter completeness"""
+    scores = []
+    notes = []
+    if not fm:
+        return 0, ["No frontmatter (0/2)"]
+
+    required = ["title", "domain", "status"]
+    hits = sum(1 for r in required if fm.get(r))
+    tags = fm.get("tags", [])
+    if hits == 3 and len(tags) >= 2:
+        scores.append(2)
+        notes.append("Complete + tags")
+    elif hits >= 2:
+        scores.append(1)
+        notes.append("Partial frontmatter")
+    else:
+        scores.append(0)
+        notes.append("Missing metadata")
+
+    return sum(scores), notes
+
+
+def score_structure(body: str) -> tuple[int, list[str]]:
+    """0-2 points for body structure"""
+    notes = []
+    has_problem = bool(PROBLEM_HEADINGS.search(body))
+    has_solution = bool(SOLUTION_HEADINGS.search(body))
+    has_verify = bool(VERIFY_HEADINGS.search(body))
+
+    if has_problem and has_solution and has_verify:
+        notes.append("Full 3-part structure")
+        return 2, notes
+    elif has_problem and has_solution:
+        notes.append("Problem + Solution (no Verify)")
+        return 1, notes
+    elif has_problem or has_solution:
+        notes.append("Only one section found")
+        return 1, notes
+    notes.append("No recognizable structure")
+    return 0, notes
+
+
+def score_content(body: str) -> tuple[int, list[str]]:
+    """0-2 points for content depth"""
+    notes = []
+    text_only = re.sub(r"```.*?```", "", body, flags=re.DOTALL)
+    text_only = re.sub(r"\s+", " ", text_only).strip()
+    char_count = len(text_only)
+    has_code = bool(re.search(r"```", body))
+    has_list = bool(re.search(r"^\s*[-*]\s+", body, re.MULTILINE))
+
+    points = 0
+    if char_count > 500:
+        points += 1
+        notes.append(f"Body {char_count} chars")
+    if has_code:
+        points += 1
+        notes.append("Code blocks present")
+    if not has_code and has_list:
+        points += 0.5
+        notes.append("List formatting")
+
+    return min(points, 2), notes
+
+
+def score_maintenance(fm: dict | None) -> tuple[int, list[str]]:
+    """0-2 points for maintenance metadata"""
+    notes = []
+    if not fm:
+        return 0, ["No metadata"]
+
+    has_created = bool(fm.get("created"))
+    has_updated = bool(fm.get("updated"))
+    source = fm.get("source", "")
+
+    points = 0
+    if has_created and has_updated:
+        points += 1
+        notes.append("Timestamps")
+    if source:
+        points += 1
+        notes.append(f"Source: {source[:20]}")
+
+    return min(points, 2), notes
+
+
+def score_extra(body: str, fm: dict | None) -> tuple[int, list[str]]:
+    """0-2 bonus points for extra polish"""
+    notes = []
+    points = 0
+
+    # Has actionable content (commands, configs)
+    code_blocks = re.findall(r"```(\w+)?\n(.*?)```", body, re.DOTALL)
+    actionable_cmds = sum(1 for lang, code in code_blocks
+                          if not lang or lang in ("bash", "sh", "yaml", "json", "python"))
+    if actionable_cmds >= 2:
+        points += 1
+        notes.append(f"Actionable: {actionable_cmds} blocks")
+
+    # Has tags >= 3
+    tags = (fm or {}).get("tags", [])
+    if len(tags) >= 3:
+        points += 1
+        notes.append(f"{len(tags)} tags")
+
+    # No placeholder text
+    body_lower = body.lower()
+    for placeholder in ["todo", "fixme", "coming soon"]:
+        if placeholder in body_lower:
+            points -= 0.5
+            notes.append(f"Has '{placeholder}' placeholder")
+
+    return max(points, 0), notes
 
 
 def score_lesson(path: Path) -> dict:
-    """对单个 lesson 评分，返回分数和明细。"""
-    content = path.read_text(encoding="utf-8", errors="replace")
-    meta = parse_frontmatter(content)
-    body = content
-    if content.startswith("---"):
-        parts = content.split("---", 2)
-        if len(parts) >= 3:
-            body = parts[2]
+    """Score a single lesson file."""
+    content = path.read_text(encoding="utf-8")
 
-    s = {"path": str(path.relative_to(LESSONS_DIR)), "title": meta.get("title", path.stem)}
-    details = []
-    total = 0.0
+    # Extract frontmatter
+    m = re.match(r"^---\s*\n(.*?)\n---", content, re.DOTALL)
+    fm = None
+    if m:
+        try:
+            fm = json.loads(m.group(1))
+        except json.JSONDecodeError:
+            pass
 
-    # 1. 有 frontmatter title (+10)
-    if meta.get("title"):
-        total += 10; details.append(("✅ title", 10))
-    else:
-        details.append(("❌ 无 title", 0))
+    # Body (strip frontmatter)
+    body = re.sub(r"^---\s*\n.*?\n---\s*\n", "", content, count=1, flags=re.DOTALL)
 
-    # 2. 有 domain (+5)
-    d = meta.get("domain", "")
-    if d and d != "uncategorized":
-        total += 5; details.append(("✅ domain", 5))
-    else:
-        details.append(("⚠️ domain 未分类", 0))
+    dims = {
+        "frontmatter": score_frontmatter(fm),
+        "structure": score_structure(body),
+        "content": score_content(body),
+        "maintenance": score_maintenance(fm),
+        "extra": score_extra(body, fm),
+    }
 
-    # 3. 有 tags (+5)
-    tags = meta.get("tags", [])
-    if isinstance(tags, list) and len(tags) > 0:
-        t = min(len(tags) * 2, 5)
-        total += t; details.append((f"✅ tags [{len(tags)}个]", t))
-    else:
-        details.append(("⚠️ 无 tags", 0))
+    total = sum(d[0] for d in dims.values())
+    all_notes = []
+    for dim_name, (score, notes) in dims.items():
+        if notes:
+            all_notes.extend(notes)
 
-    # 4. 有 "问题" 小节 (+15)
-    if re.search(r'##\s*(问题|Problem|症状|背景)', body, re.IGNORECASE):
-        total += 15; details.append(("✅ 问题描述", 15))
-    else:
-        details.append(("❌ 无问题描述", 0))
-
-    # 5. 有 "根因" 小节 (+15)
-    if re.search(r'##\s*(根因|Root\s*Cause|原因|分析)', body, re.IGNORECASE):
-        total += 15; details.append(("✅ 根因分析", 15))
-    else:
-        details.append(("⚠️ 无根因分析", 0))
-
-    # 6. 有 "修复" 小节 (+20)
-    if re.search(r'##\s*(修复|Fix|方案|解法|Solution)', body, re.IGNORECASE):
-        total += 20; details.append(("✅ 修复方案", 20))
-    else:
-        details.append(("❌ 无修复方案", 0))
-
-    # 7. 有 "验证" 小节 (+15)
-    if re.search(r'##\s*(验证|Verify|确认|测试|Test)', body, re.IGNORECASE):
-        total += 15; details.append(("✅ 验证步骤", 15))
-    else:
-        details.append(("⚠️ 无验证步骤", 0))
-
-    # 8. 包含可执行命令代码块 (+10)
-    blocks = re.findall(r'```(?:bash|sh|shell|python|yaml|json|toml|ini)?\n', body)
-    if blocks:
-        t = min(len(blocks) * 3, 10)
-        total += t; details.append((f"✅ 代码块 [{len(blocks)}个]", t))
-    else:
-        details.append(("⚠️ 无可执行命令", 0))
-
-    # 9. 内容长度 > 200 字 (+5)
-    if len(body.strip()) > 200:
-        total += 5; details.append(("✅ 内容充实", 5))
-    else:
-        details.append(("⚠️ 内容过短", 0))
-
-    s["score"] = min(total, 100)
-    s["details"] = details
-    s["length"] = len(body.strip())
-    s["domain"] = d
-    return s
+    return {
+        "path": str(path.relative_to(REPO_ROOT)),
+        "title": (fm or {}).get("title", path.stem),
+        "domain": (fm or {}).get("domain", "unknown"),
+        "score": round(total, 1),
+        "dimensions": {k: round(v[0], 1) for k, v in dims.items()},
+        "notes": all_notes,
+        "source": (fm or {}).get("source", ""),
+        "status": (fm or {}).get("status", ""),
+    }
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Lesson 质量评分")
-    parser.add_argument("--html", action="store_true", help="输出 HTML 报告")
-    parser.add_argument("--bottom", type=int, default=0, help="只看最低分 N 条")
-    parser.add_argument("--domain", default="", help="筛选领域")
-    parser.add_argument("--json", action="store_true", help="输出 JSON")
-    args = parser.parse_args()
-
+    paths = sorted(LESSONS_DIR.rglob("*.md"))
     results = []
-    for f in sorted(LESSONS_DIR.glob("**/*.md")):
-        if f.name == "index.md" or f.name.startswith("."):
+
+    total_score = 0
+    max_score = 0
+
+    for path in paths:
+        if path.name in ("index.md", "README.md"):
             continue
-        s = score_lesson(f)
-        if args.domain and args.domain != s.get("domain", ""):
+        if "_archive" in str(path):
             continue
-        results.append(s)
 
-    results.sort(key=lambda x: x["score"])
+        result = score_lesson(path)
+        results.append(result)
+        total_score += result["score"]
+        max_score += 10
 
-    if args.bottom > 0:
-        results = results[:args.bottom]
+        if VERBOSE:
+            dims = " ".join(f"{k}={v}" for k, v in result["dimensions"].items())
+            notes = "; ".join(result["notes"][:3])
+            print(f"  {result['score']:4.1f}  {result['title'][:40]:40s}  [{dims}]")
 
-    if args.json:
-        print(json.dumps([
-            {"title": r["title"], "score": r["score"],
-             "domain": r.get("domain", ""), "length": r["length"]}
-            for r in results
-        ], ensure_ascii=False, indent=2))
-        return
+    # Sort by score descending
+    results.sort(key=lambda x: -x["score"])
 
-    if args.html:
-        avg = sum(r["score"] for r in results) / len(results)
-        low = [r for r in results if r["score"] < 50]
-        print(f"""<!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="UTF-8">
-<title>Lesson 质量报告</title>
-<style>
-  body {{ font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }}
-  .bar {{ height: 16px; border-radius: 3px; margin: 2px 0; }}
-  .good {{ background: #2ecc71; }}
-  .warn {{ background: #f39c12; }}
-  .bad {{ background: #e74c3c; }}
-  table {{ width: 100%; border-collapse: collapse; }}
-  th, td {{ text-align: left; padding: 6px 10px; border-bottom: 1px solid #eee; }}
-</style></head><body>
-<h1>📊 Lesson 质量报告</h1>
-<p>共 {len(results)} 篇 | 平均分 {avg:.0f}/100 | 低于50分: {len(low)} 篇</p>
-<table>
-<tr><th>分数</th><th>标题</th><th>领域</th><th>字数</th></tr>""")
-        for r in reversed(results):
-            cls = "good" if r["score"] >= 70 else ("warn" if r["score"] >= 50 else "bad")
-            print(f'<tr><td><div class="bar {cls}" style="width:{r["score"]}%"></div> {r["score"]}</td><td>{r["title"][:40]}</td><td>{r.get("domain","")}</td><td>{r["length"]}</td></tr>')
-        print("</table></body></html>")
-        return
+    # Summary
+    avg = total_score / len(results) if results else 0
+    print(f"\n{'='*50}")
+    print(f"Total lessons scored: {len(results)}")
+    print(f"Average score:        {avg:.1f}/10")
+    print(f"Median lesson:        {results[len(results)//2]['score']:.1f}/10")
+    print(f"Top scorer:           {results[0]['title']} ({results[0]['score']}/10)")
+    print(f"Bottom scorer:        {results[-1]['title']} ({results[-1]['score']}/10)")
+    print(f"Score ≥ 7:            {sum(1 for r in results if r['score'] >= 7)} lessons")
+    print(f"Score ≤ 3:            {sum(1 for r in results if r['score'] <= 3)} lessons")
 
-    print(f"\n📊 Lesson 质量评分 ({len(results)} 篇)")
-    print("-" * 60)
-    for r in (reversed(results) if not args.bottom else results):
-        bar = "█" * max(1, int(r["score"]) // 5) + "░" * max(0, 20 - int(r["score"]) // 5)
-        tag = f"[{r.get('domain','')}]" if r.get('domain') else ""
-        print(f"  {bar} {int(r['score']):3d}%  {tag:<14} {r['title'][:50]}")
-    avg = sum(r["score"] for r in results) / len(results)
-    print(f"\n  平均分: {avg:.0f}/100")
-    low = [r for r in results if r["score"] < 50]
-    if low:
-        print(f"  需改进: {len(low)} 篇 (低于50分)")
+    # Save report
+    if not DRY_RUN:
+        OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+        report = {
+            "summary": {
+                "total": len(results),
+                "average": round(avg, 2),
+                "median": results[len(results)//2]["score"],
+                "top": results[0]["title"],
+                "bottom": results[-1]["title"],
+            },
+            "scores": results,
+        }
+        with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+            json.dump(report, f, ensure_ascii=False, indent=2)
+        print(f"\nSaved: {OUTPUT_PATH}")
+
+    # Contributor quality aggregation
+    contrib_quality = {}
+    for r in results:
+        source = r.get("source", "") or "core"
+        if source not in contrib_quality:
+            contrib_quality[source] = {"count": 0, "total_score": 0.0, "lessons": []}
+        contrib_quality[source]["count"] += 1
+        contrib_quality[source]["total_score"] += r["score"]
+        contrib_quality[source]["lessons"].append(r["title"])
+
+    print(f"\n{'='*50}")
+    print("Contributor quality (by source):")
+    for src, data in sorted(contrib_quality.items(), key=lambda x: -x[1]["total_score"]):
+        avg_src = data["total_score"] / data["count"]
+        print(f"  {src:20s}  {data['count']:3d} lessons  avg {avg_src:.1f}/10")
 
 
 if __name__ == "__main__":
