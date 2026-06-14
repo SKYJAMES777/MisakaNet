@@ -42,7 +42,14 @@ class TokenManager:
             except Exception:
                 pass
 
-        # Fallback: plain file with restricted permissions
+        # Fallback: plaintext JSON file with owner-only permissions (chmod 600)
+        # WARNING: This is NOT encrypted. Do NOT rely on this for high-security environments.
+        # On shared hosts or compromised machines, any process running as this user can read the file.
+        import warnings
+        warnings.warn(
+            "Master token fallback: storing tokens as plaintext JSON in ~/.hermes-tokens. "
+            "This is NOT encrypted. For production, ensure keyring is available or use a secrets manager."
+        )
         token_path = os.path.expanduser("~/.hermes-tokens")
         try:
             with open(token_path, 'r') as f:
@@ -54,7 +61,7 @@ class TokenManager:
             self._tokens = {}
 
     def _save_tokens(self):
-        """Save tokens — use keyring if available, else plaintext file with restricted permissions."""
+        """Save tokens — use keyring if available, else plaintext JSON fallback (NOT encrypted)"""
         if self._keyring_available:
             import keyring
             try:
@@ -64,7 +71,7 @@ class TokenManager:
             except Exception:
                 pass
 
-        # Fallback: plain file with owner-only permissions
+        # Fallback: plaintext JSON with owner-only permissions (NOT encrypted)
         token_path = os.path.expanduser("~/.hermes-tokens")
         os.makedirs(os.path.dirname(token_path), exist_ok=True)
         with open(token_path, 'w') as f:

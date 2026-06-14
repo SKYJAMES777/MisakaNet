@@ -31,11 +31,20 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r requirements.txt 2>/dev/null || true
-          find . -path ./venv -prune -o -name "requirements.txt" \
-            -exec pip install -r {} \; 2>/dev/null || true
+          echo "=== Installing core dependencies ==="
+          pip install -r requirements.txt || { echo "::error::Core dependency install failed"; exit 1; }
+          echo "=== Installing optional dependencies ==="
+          find . -path ./venv -prune -o -name "requirements.txt" -print | while IFS= read -r req; do
+            dir=$(dirname "$req")
+            if [ "$dir" != "." ]; then
+              echo "  Installing $req ..."
+              pip install -r "$req" 2>&1 || echo "  ⚠️ Optional install failed: $req"
+            fi
+          done
+          echo "=== Test dependencies ==="
           pip install pytest pytest-cov
           echo "PYTHONPATH=$(pwd):$PYTHONPATH" >> "$GITHUB_ENV"
+          echo "=== Dependency install complete ==="
 
       # ── Quality Score Gate ──
       - name: Agent Quality Score
@@ -130,10 +139,11 @@ jobs:
         id: schema
         continue-on-error: true
         run: |
-          if python3 scripts/validate_lessons.py; then
+          if python3 scripts/validate_lessons.py 2>&1; then
             echo "schema_result=pass" >> "$GITHUB_OUTPUT"
           else
-            echo "schema_result=warnings" >> "$GITHUB_OUTPUT"
+            echo "schema_result=fail" >> "$GITHUB_OUTPUT"
+            echo "⚠️ Schema validation produced warnings or errors" >> "$GITHUB_STEP_SUMMARY"
           fi
 
       # ── Audit Report ──
