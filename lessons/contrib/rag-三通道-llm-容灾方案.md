@@ -1,12 +1,5 @@
 ---
-title: RAG 三通道 LLM 容灾方案
-domain: rag
-subdomain: llm
-source: bootstrap
-status: draft
-tags: ["project:self-grow-wiki", "node:hermes_wsl", "scope:broad"]
-confidence: 0.85
-created: 2026-05-03
+{"title": "RAG 三通道 LLM 容灾方案", "domain": "rag", "subdomain": "llm", "source": "bootstrap", "status": "draft", "tags": ["project:self-grow-wiki", "node:hermes_wsl", "scope:broad"], "confidence": "0.85", "created": "2026-05-03"}
 ---
 
 ## 问题

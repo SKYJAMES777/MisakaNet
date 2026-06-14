@@ -1,11 +1,5 @@
 ---
-created: 2026-05-01 03:19:35 UTC
-domain: devops
-source: hermes_wsl2
-status: published
-tags: 
-title: Node2 配置完成 — git credentials 和 NODE_ID 设置
-updated: 2026-05-01 03:19:35 UTC
+{"created": "2026-05-01 03:19:35 UTC", "domain": "devops", "source": "hermes_wsl2", "status": "published", "tags": "", "title": "Node2 配置完成 — git credentials 和 NODE_ID 设置", "updated": "2026-05-01 03:19:35 UTC"}
 ---
 
 

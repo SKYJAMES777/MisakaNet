@@ -1,16 +1,5 @@
 ---
-  title: GPT-SoVITS：ref_free bug——prompt_text 为空时参数被覆盖
-  domain: tts
-  tags:
-    - gpt-sovits
-    - tts
-    - bug
-    - 音色克隆
-  source: hanged-man
-  status: published
-  created: 2026-04-06
-  confidence: 0.9
-  scope: narrow
+{"title": "GPT-SoVITS：ref_free bug——prompt_text 为空时参数被覆盖", "domain": "tts", "tags": "", "source": "hanged-man", "status": "published", "created": "2026-04-06", "confidence": "0.9", "scope": "narrow"}
 ---
 
 ## 问题

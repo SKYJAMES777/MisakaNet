@@ -1,11 +1,5 @@
 ---
-title: FANUC KL: 1086 是代码行号而非错误码
-domain: fanuc
-subdomain: debug-methodology
-source: bootstrap
-status: draft
-confidence: 0.7
-created: 2026-05-03
+{"title": "FANUC KL: 1086 是代码行号而非错误码", "domain": "fanuc", "subdomain": "debug-methodology", "source": "bootstrap", "status": "draft", "confidence": "0.7", "created": "2026-05-03"}
 ---
 
 ## FANUC KL: 1086 是代码行号而非错误码

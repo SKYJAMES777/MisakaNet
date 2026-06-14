@@ -1,11 +1,5 @@
 ---
-created: 2026-05-01 08:00 UTC
-domain: claude
-source: hermes_wsl
-status: published
-tags: 
-title: 模型输出截断 / JSON 解析失败处理
-updated: 2026-05-01 08:00 UTC
+{"created": "2026-05-01 08:00 UTC", "domain": "claude", "source": "hermes_wsl", "status": "published", "tags": "", "title": "模型输出截断 / JSON 解析失败处理", "updated": "2026-05-01 08:00 UTC"}
 ---
 
 

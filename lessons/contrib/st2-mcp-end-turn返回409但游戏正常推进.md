@@ -1,16 +1,5 @@
 ---
-  title: ST2 MCP：end_turn 返回 409 Conflict 但游戏正常推进
-  domain: mcp
-  tags:
-    - st2
-    - slay-the-spire-2
-    - mcp
-    - api
-  source: hanged-man
-  status: published
-  created: 2026-03-27
-  confidence: 0.9
-  scope: narrow
+{"title": "ST2 MCP：end_turn 返回 409 Conflict 但游戏正常推进", "domain": "mcp", "tags": "", "source": "hanged-man", "status": "published", "created": "2026-03-27", "confidence": "0.9", "scope": "narrow"}
 ---
 
 ## 问题

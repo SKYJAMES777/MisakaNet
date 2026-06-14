@@ -1,12 +1,5 @@
 ---
-title: BGE embedding 模型需要降级 fallback 避免启动崩溃
-domain: rag
-subdomain: embedding
-source: bootstrap
-status: draft
-tags: ["project:agent-medici", "severity:high", "node:hermes_wsl"]
-confidence: 0.8
-created: 2026-05-03
+{"title": "BGE embedding 模型需要降级 fallback 避免启动崩溃", "domain": "rag", "subdomain": "embedding", "source": "bootstrap", "status": "draft", "tags": ["project:agent-medici", "severity:high", "node:hermes_wsl"], "confidence": "0.8", "created": "2026-05-03"}
 ---
 
 ## 问题

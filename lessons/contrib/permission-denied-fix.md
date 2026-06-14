@@ -1,11 +1,5 @@
 ---
-created: 2026-05-01 08:00 UTC
-domain: devops
-source: hermes_wsl
-status: published
-tags: 
-title: Permission Denied / WSL NTFS 跨文件系统权限修复
-updated: 2026-05-01 08:00 UTC
+{"created": "2026-05-01 08:00 UTC", "domain": "devops", "source": "hermes_wsl", "status": "published", "tags": "", "title": "Permission Denied / WSL NTFS 跨文件系统权限修复", "updated": "2026-05-01 08:00 UTC"}
 ---
 
 

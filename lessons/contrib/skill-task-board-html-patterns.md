@@ -1,10 +1,5 @@
 ---
-title: task-board-html-patterns
-domain: feishu
-source: skill-harvest
-status: draft
-confidence: 0.6
-created: 2026-05-20
+{"title": "task-board-html-patterns", "domain": "feishu", "source": "skill-harvest", "status": "draft", "confidence": "0.6", "created": "2026-05-20"}
 ---
 
 # task-board-html-patterns

@@ -1,12 +1,5 @@
 ---
-title: WSL 需要代理配置才能访问 HuggingFace 和外部网络
-domain: devops
-subdomain: wsl
-source: bootstrap
-status: draft
-tags: ["project:self-grow-wiki", "severity:high", "platform:wsl", "node:hermes_wsl"]
-confidence: 0.8
-created: 2026-05-03
+{"title": "WSL 需要代理配置才能访问 HuggingFace 和外部网络", "domain": "devops", "subdomain": "wsl", "source": "bootstrap", "status": "draft", "tags": ["project:self-grow-wiki", "severity:high", "platform:wsl", "node:hermes_wsl"], "confidence": "0.8", "created": "2026-05-03"}
 ---
 
 ## 问题

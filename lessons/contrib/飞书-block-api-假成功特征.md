@@ -1,11 +1,5 @@
 ---
-title: 飞书 Block API 假成功特征
-domain: feishu
-subdomain: block-api
-source: bootstrap
-status: draft
-confidence: 0.7
-created: 2026-05-03
+{"title": "飞书 Block API 假成功特征", "domain": "feishu", "subdomain": "block-api", "source": "bootstrap", "status": "draft", "confidence": "0.7", "created": "2026-05-03"}
 ---
 
 ## 飞书 Block API 假成功特征

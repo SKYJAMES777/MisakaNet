@@ -1,10 +1,10 @@
 {
   "summary": {
     "total": 141,
-    "average": 4.24,
-    "median": 4,
+    "average": 5.6,
+    "median": 6,
     "top": "DeepSeek TUI Agent 模式下 write_file 写入不落地 + worktree git 链接路径断裂",
-    "bottom": "飞书-block-批量写入上限"
+    "bottom": "node_zsxh1990"
   },
   "scores": [
     {
@@ -157,6 +157,30 @@
       "status": "published"
     },
     {
+      "path": "lessons/contrib/rag-cross-encoder-reranker-cpu-瓶颈-与-llm-确定性调优.md",
+      "title": "RAG Cross-Encoder Reranker CPU 瓶颈与 LLM 确定性调优",
+      "domain": "rag",
+      "score": 9,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 2,
+        "maintenance": 1,
+        "extra": 2
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Body 1310 chars",
+        "Code blocks present",
+        "Source: bootstrap",
+        "Actionable: 2 blocks",
+        "4 tags"
+      ],
+      "source": "bootstrap",
+      "status": "published"
+    },
+    {
       "path": "lessons/contributor-engagement-retention.md",
       "title": "AI Agent 贡献者关系维护 — 降低流失率的轻量策略",
       "domain": "devops",
@@ -232,6 +256,76 @@
       "status": "published"
     },
     {
+      "path": "lessons/contrib/api-网关不兼容-anthropic-原生格式.md",
+      "title": "InternalGateway API 网关不兼容 Anthropic 原生格式",
+      "domain": "devops",
+      "score": 8,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 2,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Body 512 chars",
+        "Code blocks present",
+        "Source: bootstrap",
+        "3 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/openclaw-gateway-动态模块缺失-导致飞书消息分发失败.md",
+      "title": "OpenClaw Gateway 动态模块缺失 — 飞书消息分发失败",
+      "domain": "feishu",
+      "score": 8,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 2
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "Actionable: 11 blocks",
+        "74 tags"
+      ],
+      "source": "bootstrap",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/promo-use-real-examples-not-hypotheticals.md",
+      "title": "引流文案用真实案例不要编造",
+      "domain": "marketing",
+      "score": 8,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 2,
+        "maintenance": 1,
+        "extra": 2
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Body 665 chars",
+        "Code blocks present",
+        "Source: Misaka10004",
+        "Actionable: 2 blocks",
+        "5 tags"
+      ],
+      "source": "Misaka10004",
+      "status": ""
+    },
+    {
       "path": "lessons/contrib/vertical-kb-question-bank-strategy.md",
       "title": "垂直知识库题库管理策略——以FANUC机器人KB为例",
       "domain": "rag-knowledge-base",
@@ -256,6 +350,29 @@
       "status": "published"
     },
     {
+      "path": "lessons/contrib/wcferry-微信版本锁定-3-9-12-51-才能用.md",
+      "title": "wcferry 微信版本锁定 — 3.9.12.51 才能用",
+      "domain": "devops",
+      "score": 8,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 2,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Body 507 chars",
+        "Code blocks present",
+        "Source: bootstrap",
+        "4 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
       "path": "lessons/pr-cleanup-sop.md",
       "title": "PR 仓库清理 SOP — 过时/重复/已解决 PR 的处置策略",
       "domain": "devops",
@@ -278,6 +395,97 @@
       ],
       "source": "codewhale",
       "status": "published"
+    },
+    {
+      "path": "lessons/contrib/ai-agent-project-outreach-guide.md",
+      "title": "AI Agent 项目宣发引流指南",
+      "domain": "marketing",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 1,
+        "content": 2,
+        "maintenance": 1,
+        "extra": 2
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Only one section found",
+        "Body 2863 chars",
+        "Code blocks present",
+        "Source: Misaka10004",
+        "Actionable: 5 blocks",
+        "7 tags"
+      ],
+      "source": "Misaka10004",
+      "status": ""
+    },
+    {
+      "path": "lessons/contrib/anthropic-proxy-internal-gateway.md",
+      "title": "internal-gateway.local 不兼容 Anthropic 格式 — 需 OpenAI 代理转换",
+      "domain": "devops",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 2,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Timestamps",
+        "Source: hermes_wsl",
+        "Actionable: 2 blocks"
+      ],
+      "source": "hermes_wsl",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/bge-embedding-模型需要降级-fallback-避免启动崩溃.md",
+      "title": "BGE embedding 模型需要降级 fallback 避免启动崩溃",
+      "domain": "rag",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Body 537 chars",
+        "Source: bootstrap",
+        "3 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/chromadb-不能放在-ntfs-文件系统.md",
+      "title": "ChromaDB 不能放在 NTFS 文件系统",
+      "domain": "rag",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "4 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
     },
     {
       "path": "lessons/contrib/chrome-relay-browser-automation.md",
@@ -324,6 +532,52 @@
       ],
       "source": "",
       "status": ""
+    },
+    {
+      "path": "lessons/contrib/disk-space-cleanup.md",
+      "title": "磁盘空间不足 / chroma_db_v4 缓存清理",
+      "domain": "devops",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 2,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Timestamps",
+        "Source: hermes_wsl",
+        "Actionable: 5 blocks"
+      ],
+      "source": "hermes_wsl",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/fanuc-r-2000ic-retrieval-fix.md",
+      "title": "FANUC R-2000iC 检索混淆修复 — 关键词强制召回",
+      "domain": "rag",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 2,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Timestamps",
+        "Source: hermes_wsl",
+        "Actionable: 2 blocks"
+      ],
+      "source": "hermes_wsl",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/feishu-wiki批量下载-文件类型处理策略.md",
@@ -395,6 +649,120 @@
       "status": ""
     },
     {
+      "path": "lessons/contrib/hermes-agent-手动更新步骤-update-超时.md",
+      "title": "Hermes Agent 手动更新步骤（update 超时）",
+      "domain": "devops",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "3 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/hub-feishuwsclient-start-从未调用-websocket-接收死代码.md",
+      "title": "Hub FeishuWSClient.start() 从未调用 — WebSocket 接收死代码",
+      "domain": "feishu",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 2,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Body 546 chars",
+        "Code blocks present",
+        "Source: bootstrap",
+        "Actionable: 2 blocks"
+      ],
+      "source": "bootstrap",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/model-output-fix.md",
+      "title": "模型输出截断 / JSON 解析失败处理",
+      "domain": "claude",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 2,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Timestamps",
+        "Source: hermes_wsl",
+        "Actionable: 4 blocks"
+      ],
+      "source": "hermes_wsl",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/permission-denied-fix.md",
+      "title": "Permission Denied / WSL NTFS 跨文件系统权限修复",
+      "domain": "devops",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 2,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Timestamps",
+        "Source: hermes_wsl",
+        "Actionable: 4 blocks"
+      ],
+      "source": "hermes_wsl",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/pip-install-failure-fix.md",
+      "title": "pip install 网络超时 / SSL / 依赖冲突修复",
+      "domain": "devops",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 2,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Timestamps",
+        "Source: hermes_wsl",
+        "Actionable: 3 blocks"
+      ],
+      "source": "hermes_wsl",
+      "status": "published"
+    },
+    {
       "path": "lessons/contrib/python-venv-tiktoken-module-not-found.md",
       "title": "Python venv 中 tiktoken 安装后仍报 ModuleNotFoundError",
       "domain": "development",
@@ -441,6 +809,50 @@
       "status": ""
     },
     {
+      "path": "lessons/contrib/rag-三通道-llm-容灾方案.md",
+      "title": "RAG 三通道 LLM 容灾方案",
+      "domain": "rag",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "3 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/rag-分块参数-800-字符-100-重叠-每文件最多-100-分块.md",
+      "title": "RAG 分块参数：800 字符 + 100 重叠 + 每文件最多 100 分块",
+      "domain": "rag",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "3 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
       "path": "lessons/contrib/registration-chain-worker-fallback.md",
       "title": "注册链路设计 — Worker 只创建 Issue，其余交给 Workflow",
       "domain": "devops",
@@ -464,6 +876,50 @@
       "status": ""
     },
     {
+      "path": "lessons/contrib/wsl-pip-install-gbk-编码导致-hub-poller-崩溃.md",
+      "title": "WSL pip install GBK 编码导致 hub_poller 崩溃",
+      "domain": "devops",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "4 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/wsl-需要代理配置才能访问-huggingface-和外部网络.md",
+      "title": "WSL 需要代理配置才能访问 HuggingFace 和外部网络",
+      "domain": "devops",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "4 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
       "path": "lessons/contrib/wxauto-im-feedback-collection-jsonl-queue.md",
       "title": "IM 机器人反馈收集与 JSONL 队列审核模式",
       "domain": "rag",
@@ -485,6 +941,72 @@
       ],
       "source": "",
       "status": ""
+    },
+    {
+      "path": "lessons/contrib/wxauto-必须在-windows-python-下安装-不能走-wsl-pip.md",
+      "title": "wxauto 必须在 Windows Python 下安装，不能走 WSL pip",
+      "domain": "devops",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "4 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/企业微信机器人-长连接模式不需要-ngrok.md",
+      "title": "企业微信机器人：长连接模式不需要 ngrok",
+      "domain": "devops",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "4 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/防火墙端口开放不等于内网穿透.md",
+      "title": "防火墙端口开放不等于内网穿透",
+      "domain": "devops",
+      "score": 7,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "4 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
     },
     {
       "path": "lessons/cronjob-one-shot-race-condition-duplicate-execution.md",
@@ -600,6 +1122,29 @@
       "status": ""
     },
     {
+      "path": "lessons/contrib/browser-harness-cdp-browser-automation.md",
+      "title": "browser-harness — AI 直连 Chrome 的 CDP 浏览器自动化",
+      "domain": "devops",
+      "score": 6,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 1,
+        "content": 2,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Only one section found",
+        "Body 3204 chars",
+        "Code blocks present",
+        "Source: skill-harvest",
+        "Actionable: 3 blocks"
+      ],
+      "source": "skill-harvest",
+      "status": "draft"
+    },
+    {
       "path": "lessons/contrib/cc-connect-飞书机器人完整配置指南.md",
       "title": "cc-connect 飞书机器人完整配置指南",
       "domain": "feishu",
@@ -619,6 +1164,73 @@
         "Timestamps",
         "Source: bootstrap",
         "Actionable: 8 blocks"
+      ],
+      "source": "bootstrap",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/ccswitch-hermes-switch.md",
+      "title": "ccswitch-hermes-switch 踩坑记录",
+      "domain": "devops",
+      "score": 6,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 1,
+        "content": 2,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Problem + Solution (no Verify)",
+        "Body 1305 chars",
+        "Code blocks present",
+        "Source: bootstrap",
+        "Actionable: 3 blocks"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/chroma-rebuild-no-checkpoint.md",
+      "title": "Chroma 建库无 Checkpoint — 进程一死全部丢失",
+      "domain": "rag",
+      "score": 6,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "Actionable: 4 blocks"
+      ],
+      "source": "bootstrap",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/chroma-建库无-checkpoint-进程一死全部丢失.md",
+      "title": "Chroma 建库无 Checkpoint — 进程一死全部丢失",
+      "domain": "rag",
+      "score": 6,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "Actionable: 4 blocks"
       ],
       "source": "bootstrap",
       "status": "published"
@@ -691,6 +1303,50 @@
       "status": ""
     },
     {
+      "path": "lessons/contrib/feishu-凭证轮换后-gateway-必须重启.md",
+      "title": "Feishu 凭证轮换后 Gateway 必须重启",
+      "domain": "feishu",
+      "score": 6,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "Actionable: 2 blocks"
+      ],
+      "source": "bootstrap",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/gateway-进程挂死未崩溃-watchdog-自动恢复.md",
+      "title": "Gateway 进程挂死未崩溃 — watchdog 自动恢复",
+      "domain": "devops",
+      "score": 6,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "Actionable: 3 blocks"
+      ],
+      "source": "bootstrap",
+      "status": "published"
+    },
+    {
       "path": "lessons/contrib/git-credentials-automation.md",
       "title": "Git 凭证配置 — 自动化 push 免密码",
       "domain": "devops",
@@ -755,6 +1411,29 @@
       ],
       "source": "",
       "status": ""
+    },
+    {
+      "path": "lessons/contrib/hub-hermes-凭证体系-gateway-vs-hub-各自读哪里.md",
+      "title": "Hub Hermes 凭证体系 — Gateway vs Hub 各自读哪里",
+      "domain": "devops",
+      "score": 6,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 1,
+        "content": 2,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Problem + Solution (no Verify)",
+        "Body 569 chars",
+        "Code blocks present",
+        "Source: bootstrap",
+        "Actionable: 2 blocks"
+      ],
+      "source": "bootstrap",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/js-dead-code-chain-break.md",
@@ -912,6 +1591,27 @@
       "status": ""
     },
     {
+      "path": "lessons/contrib/rag-报警代码检索需要关键词强制召回.md",
+      "title": "RAG 报警代码检索需要关键词强制召回",
+      "domain": "rag",
+      "score": 6,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Source: bootstrap",
+        "3 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
       "path": "lessons/contrib/regex-greedy-matching.md",
       "title": "正则表达式 debugging — 贪婪匹配造成的意外结果",
       "domain": "development",
@@ -1044,6 +1744,28 @@
       "status": ""
     },
     {
+      "path": "lessons/contrib/wsl-terminal-underscore-corruption.md",
+      "title": "WSL 终端编辑配置危险 — TTy粘贴吞下划线",
+      "domain": "devops",
+      "score": 6,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "Actionable: 2 blocks"
+      ],
+      "source": "bootstrap",
+      "status": "published"
+    },
+    {
       "path": "lessons/contrib/wsl-terminal-underscore-missing.md",
       "title": "WSL Windows 终端复制粘贴吞下划线问题",
       "domain": "devops",
@@ -1064,6 +1786,28 @@
       ],
       "source": "",
       "status": ""
+    },
+    {
+      "path": "lessons/contrib/wsl-终端编辑配置危险-tty粘贴吞下划线.md",
+      "title": "WSL 终端编辑配置危险 — TTy粘贴吞下划线",
+      "domain": "devops",
+      "score": 6,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Code blocks present",
+        "Source: bootstrap",
+        "Actionable: 2 blocks"
+      ],
+      "source": "bootstrap",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/wsl2-memory-leak-fix.md",
@@ -1088,6 +1832,94 @@
       "status": ""
     },
     {
+      "path": "lessons/contrib/知识库-4-质量审计流水线.md",
+      "title": "知识库 4σ 质量审计流水线",
+      "domain": "rag",
+      "score": 6,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Source: bootstrap",
+        "3 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/飞书-webhook-url-必须用环境变量或-gitignored-的-config-yaml.md",
+      "title": "飞书 webhook URL 必须用环境变量或 gitignored 的 config.yaml",
+      "domain": "devops",
+      "score": 6,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 2,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "Full 3-part structure",
+        "Source: bootstrap",
+        "3 tags"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/node_10049.md",
+      "title": "Telemetry Pipeline: Async Producer-Consumer for Search Telemetry",
+      "domain": "general",
+      "score": 5.5,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 0,
+        "content": 1.5,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "No recognizable structure",
+        "Body 1336 chars",
+        "List formatting",
+        "Source: agent",
+        "5 tags"
+      ],
+      "source": "agent",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/node_104.md",
+      "title": "Graceful Network Retry and Node Registration Experience",
+      "domain": "general",
+      "score": 5.5,
+      "dimensions": {
+        "frontmatter": 2,
+        "structure": 0,
+        "content": 1.5,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Complete + tags",
+        "No recognizable structure",
+        "Body 1203 chars",
+        "List formatting",
+        "Source: agent",
+        "4 tags"
+      ],
+      "source": "agent",
+      "status": "published"
+    },
+    {
       "path": "lessons/contrib/phase-0-output-gate.md",
       "title": "Phase 0 Output Gate — Agent 的硬性知识检索规则",
       "domain": "methodology",
@@ -1108,6 +1940,73 @@
       ],
       "source": "",
       "status": ""
+    },
+    {
+      "path": "lessons/contrib/cc-connect-feishu-setup-complete.md",
+      "title": "cc-connect 飞书机器人完整配置指南",
+      "domain": "feishu",
+      "score": 5,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 0,
+        "content": 2,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "No recognizable structure",
+        "Body 1191 chars",
+        "Code blocks present",
+        "Source: bootstrap",
+        "Actionable: 8 blocks"
+      ],
+      "source": "bootstrap",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/feishu文件上传-file-type-必须用opus.md",
+      "title": "Feishu 文件上传：file_type 必须用 opus",
+      "domain": "feishu",
+      "score": 5,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 1,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Only one section found",
+        "Code blocks present",
+        "Source: hanged-man",
+        "Actionable: 2 blocks"
+      ],
+      "source": "hanged-man",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/ffmpeg音频转码-必须用libopus而非format-ogg.md",
+      "title": "FFmpeg 音频转码：必须用 libopus 而非 -format ogg",
+      "domain": "audio",
+      "score": 5,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 1,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 1
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Only one section found",
+        "Code blocks present",
+        "Source: hanged-man",
+        "Actionable: 2 blocks"
+      ],
+      "source": "hanged-man",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/git-merge-conflict-resolution.md",
@@ -1132,50 +2031,47 @@
       "status": ""
     },
     {
-      "path": "lessons/contrib/hub-feishuwsclient-start-从未调用-websocket-接收死代码.md",
-      "title": "hub-feishuwsclient-start-从未调用-websocket-接收死代码",
-      "domain": "unknown",
+      "path": "lessons/contrib/lessons-md-修正-4-处-项目-旧结论-修正后-heading-block-type-4.md",
+      "title": "lessons.md 修正（4 处） 项目 旧结论 修正后 heading block（type=4",
+      "domain": "rag",
       "score": 5,
       "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
+        "frontmatter": 1,
+        "structure": 1,
         "content": 2,
-        "maintenance": 0,
-        "extra": 1
+        "maintenance": 1,
+        "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Body 546 chars",
+        "Partial frontmatter",
+        "Only one section found",
+        "Body 819 chars",
         "Code blocks present",
-        "No metadata",
-        "Actionable: 2 blocks"
+        "Source: bootstrap"
       ],
-      "source": "",
-      "status": ""
+      "source": "bootstrap",
+      "status": "published"
     },
     {
-      "path": "lessons/contrib/promo-use-real-examples-not-hypotheticals.md",
-      "title": "promo-use-real-examples-not-hypotheticals",
-      "domain": "unknown",
+      "path": "lessons/contrib/openclaw-重装教训-删除前先停服务清残留.md",
+      "title": "OpenClaw 重装教训 — 删除前先停服务清残留",
+      "domain": "devops",
       "score": 5,
       "dimensions": {
-        "frontmatter": 0,
+        "frontmatter": 1,
         "structure": 2,
-        "content": 2,
-        "maintenance": 0,
-        "extra": 1
+        "content": 1,
+        "maintenance": 1,
+        "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
+        "Partial frontmatter",
         "Full 3-part structure",
-        "Body 665 chars",
         "Code blocks present",
-        "No metadata",
-        "Actionable: 2 blocks"
+        "Source: bootstrap"
       ],
-      "source": "",
-      "status": ""
+      "source": "bootstrap",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/python-pycache-stale.md",
@@ -1200,27 +2096,25 @@
       "status": ""
     },
     {
-      "path": "lessons/contrib/rag-cross-encoder-reranker-cpu-瓶颈-与-llm-确定性调优.md",
-      "title": "rag-cross-encoder-reranker-cpu-瓶颈-与-llm-确定性调优",
-      "domain": "unknown",
+      "path": "lessons/contrib/rag-检索中文乱码-pymupdf4llm-默认编码问题.md",
+      "title": "RAG 检索中文乱码 — pymupdf4llm 默认编码问题",
+      "domain": "rag",
       "score": 5,
       "dimensions": {
-        "frontmatter": 0,
+        "frontmatter": 1,
         "structure": 2,
-        "content": 2,
-        "maintenance": 0,
-        "extra": 1
+        "content": 1,
+        "maintenance": 1,
+        "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
+        "Partial frontmatter",
         "Full 3-part structure",
-        "Body 1310 chars",
         "Code blocks present",
-        "No metadata",
-        "Actionable: 2 blocks"
+        "Source: bootstrap"
       ],
-      "source": "",
-      "status": ""
+      "source": "bootstrap",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/shared-json-needs-atomic-write.md",
@@ -1266,51 +2160,6 @@
       "status": ""
     },
     {
-      "path": "lessons/contrib/ai-agent-project-outreach-guide.md",
-      "title": "ai-agent-project-outreach-guide",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 2,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Only one section found",
-        "Body 2863 chars",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 5 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/anthropic-proxy-internal-gateway.md",
-      "title": "anthropic-proxy-internal-gateway",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 2 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
       "path": "lessons/contrib/api-rate-limit-handling-best-practices.md",
       "title": "API限流处理最佳实践",
       "domain": "devops",
@@ -1331,116 +2180,26 @@
       "status": ""
     },
     {
-      "path": "lessons/contrib/api-网关不兼容-anthropic-原生格式.md",
-      "title": "api-网关不兼容-anthropic-原生格式",
-      "domain": "unknown",
+      "path": "lessons/contrib/cc-connect-feishu-display-optimization.md",
+      "title": "cc-connect 飞书显示优化：禁用工具调用和上下文提示",
+      "domain": "feishu",
       "score": 4,
       "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
+        "frontmatter": 1,
+        "structure": 0,
         "content": 2,
-        "maintenance": 0,
+        "maintenance": 1,
         "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Body 512 chars",
+        "Partial frontmatter",
+        "No recognizable structure",
+        "Body 559 chars",
         "Code blocks present",
-        "No metadata"
+        "Source: bootstrap"
       ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/browser-harness-cdp-browser-automation.md",
-      "title": "browser-harness-cdp-browser-automation",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 2,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Only one section found",
-        "Body 3204 chars",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 3 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/ccswitch-hermes-switch.md",
-      "title": "ccswitch-hermes-switch",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 2,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Problem + Solution (no Verify)",
-        "Body 1305 chars",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 3 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/chroma-rebuild-no-checkpoint.md",
-      "title": "chroma-rebuild-no-checkpoint",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 4 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/chroma-建库无-checkpoint-进程一死全部丢失.md",
-      "title": "chroma-建库无-checkpoint-进程一死全部丢失",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 4 blocks"
-      ],
-      "source": "",
-      "status": ""
+      "source": "bootstrap",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/ci-dco-decouple-pythonpath-fork-pr.md",
@@ -1487,115 +2246,67 @@
       "status": ""
     },
     {
-      "path": "lessons/contrib/disk-space-cleanup.md",
-      "title": "disk-space-cleanup",
-      "domain": "unknown",
+      "path": "lessons/contrib/git-凭证和-node-id-node2-加网后必须设置.md",
+      "title": "Git 凭证和 Node ID — Node2 加网后必须设置",
+      "domain": "devops",
       "score": 4,
       "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 5 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/fanuc-r-2000ic-retrieval-fix.md",
-      "title": "fanuc-r-2000ic-retrieval-fix",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 2 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/feishu-凭证轮换后-gateway-必须重启.md",
-      "title": "feishu-凭证轮换后-gateway-必须重启",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 2 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/gateway-进程挂死未崩溃-watchdog-自动恢复.md",
-      "title": "gateway-进程挂死未崩溃-watchdog-自动恢复",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 3 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/hub-hermes-凭证体系-gateway-vs-hub-各自读哪里.md",
-      "title": "hub-hermes-凭证体系-gateway-vs-hub-各自读哪里",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
+        "frontmatter": 1,
         "structure": 1,
-        "content": 2,
-        "maintenance": 0,
-        "extra": 1
+        "content": 1,
+        "maintenance": 1,
+        "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
+        "Partial frontmatter",
         "Problem + Solution (no Verify)",
-        "Body 569 chars",
         "Code blocks present",
-        "No metadata",
-        "Actionable: 2 blocks"
+        "Source: bootstrap"
       ],
-      "source": "",
-      "status": ""
+      "source": "bootstrap",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/gpt-sovits-ref-free-bug-prompt-text为空时参数被覆盖.md",
+      "title": "GPT-SoVITS：ref_free bug——prompt_text 为空时参数被覆盖",
+      "domain": "tts",
+      "score": 4,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 1,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Only one section found",
+        "Code blocks present",
+        "Source: hanged-man"
+      ],
+      "source": "hanged-man",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/gpt-sovits训练-2-name2text格式必须用arpabet音素.md",
+      "title": "GPT-SoVITS 训练：2-name2text 格式必须用 ARPABET 音素而非中文原文",
+      "domain": "tts",
+      "score": 4,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 1,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Only one section found",
+        "Code blocks present",
+        "Source: hanged-man"
+      ],
+      "source": "hanged-man",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/json-parse-failure-handling.md",
@@ -1619,50 +2330,6 @@
       "status": ""
     },
     {
-      "path": "lessons/contrib/model-output-fix.md",
-      "title": "model-output-fix",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 4 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/openclaw-gateway-动态模块缺失-导致飞书消息分发失败.md",
-      "title": "openclaw-gateway-动态模块缺失-导致飞书消息分发失败",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 11 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
       "path": "lessons/contrib/openclaw-prefer-cli-and-policy-over-direct-edit.md",
       "title": "OpenClaw优先CLI和官方策略",
       "domain": "agentops",
@@ -1678,50 +2345,6 @@
         "Partial frontmatter",
         "Full 3-part structure",
         "4 tags"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/permission-denied-fix.md",
-      "title": "permission-denied-fix",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 4 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/pip-install-failure-fix.md",
-      "title": "pip-install-failure-fix",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 3 blocks"
       ],
       "source": "",
       "status": ""
@@ -1790,26 +2413,205 @@
       "status": ""
     },
     {
-      "path": "lessons/contrib/wcferry-微信版本锁定-3-9-12-51-才能用.md",
-      "title": "wcferry-微信版本锁定-3-9-12-51-才能用",
-      "domain": "unknown",
+      "path": "lessons/contrib/skill-dogfood.md",
+      "title": "dogfood",
+      "domain": "claude",
       "score": 4,
       "dimensions": {
-        "frontmatter": 0,
+        "frontmatter": 1,
         "structure": 2,
-        "content": 2,
-        "maintenance": 0,
+        "content": 0,
+        "maintenance": 1,
         "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
+        "Partial frontmatter",
         "Full 3-part structure",
-        "Body 507 chars",
-        "Code blocks present",
-        "No metadata"
+        "Source: skill-harvest"
       ],
-      "source": "",
-      "status": ""
+      "source": "skill-harvest",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/skill-edoc-pipeline-retrospective.md",
+      "title": "edoc-pipeline-retrospective",
+      "domain": "rag",
+      "score": 4,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Source: skill-harvest"
+      ],
+      "source": "skill-harvest",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/skill-edoc-rag.md",
+      "title": "edoc-rag",
+      "domain": "rag",
+      "score": 4,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Source: skill-harvest"
+      ],
+      "source": "skill-harvest",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/skill-feishu-docx.md",
+      "title": "feishu-docx",
+      "domain": "feishu",
+      "score": 4,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Source: skill-harvest"
+      ],
+      "source": "skill-harvest",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/skill-feishu-interactive-card.md",
+      "title": "feishu-interactive-card",
+      "domain": "feishu",
+      "score": 4,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Source: skill-harvest"
+      ],
+      "source": "skill-harvest",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/skill-hermes-cli-pty-mode.md",
+      "title": "hermes-cli-pty-mode",
+      "domain": "devops",
+      "score": 4,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Source: skill-harvest"
+      ],
+      "source": "skill-harvest",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/skill-openclaw-multi-instance-config.md",
+      "title": "openclaw-multi-instance-config",
+      "domain": "feishu",
+      "score": 4,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Source: skill-harvest"
+      ],
+      "source": "skill-harvest",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/skill-rag-audit-question-authoring.md",
+      "title": "rag-audit-question-authoring",
+      "domain": "rag",
+      "score": 4,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Source: skill-harvest"
+      ],
+      "source": "skill-harvest",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/skill-task-board-html-patterns.md",
+      "title": "task-board-html-patterns",
+      "domain": "feishu",
+      "score": 4,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 2,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Full 3-part structure",
+        "Source: skill-harvest"
+      ],
+      "source": "skill-harvest",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/tts中文编码-powerhsell传参必须用txt文件.md",
+      "title": "TTS 中文编码：PowerShell 传参必须用 .txt 文件中转",
+      "domain": "tts",
+      "score": 4,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 1,
+        "content": 1,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Only one section found",
+        "Code blocks present",
+        "Source: hanged-man"
+      ],
+      "source": "hanged-man",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/wechat-pubacct-fetch-separate-search-from-retrieval.md",
@@ -1853,50 +2655,6 @@
       "status": ""
     },
     {
-      "path": "lessons/contrib/wsl-terminal-underscore-corruption.md",
-      "title": "wsl-terminal-underscore-corruption",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 2 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/wsl-终端编辑配置危险-tty粘贴吞下划线.md",
-      "title": "wsl-终端编辑配置危险-tty粘贴吞下划线",
-      "domain": "unknown",
-      "score": 4,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 2 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
       "path": "lessons/contrib/zero-bounty-open-source-workflow.md",
       "title": "zero-bounty-open-source-workflow",
       "domain": "unknown",
@@ -1920,69 +2678,89 @@
       "status": ""
     },
     {
-      "path": "lessons/contrib/bge-embedding-模型需要降级-fallback-避免启动崩溃.md",
-      "title": "bge-embedding-模型需要降级-fallback-避免启动崩溃",
-      "domain": "unknown",
-      "score": 3,
+      "path": "lessons/contrib/fanuc-kl-1086-是代码行号而非错误码.md",
+      "title": "FANUC KL: 1086 是代码行号而非错误码",
+      "domain": "fanuc",
+      "score": 3.5,
       "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Body 537 chars",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/cc-connect-feishu-setup-complete.md",
-      "title": "cc-connect-feishu-setup-complete",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
+        "frontmatter": 1,
         "structure": 0,
-        "content": 2,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "No recognizable structure",
-        "Body 1191 chars",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 8 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/chromadb-不能放在-ntfs-文件系统.md",
-      "title": "chromadb-不能放在-ntfs-文件系统",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
+        "content": 1.5,
+        "maintenance": 1,
         "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata"
+        "Partial frontmatter",
+        "No recognizable structure",
+        "Body 569 chars",
+        "List formatting",
+        "Source: bootstrap"
       ],
-      "source": "",
-      "status": ""
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/gpt-sovits-hubert-必须16khz且get-model返回单体.md",
+      "title": "GPT-SoVITS：HuBERT 必须 16kHz 且 get_model() 返回单体",
+      "domain": "tts",
+      "score": 3.5,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 1,
+        "content": 0.5,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Only one section found",
+        "List formatting",
+        "Source: hanged-man"
+      ],
+      "source": "hanged-man",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/rag建库策略-不可一次性加载全部数据.md",
+      "title": "RAG 建库策略：不可一次性加载全部数据到显存/内存",
+      "domain": "rag",
+      "score": 3.5,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 1,
+        "content": 0.5,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Only one section found",
+        "List formatting",
+        "Source: hanged-man"
+      ],
+      "source": "hanged-man",
+      "status": "published"
+    },
+    {
+      "path": "lessons/contrib/st2-danielstarman-mcp-选rare-relic会卡死.md",
+      "title": "ST2 danielstarman MCP：选 Rare Relic 会卡死",
+      "domain": "mcp",
+      "score": 3.5,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 1,
+        "content": 0.5,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "Only one section found",
+        "List formatting",
+        "Source: hanged-man"
+      ],
+      "source": "hanged-man",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/feishu-websocket-404-error-http-webhook-required.md",
@@ -2006,91 +2784,24 @@
       "status": "published"
     },
     {
-      "path": "lessons/contrib/feishu文件上传-file-type-必须用opus.md",
-      "title": "feishu文件上传-file-type-必须用opus",
-      "domain": "unknown",
+      "path": "lessons/contrib/feishu文档url-必须用api返回值不要拼接.md",
+      "title": "Feishu 文档 URL：必须用 API 返回值，不要拼接",
+      "domain": "feishu",
       "score": 3,
       "dimensions": {
-        "frontmatter": 0,
+        "frontmatter": 1,
         "structure": 1,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Only one section found",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 2 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/ffmpeg音频转码-必须用libopus而非format-ogg.md",
-      "title": "ffmpeg音频转码-必须用libopus而非format-ogg",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 1
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Only one section found",
-        "Code blocks present",
-        "No metadata",
-        "Actionable: 2 blocks"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/hermes-agent-手动更新步骤-update-超时.md",
-      "title": "hermes-agent-手动更新步骤-update-超时",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
+        "content": 0,
+        "maintenance": 1,
         "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/lessons-md-修正-4-处-项目-旧结论-修正后-heading-block-type-4.md",
-      "title": "lessons-md-修正-4-处-项目-旧结论-修正后-heading-block-type-4",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 2,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
+        "Partial frontmatter",
         "Only one section found",
-        "Body 819 chars",
-        "Code blocks present",
-        "No metadata"
+        "Source: hanged-man"
       ],
-      "source": "",
-      "status": ""
+      "source": "hanged-man",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/misakanet-refactor-v2-review.md",
@@ -2115,25 +2826,25 @@
       "status": ""
     },
     {
-      "path": "lessons/contrib/openclaw-重装教训-删除前先停服务清残留.md",
-      "title": "openclaw-重装教训-删除前先停服务清残留",
-      "domain": "unknown",
+      "path": "lessons/contrib/node2-配置完成-git-credentials-和-node-id-设置.md",
+      "title": "Node2 配置完成 — git credentials 和 NODE_ID 设置",
+      "domain": "devops",
       "score": 3,
       "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
+        "frontmatter": 1,
+        "structure": 0,
+        "content": 0,
+        "maintenance": 2,
         "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata"
+        "Partial frontmatter",
+        "No recognizable structure",
+        "Timestamps",
+        "Source: hermes_wsl2"
       ],
-      "source": "",
-      "status": ""
+      "source": "hermes_wsl2",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/oss-refactor-lessons.md",
@@ -2151,69 +2862,6 @@
         "No frontmatter (0/2)",
         "Problem + Solution (no Verify)",
         "Body 1829 chars",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/rag-三通道-llm-容灾方案.md",
-      "title": "rag-三通道-llm-容灾方案",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/rag-分块参数-800-字符-100-重叠-每文件最多-100-分块.md",
-      "title": "rag-分块参数-800-字符-100-重叠-每文件最多-100-分块",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/rag-检索中文乱码-pymupdf4llm-默认编码问题.md",
-      "title": "rag-检索中文乱码-pymupdf4llm-默认编码问题",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
         "Code blocks present",
         "No metadata"
       ],
@@ -2243,729 +2891,190 @@
       "status": ""
     },
     {
-      "path": "lessons/contrib/wsl-pip-install-gbk-编码导致-hub-poller-崩溃.md",
-      "title": "wsl-pip-install-gbk-编码导致-hub-poller-崩溃",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/wsl-需要代理配置才能访问-huggingface-和外部网络.md",
-      "title": "wsl-需要代理配置才能访问-huggingface-和外部网络",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/wxauto-必须在-windows-python-下安装-不能走-wsl-pip.md",
-      "title": "wxauto-必须在-windows-python-下安装-不能走-wsl-pip",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/企业微信机器人-长连接模式不需要-ngrok.md",
-      "title": "企业微信机器人-长连接模式不需要-ngrok",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/防火墙端口开放不等于内网穿透.md",
-      "title": "防火墙端口开放不等于内网穿透",
-      "domain": "unknown",
-      "score": 3,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/cc-connect-feishu-display-optimization.md",
-      "title": "cc-connect-feishu-display-optimization",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 0,
-        "content": 2,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "No recognizable structure",
-        "Body 559 chars",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/git-凭证和-node-id-node2-加网后必须设置.md",
-      "title": "git-凭证和-node-id-node2-加网后必须设置",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Problem + Solution (no Verify)",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/gpt-sovits-ref-free-bug-prompt-text为空时参数被覆盖.md",
-      "title": "gpt-sovits-ref-free-bug-prompt-text为空时参数被覆盖",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Only one section found",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/gpt-sovits训练-2-name2text格式必须用arpabet音素.md",
-      "title": "gpt-sovits训练-2-name2text格式必须用arpabet音素",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Only one section found",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/rag-报警代码检索需要关键词强制召回.md",
-      "title": "rag-报警代码检索需要关键词强制召回",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/skill-dogfood.md",
-      "title": "skill-dogfood",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/skill-edoc-pipeline-retrospective.md",
-      "title": "skill-edoc-pipeline-retrospective",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/skill-edoc-rag.md",
-      "title": "skill-edoc-rag",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/skill-feishu-docx.md",
-      "title": "skill-feishu-docx",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/skill-feishu-interactive-card.md",
-      "title": "skill-feishu-interactive-card",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/skill-hermes-cli-pty-mode.md",
-      "title": "skill-hermes-cli-pty-mode",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/skill-openclaw-multi-instance-config.md",
-      "title": "skill-openclaw-multi-instance-config",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/skill-rag-audit-question-authoring.md",
-      "title": "skill-rag-audit-question-authoring",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/skill-task-board-html-patterns.md",
-      "title": "skill-task-board-html-patterns",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/tts中文编码-powerhsell传参必须用txt文件.md",
-      "title": "tts中文编码-powerhsell传参必须用txt文件",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 1,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Only one section found",
-        "Code blocks present",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/知识库-4-质量审计流水线.md",
-      "title": "知识库-4-质量审计流水线",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/飞书-webhook-url-必须用环境变量或-gitignored-的-config-yaml.md",
-      "title": "飞书-webhook-url-必须用环境变量或-gitignored-的-config-yaml",
-      "domain": "unknown",
-      "score": 2,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 2,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Full 3-part structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/fanuc-kl-1086-是代码行号而非错误码.md",
-      "title": "fanuc-kl-1086-是代码行号而非错误码",
-      "domain": "unknown",
-      "score": 1.5,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 0,
-        "content": 1.5,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "No recognizable structure",
-        "Body 569 chars",
-        "List formatting",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/gpt-sovits-hubert-必须16khz且get-model返回单体.md",
-      "title": "gpt-sovits-hubert-必须16khz且get-model返回单体",
-      "domain": "unknown",
-      "score": 1.5,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 0.5,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Only one section found",
-        "List formatting",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/node_10049.md",
-      "title": "node_10049",
-      "domain": "unknown",
-      "score": 1.5,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 0,
-        "content": 1.5,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "No recognizable structure",
-        "Body 1336 chars",
-        "List formatting",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/node_104.md",
-      "title": "node_104",
-      "domain": "unknown",
-      "score": 1.5,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 0,
-        "content": 1.5,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "No recognizable structure",
-        "Body 1203 chars",
-        "List formatting",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/rag建库策略-不可一次性加载全部数据.md",
-      "title": "rag建库策略-不可一次性加载全部数据",
-      "domain": "unknown",
-      "score": 1.5,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 0.5,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Only one section found",
-        "List formatting",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/st2-danielstarman-mcp-选rare-relic会卡死.md",
-      "title": "st2-danielstarman-mcp-选rare-relic会卡死",
-      "domain": "unknown",
-      "score": 1.5,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 0.5,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Only one section found",
-        "List formatting",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/feishu文档url-必须用api返回值不要拼接.md",
-      "title": "feishu文档url-必须用api返回值不要拼接",
-      "domain": "unknown",
-      "score": 1,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 1,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "Only one section found",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
       "path": "lessons/contrib/st2-mcp-end-turn返回409但游戏正常推进.md",
-      "title": "st2-mcp-end-turn返回409但游戏正常推进",
-      "domain": "unknown",
-      "score": 1,
+      "title": "ST2 MCP：end_turn 返回 409 Conflict 但游戏正常推进",
+      "domain": "mcp",
+      "score": 3,
       "dimensions": {
-        "frontmatter": 0,
+        "frontmatter": 1,
         "structure": 1,
         "content": 0,
-        "maintenance": 0,
+        "maintenance": 1,
         "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
+        "Partial frontmatter",
         "Only one section found",
-        "No metadata"
+        "Source: hanged-man"
       ],
-      "source": "",
-      "status": ""
+      "source": "hanged-man",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/st2-mcp从game-over重开必须走特定流程.md",
-      "title": "st2-mcp从game-over重开必须走特定流程",
-      "domain": "unknown",
-      "score": 1,
+      "title": "ST2 MCP：从 GAME_OVER 重开必须走特定流程",
+      "domain": "mcp",
+      "score": 3,
       "dimensions": {
-        "frontmatter": 0,
+        "frontmatter": 1,
         "structure": 0,
         "content": 1,
-        "maintenance": 0,
+        "maintenance": 1,
         "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
+        "Partial frontmatter",
         "No recognizable structure",
         "Code blocks present",
-        "No metadata"
+        "Source: hanged-man"
       ],
-      "source": "",
-      "status": ""
+      "source": "hanged-man",
+      "status": "published"
     },
     {
       "path": "lessons/contrib/飞书-block-api-假成功特征.md",
-      "title": "飞书-block-api-假成功特征",
-      "domain": "unknown",
-      "score": 1,
+      "title": "飞书 Block API 假成功特征",
+      "domain": "feishu",
+      "score": 3,
       "dimensions": {
-        "frontmatter": 0,
+        "frontmatter": 1,
         "structure": 0,
         "content": 1,
-        "maintenance": 0,
+        "maintenance": 1,
         "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
+        "Partial frontmatter",
         "No recognizable structure",
         "Code blocks present",
-        "No metadata"
+        "Source: bootstrap"
       ],
-      "source": "",
-      "status": ""
+      "source": "bootstrap",
+      "status": "draft"
     },
     {
       "path": "lessons/contrib/aily-飞书-mcp-通道-只能拉取不能推送.md",
-      "title": "aily-飞书-mcp-通道-只能拉取不能推送",
-      "domain": "unknown",
-      "score": 0.5,
+      "title": "aily 飞书 MCP 通道：只能拉取不能推送",
+      "domain": "feishu",
+      "score": 2.5,
       "dimensions": {
-        "frontmatter": 0,
+        "frontmatter": 1,
         "structure": 0,
         "content": 0.5,
-        "maintenance": 0,
+        "maintenance": 1,
         "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
+        "Partial frontmatter",
         "No recognizable structure",
         "List formatting",
-        "No metadata"
+        "Source: bootstrap"
       ],
-      "source": "",
-      "status": ""
+      "source": "bootstrap",
+      "status": "draft"
     },
     {
       "path": "lessons/contrib/fanuc-kl-err-abort-vs-err-pause-行为差异.md",
-      "title": "fanuc-kl-err-abort-vs-err-pause-行为差异",
-      "domain": "unknown",
-      "score": 0.5,
+      "title": "FANUC KL: ERR_ABORT vs ERR_PAUSE 行为差异",
+      "domain": "fanuc",
+      "score": 2.5,
       "dimensions": {
-        "frontmatter": 0,
+        "frontmatter": 1,
         "structure": 0,
         "content": 0.5,
-        "maintenance": 0,
+        "maintenance": 1,
         "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
+        "Partial frontmatter",
         "No recognizable structure",
         "List formatting",
-        "No metadata"
+        "Source: bootstrap"
       ],
-      "source": "",
-      "status": ""
+      "source": "bootstrap",
+      "status": "draft"
     },
     {
       "path": "lessons/contrib/fanuc-kl-mm-module-h-kl-禁止-routine-声明.md",
-      "title": "fanuc-kl-mm-module-h-kl-禁止-routine-声明",
-      "domain": "unknown",
-      "score": 0.5,
+      "title": "FANUC KL: mm_module_h.kl 禁止 ROUTINE 声明",
+      "domain": "fanuc",
+      "score": 2.5,
       "dimensions": {
-        "frontmatter": 0,
+        "frontmatter": 1,
         "structure": 0,
         "content": 0.5,
-        "maintenance": 0,
+        "maintenance": 1,
         "extra": 0
       },
       "notes": [
-        "No frontmatter (0/2)",
+        "Partial frontmatter",
         "No recognizable structure",
         "List formatting",
-        "No metadata"
+        "Source: bootstrap"
       ],
-      "source": "",
-      "status": ""
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/飞书-block-type-正确值与已知限制.md",
+      "title": "飞书 Block Type 正确值与已知限制",
+      "domain": "feishu",
+      "score": 2.5,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 0,
+        "content": 0.5,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "No recognizable structure",
+        "List formatting",
+        "Source: bootstrap"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/fanuc-kl-bytes-ahead-是-karel-内置-procedure.md",
+      "title": "FANUC KL: BYTES_AHEAD 是 Karel 内置 Procedure",
+      "domain": "fanuc",
+      "score": 2,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 0,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "No recognizable structure",
+        "Source: bootstrap"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
+    },
+    {
+      "path": "lessons/contrib/飞书-block-批量写入上限.md",
+      "title": "飞书 Block 批量写入上限",
+      "domain": "feishu",
+      "score": 2,
+      "dimensions": {
+        "frontmatter": 1,
+        "structure": 0,
+        "content": 0,
+        "maintenance": 1,
+        "extra": 0
+      },
+      "notes": [
+        "Partial frontmatter",
+        "No recognizable structure",
+        "Source: bootstrap"
+      ],
+      "source": "bootstrap",
+      "status": "draft"
     },
     {
       "path": "lessons/contrib/node_148.md",
@@ -3004,87 +3113,6 @@
         "No frontmatter (0/2)",
         "No recognizable structure",
         "List formatting",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/飞书-block-type-正确值与已知限制.md",
-      "title": "飞书-block-type-正确值与已知限制",
-      "domain": "unknown",
-      "score": 0.5,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 0,
-        "content": 0.5,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "No recognizable structure",
-        "List formatting",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/fanuc-kl-bytes-ahead-是-karel-内置-procedure.md",
-      "title": "fanuc-kl-bytes-ahead-是-karel-内置-procedure",
-      "domain": "unknown",
-      "score": 0,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 0,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "No recognizable structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/node2-配置完成-git-credentials-和-node-id-设置.md",
-      "title": "node2-配置完成-git-credentials-和-node-id-设置",
-      "domain": "unknown",
-      "score": 0,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 0,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "No recognizable structure",
-        "No metadata"
-      ],
-      "source": "",
-      "status": ""
-    },
-    {
-      "path": "lessons/contrib/飞书-block-批量写入上限.md",
-      "title": "飞书-block-批量写入上限",
-      "domain": "unknown",
-      "score": 0,
-      "dimensions": {
-        "frontmatter": 0,
-        "structure": 0,
-        "content": 0,
-        "maintenance": 0,
-        "extra": 0
-      },
-      "notes": [
-        "No frontmatter (0/2)",
-        "No recognizable structure",
         "No metadata"
       ],
       "source": "",

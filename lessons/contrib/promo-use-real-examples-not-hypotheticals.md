@@ -1,11 +1,5 @@
 ---
-title: 引流文案用真实案例不要编造
-domain: marketing
-subdomain: content
-source: Misaka10004
-tags: ["outreach", "content-strategy", "awesome-list", "reddit", "hacker-news"]
-confidence: 0.9
-created: 2026-05-21
+{"title": "引流文案用真实案例不要编造", "domain": "marketing", "subdomain": "content", "source": "Misaka10004", "tags": ["outreach", "content-strategy", "awesome-list", "reddit", "hacker-news"], "confidence": "0.9", "created": "2026-05-21"}
 ---
 
 ## 问题

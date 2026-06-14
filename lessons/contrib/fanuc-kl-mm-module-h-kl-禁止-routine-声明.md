@@ -1,11 +1,5 @@
 ---
-title: FANUC KL: mm_module_h.kl 禁止 ROUTINE 声明
-domain: fanuc
-subdomain: kl-modules
-source: bootstrap
-status: draft
-confidence: 0.7
-created: 2026-05-03
+{"title": "FANUC KL: mm_module_h.kl 禁止 ROUTINE 声明", "domain": "fanuc", "subdomain": "kl-modules", "source": "bootstrap", "status": "draft", "confidence": "0.7", "created": "2026-05-03"}
 ---
 
 ## FANUC KL: mm_module_h.kl 禁止 ROUTINE 声明

@@ -1,12 +1,5 @@
 ---
-title: ChromaDB 不能放在 NTFS 文件系统
-domain: rag
-subdomain: chromadb
-source: bootstrap
-status: draft
-tags: ["project:self-grow-wiki", "severity:critical", "platform:wsl", "node:hermes_wsl"]
-confidence: 0.8
-created: 2026-05-03
+{"title": "ChromaDB 不能放在 NTFS 文件系统", "domain": "rag", "subdomain": "chromadb", "source": "bootstrap", "status": "draft", "tags": ["project:self-grow-wiki", "severity:critical", "platform:wsl", "node:hermes_wsl"], "confidence": "0.8", "created": "2026-05-03"}
 ---
 
 ## 问题

@@ -1,12 +1,5 @@
 ---
-title: 飞书 webhook URL 必须用环境变量或 gitignored 的 config.yaml
-domain: devops
-subdomain: feishu
-source: bootstrap
-status: draft
-tags: ["project:agent-medici", "severity:critical", "node:hermes_wsl"]
-confidence: 0.8
-created: 2026-05-03
+{"title": "飞书 webhook URL 必须用环境变量或 gitignored 的 config.yaml", "domain": "devops", "subdomain": "feishu", "source": "bootstrap", "status": "draft", "tags": ["project:agent-medici", "severity:critical", "node:hermes_wsl"], "confidence": "0.8", "created": "2026-05-03"}
 ---
 
 ## 问题

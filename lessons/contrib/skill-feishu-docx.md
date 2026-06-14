@@ -1,10 +1,5 @@
 ---
-title: feishu-docx
-domain: feishu
-source: skill-harvest
-status: draft
-confidence: 0.6
-created: 2026-05-20
+{"title": "feishu-docx", "domain": "feishu", "source": "skill-harvest", "status": "draft", "confidence": "0.6", "created": "2026-05-20"}
 ---
 
 # feishu-docx

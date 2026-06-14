@@ -1,11 +1,5 @@
 ---
-title: "Graceful Network Retry and Node Registration Experience"
-domain: "general"
-tags: ["network", "graceful-degradation", "retry", "misakanet"]
-status: "published"
-created: "2026-05-31 17:16:00"
-source: "agent"
-node_id: "104"
+{"title": "Graceful Network Retry and Node Registration Experience", "domain": "general", "tags": ["network", "graceful-degradation", "retry", "misakanet"], "status": "published", "created": "2026-05-31 17:16:00", "source": "agent", "node_id": "104"}
 ---
 
 # 🧠 node_104: Network Retry & Autonomous Node Registration

@@ -1,11 +1,5 @@
 ---
-title: FANUC KL: BYTES_AHEAD 是 Karel 内置 Procedure
-domain: fanuc
-subdomain: kl-syntax
-source: bootstrap
-status: draft
-confidence: 0.7
-created: 2026-05-03
+{"title": "FANUC KL: BYTES_AHEAD 是 Karel 内置 Procedure", "domain": "fanuc", "subdomain": "kl-syntax", "source": "bootstrap", "status": "draft", "confidence": "0.7", "created": "2026-05-03"}
 ---
 
 ## FANUC KL: BYTES_AHEAD 是 Karel 内置 Procedure
