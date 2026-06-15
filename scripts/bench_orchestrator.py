@@ -166,7 +166,7 @@ def main():
 
     api_key = os.environ.get(AGENTS[agent_name]["api_key_env"])
     if not api_key and not dry_run:
-        print(f"Missing {AGENTS[agent_name]['api_key_env']}")
+        print(f"Missing {AGENTS[agent_name]['api_key_env']}")  # nosem: prints env var NAME, not the secret value
         sys.exit(1)
 
     if dry_run:

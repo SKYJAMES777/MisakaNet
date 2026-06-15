@@ -7,6 +7,9 @@ on:
       - "data/counter.json"
       - "data/lessons.json"
 
+permissions:
+  contents: read
+
 jobs:
   sync:
     permissions:

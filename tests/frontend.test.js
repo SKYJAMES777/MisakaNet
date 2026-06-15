@@ -23,11 +23,11 @@ describe('🛡️ MisakaNet Frontend Shield', () => {
     searchEl = setupDOM();
 
     globalThis.DOMPurify = {
-      sanitize: (html) => {
+      sanitize: (html) => {  // nosem: test mock, not production code
         if (typeof html !== 'string') return '';
         return String(html)
-          .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, '')
-          .replace(/\bon\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+          .replace(/<script[^>]*>[\s\S]*?<\/script\s*>/gi, '')  // nosem: test mock
+          .replace(/\bon\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');  // nosem: test mock
       },
     };
 

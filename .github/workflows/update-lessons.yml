@@ -6,6 +6,9 @@ on:
     paths:
       - "lessons/**"
 
+permissions:
+  contents: read
+
 jobs:
   update:
     permissions:
