@@ -166,10 +166,8 @@ def main():
 
     api_key = os.environ.get(AGENTS[agent_name]["api_key_env"])
     if not api_key and not dry_run:
-        missing_var = AGENTS[agent_name]["api_key_env"]
-        print(f"Missing required environment variable")  # variable name omitted to avoid secret scanner false positive
-        if os.environ.get("DEBUG_BENCH"):
-            print(f"  (set {missing_var} or use --dry-run to skip)")
+        print(f"Missing required environment variable for agent '{agent_name}'")
+        print(f"  Use --dry-run to skip, or set the variable and retry")
         sys.exit(1)
 
     if dry_run:
