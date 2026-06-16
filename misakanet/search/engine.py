@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Optional
 from dataclasses import dataclass, field
 
-from misakanet_core import BM25 as CoreBM25, ScoredDocument, tokenize as core_tokenize
+from misakanet_core import BM25 as CoreBM25, ScoredDocument
 
 REPO = Path(__file__).resolve().parent.parent.parent
 LESSONS = REPO / "lessons"
@@ -205,20 +205,35 @@ def _search_cached(query: str, docs: list[CachedDoc],
     return result
 
 
+# Extended Latin character range: includes accented chars (é, ü, ñ, etc.)
+_LATIN_EXT = "a-zA-Z\u00c0-\u024f"
+_TOKEN_RE = re.compile(f"[{_LATIN_EXT}0-9_]+|[\u4e00-\u9fff]")
+
+
 def _tokenize(text: str) -> list[str]:
-    """Tokenize using misakanet-core engine."""
-    return core_tokenize(text)
+    """Tokenize text into lower-case tokens with extended character support.
+
+    Handles:
+    - Accented Latin characters (é, ü, ñ, ï, etc.) — preserved, not dropped
+    - Underscores as part of tokens (test_123 stays as one token)
+    - CJK characters split individually for BM25 recall
+    """
+    text = text.lower()
+    # Split CJK into individual chars surrounded by spaces
+    text = re.sub(r"([\u4e00-\u9fff])", r" \1 ", text)
+    tokens = _TOKEN_RE.findall(text)
+    return [t for t in tokens if len(t) >= 1]
 
 
 def _compute_bm25_scores(query: str, docs: list[CachedDoc]) -> list[float]:
     """BM25 scoring delegated to misakanet-core."""
-    query_tokens = core_tokenize(query)
+    query_tokens = _tokenize(query)
     if not query_tokens:
         return [0.0] * len(docs)
 
     # Build ScoredDocument list for core engine
     scored_docs = [
-        ScoredDocument(d.filename, core_tokenize(d.content))
+        ScoredDocument(d.filename, _tokenize(d.content))
         for d in docs
     ]
 

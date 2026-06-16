@@ -19,39 +19,43 @@ Add support for `OPENCLAW_ERROR_HANDLER` — an environment variable that lets u
 
 ---
 
-## Behavioral or issue addressed
+## Amend log
+
+| Revision | Change |
+|----------|--------|
+| v1 (Gemini) | `shell: true` + stdin pipe + RAW fields. Blocking: shell injection via env var + stdin flush race with `process.exit()`. |
+| v2 (minimax M3 audit) | `shell: false` + argv[1] delivery + RAW opt-in (`OPENCLAW_ERROR_HANDLER_RAW=1`). Resolved injection and flush race. 7-field extended payload behind opt-in gate. |
+| **v3 (current)** | **Removed RAW=1 entirely.** Payload fixed to 4 non-sensitive fields (`schemaVersion`, `reason`, `timestamp`, `pid`). Rationale: (1) argv visibility — 4-field payload contains no sensitive diagnostic data; (2) untestable — RAW path couldn't be verified without a full OpenClaw build (≥12GB RAM); (3) simplicity — removed ~15 lines of conditional branching; (4) extensibility — RAW opt-in can be added via follow-up PR if community requests it. |
+
+---
+
+## Real behavior proof (required for external PRs)
+
+### Behavioral or issue addressed
 
 OpenClaw currently has no standard mechanism for users to hook an external command into the fatal-error lifecycle. The existing `registerFatalErrorHook` API is internal/bundled — operators who want to route crash diagnostics to their own alerting (syslog, webhook, custom script) have no zero-dep entry point.
 
 This PR provides that entry point via an environment variable, following the same precedent as `OPENCLAW_GATEWAY_STARTUP_TRACE` (docs/cli/gateway.md:132).
 
----
-
-## Real environment tested
+### Real environment tested
 
 - **OS:** WSL2 (Debian 12, kernel 6.6.87.2-microsoft-standard-WSL2) under Windows 11
 - **Runtime:** Node.js v22.22.3
 - **Handler target:** `/usr/bin/logger` (syslog)
 - **Payload schema:** `{ schemaVersion: 1, reason: string, timestamp: ISO8601, pid: number }`
 
----
-
-## Exact steps or command run after this patch
-
-The test script `openclaw-fatal-hook-proof.mjs` exercises the `spawn()` code path that `runExternalErrorHandler` uses, demonstrating the handler invocation in a real WSL2 environment with the OpenClaw CLI installed:
+### Exact steps or command run after this patch
 
 ```bash
 node openclaw-fatal-hook-proof.mjs 2>&1
 ```
 
----
+The test script exercises the `spawn()` code path that `runExternalErrorHandler` uses, demonstrating handler invocation in a real WSL2 environment with the OpenClaw CLI installed.
 
-## Evidence after fix
-
-Real terminal output from the test host:
+### Evidence after fix
 
 ```
-Host: DESKTOP-H9EMUD9 | Platform: linux 6.6.87.2-microsoft-standard-WSL2 | Node: v22.22.3 | PID: 91264
+Host: DESKTOP-H9EMUD9 | Platform: linux 6.6.87.2-microsoft-standard-WSL2 | Node: v22.22.3 | PID: 95243
 
 ### 1. openclaw CLI baseline
   $ openclaw --version
@@ -69,14 +73,12 @@ Host: DESKTOP-H9EMUD9 | Platform: linux 6.6.87.2-microsoft-standard-WSL2 | Node:
 
 ### 5. Syslog delivery
   $ journalctl | grep schemaVersion
-  {"schemaVersion":1,"reason":"uncaught_exception","timestamp":"2026-06-16T01:34:05.689Z","pid":91264}
+  {"schemaVersion":1,"reason":"uncaught_exception","timestamp":"2026-06-16T03:43:52.734Z","pid":95243}
 
 --- All scenarios passed ---
 ```
 
----
-
-## Observed result after fix
+### Observed result after fix
 
 Every configured scenario passes:
 1. **No env var** → OpenClaw behavior unchanged (zero impact)
@@ -85,9 +87,7 @@ Every configured scenario passes:
 4. **Shell injection attempt** → `shell: false` prevents command execution — the injected string is treated as a literal file path, fails with ENOENT
 5. **Exit race** → `detached + unref` confirmed: parent does not wait for handler completion
 
----
-
-## What was not tested
+### What was not tested
 
 Full OpenClaw runtime integration (requires a build environment with ≥12GB RAM; the `tsdown` bundler OOMs at 11GB). The function under review — `runExternalErrorHandler` — is a ~30-line composition of stdlib calls with no dependencies on OpenClaw's runtime state. The spawn logic is identical whether called in isolation or from `runFatalErrorHooks`.
 

@@ -12,7 +12,7 @@ import os
 import shutil
 import time
 from dataclasses import dataclass, field, asdict
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -197,7 +197,16 @@ class FederationSync:
                         peer_frontmatter = parse_lesson_frontmatter(content)
 
                         # Parse timestamps as datetime for correct comparison
-                        def _parse_ts(value: str) -> datetime:
+                        def _parse_ts(value: str | datetime | None) -> datetime:
+                            """Parse a timestamp string or datetime/date object.
+
+                            Handles both string timestamps and YAML-parsed datetime/date objects
+                            (yaml.safe_load auto-converts bare dates like '2026-06-03').
+                            """
+                            if isinstance(value, datetime):
+                                return value
+                            if isinstance(value, date) and not isinstance(value, datetime):
+                                return datetime(value.year, value.month, value.day, tzinfo=timezone.utc)
                             if not value:
                                 return datetime.min.replace(tzinfo=timezone.utc)
                             for fmt in (
@@ -214,7 +223,7 @@ class FederationSync:
                             logger.warning("Unparseable timestamp: %s, treating as oldest", value)
                             return datetime.min.replace(tzinfo=timezone.utc)
 
-                        local_updated = _parse_ts(local_frontmatter.get("last_updated", ""))
+                        local_updated = _parse_ts(local_frontmatter.get("last_updated"))
                         peer_updated = _parse_ts(peer_frontmatter.get("last_updated", ""))
 
                         if peer_updated > local_updated:
