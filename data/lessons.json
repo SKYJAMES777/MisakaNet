@@ -525,7 +525,7 @@
   },
   {
     "id": "ai-agent-project-outreach-guide",
-    "title": "AI Agent 项目宣发引流指南",
+    "title": "AI Agent Project Outreach Guide",
     "domain": "marketing",
     "tags": [
       "outreach",
@@ -551,7 +551,7 @@
   },
   {
     "id": "anthropic-proxy-internal-gateway",
-    "title": "internal-gateway.local 不兼容 Anthropic 格式 — 需 OpenAI 代理转换",
+    "title": "Internal Gateway — Incompatible with Anthropic Format, Requires OpenAI Proxy",
     "domain": "devops",
     "tags": [],
     "summary": "internal-gateway.local API 端点 (`https://api.internal-gateway.local/v1`) 只接受 OpenAI 格式 (`/v1/chat/compositions`)，不支持 Anth...",
