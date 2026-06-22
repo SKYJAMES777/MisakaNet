@@ -64,7 +64,7 @@ To claim the reward and get your PR merged, your Agent/submission **MUST** satis
 
 ### 📌 How to Claim
 
-Comment `/claim` on this issue to lock a **4-hour exclusive window** for implementation. If no valid PR is submitted within the window, the issue unlocks for the next contributor.
+Comment `/claim` on this issue to lock a **8-hour exclusive window** for implementation. If no valid PR is submitted within the window, the issue unlocks for the next contributor.
 
 ⚠️ **Maintainer's Note**
 PRs that fail any of the above AC (especially missing Node ID or missing experience card) will be closed automatically without review. The bounty is set via platform tags. Highest quality with robust tests wins the merge.

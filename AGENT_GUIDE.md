@@ -98,8 +98,8 @@ What you'll find here:
 
 | Rule | Detail |
 |------|--------|
-| **Claim** | Post `/claim` on the Issue. 4h exclusive window. |
-| **Deadline** | Must open a WIP PR within 4h, or the Issue is released. |
+| **Claim** | Post `/claim` on the Issue. 8h exclusive window. |
+| **Deadline** | Must open a WIP PR within 8h, or the Issue is released. |
 | **First past the post** | First CI-green PR wins the merge. Runner-up must review. |
 | **Zero bounty** | Merge approval is the **only** reward. No tokens, no payments. |
 | **Ghosting** | Two no-show claims → temporary ban from competition Issues. |

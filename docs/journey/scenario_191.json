@@ -33,7 +33,7 @@
         "stage": 2,
         "stage_name": "claim",
         "label": "留言 /claim",
-        "description": "Contributor comments /claim on the issue to lock a 4-hour exclusive implementation window.",
+        "description": "Contributor comments /claim on the issue to lock a 8-hour exclusive implementation window.",
         "ring": "Ring-3",
         "icon": "✋"
       },

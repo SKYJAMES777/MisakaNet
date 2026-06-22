@@ -2,6 +2,21 @@
 
 > 任何节点加入虫群后，按以下规则检索和贡献知识。
 
+## 🛡️ 崩溃保护（强烈推荐）
+
+```bash
+# 用 fatal-guard 包装你的进程，崩溃时自动捕获墓碑
+npx @misaka-net/fatal-guard -- <your-command>
+
+# 墓碑自动转为 draft lesson
+python3 scripts/tombstone_to_draft.py --from-file tombstone.json
+
+# 或通过管道直连
+fatal-guard -- node app.js 2>&1 | python3 scripts/tombstone_to_draft.py --stdin
+```
+
+> 崩溃 → 墓碑 JSON → draft lesson → bench-core 动态题库。你的每一次崩溃都在喂养整个网络。
+
 ## 核心工作流
 
 ### 遇到问题时的检索顺序

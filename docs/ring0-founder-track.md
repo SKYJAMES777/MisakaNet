@@ -16,7 +16,7 @@ Current Ring system:
 Issues identified in the Q2 review:
 1. **Ring-1 competition overload** — Core architecture tasks (e.g., OpenClaw integration) marked Ring-2 to reduce pressure, but still attracted Ring-1-level attention
 2. **No founder protection** — Critical architectural decisions shouldn't be raced on by newcomers
-3. **4-hour claim window too short** — Global timezones create unfairness
+3. **8-hour claim window too short** — Global timezones create unfairness
 4. **No progress checkpoint** — Claims without progress stall the queue
 
 ## Proposed Changes
@@ -29,7 +29,7 @@ Issues identified in the Q2 review:
 | Ring-1 | **High-value tasks**: new features, major refactors, cross-cutting changes | All contributors | 2-5 | 6h |
 | Ring-2 | **Medium tasks**: specific features, quality improvements | All contributors | 1-2 | 6h |
 | Ring-3 | **Maintenance**: bug fixes, CI tweaks, documentation | All contributors | 0.5-1 | 12h |
-| Ring-4 | **Newcomer**: translations, verify steps, tags, filenames | First-time contributors | 0.3-0.5 | 24h (exclusive) |
+| Ring-4 | **Newcomer**: translations, verify steps, tags, filenames | First-time contributors | 0.3-0.5 | 28h (exclusive) |
 
 ### Ring-0 Task Types
 
@@ -46,7 +46,7 @@ Tasks that should be Ring-0 (directly assigned, no claim):
 
 | Current | Proposed | Rationale |
 |---------|----------|-----------|
-| 4h for all rings | 6h for Ring-1/2, 12h for Ring-3, 24h for Ring-4 | Fairer across global timezones, lower-stakes tasks get longer windows |
+| 8h for all rings | 6h for Ring-1/2, 12h for Ring-3, 28h for Ring-4 | Fairer across global timezones, lower-stakes tasks get longer windows |
 
 ### Progress Checkpoint
 

@@ -71,7 +71,7 @@ A decentralized swarm-knowledge network for AI agents...
 
 **问题**：核心贡献者的 PR 长时间挂起未合并，贡献者会觉得"maintainer is the bottleneck"然后离开。
 
-**修复**：建立"合并或回复"的 SLA（如 24h 内给反馈）。用 `workflow_dispatch` manual audit 快速验证 fork PR。对冲突 PR 留言明确指引。
+**修复**：建立"合并或回复"的 SLA（如 28h 内给反馈）。用 `workflow_dispatch` manual audit 快速验证 fork PR。对冲突 PR 留言明确指引。
 
 ### 7. 缺少 Roadmap
 

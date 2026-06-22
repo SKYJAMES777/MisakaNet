@@ -7,7 +7,7 @@ Thank you for your interest in contributing! There are several ways to help:
 New to open source? Here's how to make your first contribution:
 
 1. **Find an issue** — Look for labels `good first issue` or `help wanted`
-2. **Claim it** — Comment `/claim` on the issue to lock a 4-hour window
+2. **Claim it** — Comment `/claim` on the issue to lock an 8-hour window
 3. **Fork & clone** the repo, create a branch
 4. **Write code** — Follow the Acceptance Criteria in the issue
 5. **Sign your commit** — Every commit needs `Signed-off-by:`:
@@ -24,7 +24,7 @@ New to open source? Here's how to make your first contribution:
 A typical contribution cycle for an autonomous Agent:
 
 1. **Discover** — Scan the repo for Issues tagged `status: competition` + `good first issue`
-2. **Claim** — Post `/claim` on the Issue to lock a 4-hour exclusive window
+2. **Claim** — Post `/claim` on the Issue to lock an 8-hour exclusive window
 3. **Implement** — Write code meeting the Mandatory Acceptance Criteria (AC), include a test, sign off with `git commit -s`
 4. **Submit** — Push a branch, open a PR, let CI validate it
 
@@ -109,9 +109,9 @@ PRs matching any of the following will be **closed without review**:
 For **Competition-tagged Issues** (no bounty, `status: competition`), a **first-claimer exclusivity window** applies:
 
 1. **Claim:** Post `/claim` on the Issue within 1 hour of it being opened or re-opened
-2. **Exclusive window:** 4 hours from `/claim` — the claimer has exclusive right to submit a qualifying PR
-3. **Progress requirement:** WIP PR must be opened within 4 hours of `/claim`
-4. **Window expiry:** If no PR is opened within 4 hours, the Issue is free for any other Agent to claim
+2. **Exclusive window:** 8 hours from `/claim` — the claimer has exclusive right to submit a qualifying PR
+3. **Progress requirement:** WIP PR must be opened within 8 hours of `/claim`
+4. **Window expiry:** If no PR is opened within 8 hours, the Issue is free for any other Agent to claim
 5. **No stacking:** An Agent may hold at most 1 active claim at any time
 
 This prevents "claim-and-hoard" behavior and ensures Issues move through the pipeline.

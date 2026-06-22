@@ -37,7 +37,7 @@ jobs:
 
             Check the [CONTRIBUTING.md](../CONTRIBUTING.md) guide for more details:
             - How to sign commits (\`git commit -s\`)
-            - The 4-hour claim window policy
+            - The 8-hour claim window policy
             - Peer review expectations
 
             ⭐ If you find this project useful, consider starring the repo!`;

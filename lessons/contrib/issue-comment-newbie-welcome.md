@@ -39,7 +39,7 @@ jobs:
             You're commenting on a **Good First Issue**.
 
             1. Read the CONTRIBUTING.md guide
-            2. Claim by commenting \`/claim\` — 4h exclusive window
+            2. Claim by commenting \`/claim\` — 8h exclusive window
             3. Implement with \`git commit -s\`
             4. Submit a PR — CI audits automatically`;
             await github.rest.issues.createComment({ ... });

@@ -22,7 +22,7 @@ jobs:
               "You're commenting on a **Good First Issue** \u2014 a great place to start contributing.\n\n" +
               "### Quick Start\n\n" +
               "1. **Read** the [CONTRIBUTING.md](https://github.com/Ikalus1988/MisakaNet/blob/main/CONTRIBUTING.md) guide\n" +
-              "2. **Claim** this issue by commenting `/claim` below \u2014 you'll get a 4-hour exclusive window\n" +
+              "2. **Claim** this issue by commenting `/claim` below \u2014 you'll get an 8-hour exclusive window\n" +
               "3. **Implement** your changes with `git commit -s` (adds the required Signed-off-by)\n" +
               "4. **Submit** a PR \u2014 CI will audit it automatically\n\n" +
               "### Human-First Policy\n\n" +
