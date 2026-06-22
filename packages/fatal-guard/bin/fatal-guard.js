@@ -39,28 +39,50 @@ if (cmdArgs.length === 0) {
   process.exit(1);
 }
 
-const { buildPayload, runHandler } = require('./index');
+const { buildPayload, runHandler } = require('../index');
+
+// ── TTY detection ────────────────────────────────────────────────
+// If parent stderr is a TTY, inherit it so child processes see a real TTY
+// (preserves ANSI colors and interactive behavior).  Otherwise pipe stderr
+// to capture error output for crash detection + snippet.
+const stderrIsTTY = !!process.stderr.isTTY;
 
 const child = spawn(cmdArgs[0], cmdArgs.slice(1), {
-  stdio: ['inherit', 'inherit', 'pipe'],
+  stdio: ['inherit', 'inherit', stderrIsTTY ? 'inherit' : 'pipe'],
   shell: false,
 });
 
+// ── stderr capture (only when piping, i.e. non-TTY) ─────────────
 let stderrBuffer = '';
-child.stderr.on('data', (chunk) => {
-  stderrBuffer += chunk.toString();
-  process.stderr.write(chunk); // pass through to user terminal
-});
+if (!stderrIsTTY && child.stderr) {
+  child.stderr.on('data', (chunk) => {
+    stderrBuffer += chunk.toString();
+    process.stderr.write(chunk); // pass through to user terminal
+  });
+}
+
+// ── Crash detection ─────────────────────────────────────────────
+// Signals that indicate a fatal/crash condition (not graceful shutdown).
+// SIGKILL = OOM killer / force kill; SIGSEGV = segfault; SIGABRT = abort
+const FATAL_SIGNALS = new Set(['SIGKILL', 'SIGSEGV', 'SIGABRT', 'SIGBUS', 'SIGFPE', 'SIGILL', 'SIGTRAP', 'SIGSYS']);
 
 child.on('exit', (code, signal) => {
-  const crashed = code !== 0 && code !== null;
-  const hasError = /error|exception|traceback|failed|fatal|killed/i.test(stderrBuffer);
+  // Crashed if: non-zero exit code  OR  killed by a fatal signal
+  const crashed = Boolean((code !== 0 && code !== null) || (signal && FATAL_SIGNALS.has(signal)));
+  // When killed by a fatal signal (OOM/SIGSEGV/etc.), skip text check —
+  // the signal itself is evidence of a crash, and the process may have died
+  // before writing any error output to stderr.
+  const killedByFatalSignal = signal && FATAL_SIGNALS.has(signal);
+  const hasError = killedByFatalSignal || stderrIsTTY
+    ? true
+    : /error|exception|traceback|failed|fatal|killed/i.test(stderrBuffer);
 
   if (crashed && hasError) {
     const reason = signal ? `killed_by_${signal}` : 'process_crash';
     try {
-      // Extend payload with a snippet of the last stderr lines
-      const snippet = stderrBuffer.split('\n').filter(Boolean).slice(-4).join('\n').trim();
+      const snippet = stderrBuffer
+        ? stderrBuffer.split('\n').filter(Boolean).slice(-4).join('\n').trim()
+        : `[fatal-guard] process crashed (exit code: ${code}, signal: ${signal})`;
       const payload = JSON.stringify({
         ...JSON.parse(buildPayload(reason)),
         snippet: snippet.slice(0, 500),
