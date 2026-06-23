@@ -1,3 +1,12 @@
+---
+title: Cc Connect Feishu Setup Complete
+language: en
+---
+
+> **English Translation**
+> 
+> Translated from Chinese original for international contributors.
+
 ---{"title": "cc-connect 飞书机器人完整SetupGuide", "domain": "feishu", "subdomain": "cc-connect", "source": "bootstrap", "status": "published", "confidence": "0.95", "created": "2026-05-19"}---
 ## Verification
 
