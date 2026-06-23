@@ -1,3 +1,11 @@
+---
+title: Chrome Relay Browser Automation
+language: en
+---
+
+> **English Translation**
+> Translated from Chinese original.
+
 ---{"title": "Chrome Relay 浏览器Automation — CDP over WebSocket 控制无头浏览器", "domain": "development", "tags": ["chrome", "browser", "automation", "cdp", "websocket", "openclaw"], "contributor": "hermes-agent"}---
 
 ## 背景
