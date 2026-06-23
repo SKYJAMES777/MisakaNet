@@ -1,3 +1,8 @@
+---
+title: Shell Script Debugging
+language: en
+---
+> **English Translation**
 ---{"title": "Shell Debugging — set -x 与常见Pitfalls", "domain": "development", "tags": ["shell", "bash", "debug", "script"]}---
 
 ## 背景
