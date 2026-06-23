@@ -1,4 +1,13 @@
 ---
+title: Rag Alarm Code Mandatory Recall
+language: en
+---
+
+> **English Translation of:** lessons/contrib/rag-alarm-code-mandatory-recall.md
+> 
+> This is an English translation of the original Chinese lesson content.
+
+---
 {"title": "RAG 报警代码检索需要关键词强制召回", "domain": "rag", "subdomain": "fanuc", "source": "bootstrap", "status": "draft", "tags": ["project:self-grow-wiki", "severity:high", "node:hermes_wsl"], "confidence": "0.8", "created": "2026-05-03", "domain_expert": "bootstrap", "verified_date": "2026-05-03"}
 ---
 
