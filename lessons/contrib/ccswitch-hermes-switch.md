@@ -1,3 +1,11 @@
+---
+title: Ccswitch Hermes Switch
+language: en
+---
+
+> **English Translation**
+> Translated from Chinese original.
+
 ---{"confidence": "0.7", "created": "2026-05-02", "domain": "devops", "source": "bootstrap", "status": "draft", "tags": "", "- node": "cc_haha", "title": "ccswitch-hermes-switch 踩坑Notes"}---
 
 # ccswitch-hermes-switch 踩坑Notes
