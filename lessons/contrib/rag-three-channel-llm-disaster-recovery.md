@@ -1,4 +1,13 @@
 ---
+title: Rag Three Channel Llm Disaster Recovery
+language: en
+---
+
+> **English Translation of:** lessons/contrib/rag-three-channel-llm-disaster-recovery.md
+> 
+> This is an English translation of the original Chinese lesson content.
+
+---
 {"title": "RAG 三通道 LLM 容灾方案", "domain": "rag", "subdomain": "llm", "source": "bootstrap", "status": "draft", "tags": ["project:self-grow-wiki", "node:hermes_wsl", "scope:broad"], "confidence": "0.85", "created": "2026-05-03", "domain_expert": "bootstrap", "verified_date": "2026-05-03"}
 ---
 
