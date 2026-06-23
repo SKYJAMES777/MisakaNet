@@ -1,4 +1,12 @@
 ---
+title: Codewhale Git Push Yolo Task
+language: en
+---
+
+> **English Translation**
+> Translated from Chinese original.
+
+---
 {"title": "CodeWhale 中 git push 的正确方式 — YOLO task + gh CLI", "domain": "devops", "tags": ["codewhale", "git", "yolo", "push", "lesson"], "domain_expert": "unknown"}
 ---
 
