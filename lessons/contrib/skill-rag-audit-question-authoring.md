@@ -1,4 +1,13 @@
 ---
+title: Skill Rag Audit Question Authoring
+language: en
+---
+
+> **English Translation of:** lessons/contrib/skill-rag-audit-question-authoring.md
+> 
+> This is an English translation of the original Chinese lesson content.
+
+---
 {"title": "rag-audit-question-authoring", "domain": "rag", "source": "skill-harvest", "status": "draft", "confidence": "0.6", "created": "2026-05-20", "domain_expert": "skill-harvest", "verified_date": "2026-05-20"}
 ---
 
