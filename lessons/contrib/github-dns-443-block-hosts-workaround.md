@@ -1,4 +1,12 @@
 ---
+title: Github Dns 443 Block Hosts Workaround
+language: en
+---
+
+> **English Translation**
+> Translated from Chinese original.
+
+---
 {"title": "GitHub DNS 污染/443端口不通 — hosts 备用 IP 方案", "domain": "devops", "tags": ["git", "github", "TLS", "network", "DNS", "hosts", "connectivity"], "domain_expert": "unknown"}
 ---
 
