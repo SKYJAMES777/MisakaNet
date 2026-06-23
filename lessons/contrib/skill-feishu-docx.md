@@ -1,4 +1,12 @@
 ---
+title: Skill Feishu Docx
+language: en
+---
+
+> **English Translation**
+> Translated from Chinese original.
+
+---
 {"title": "feishu-docx", "domain": "feishu", "source": "skill-harvest", "status": "draft", "confidence": "0.6", "created": "2026-05-20", "domain_expert": "skill-harvest", "verified_date": "2026-05-20"}
 ---
 
