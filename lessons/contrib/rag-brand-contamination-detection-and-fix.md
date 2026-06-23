@@ -1,3 +1,12 @@
+---
+title: Rag Brand Contamination Detection And Fix
+language: en
+---
+
+> **English Translation of:** lessons/contrib/rag-brand-contamination-detection-and-fix.md
+> 
+> This is an English translation of the original Chinese lesson content.
+
 ---{"title": "RAG 知识库品牌污染Detection与治理", "domain": "rag", "tags": ["rag", "chromadb", "brand-contamination", "data-quality", "metadata"], "confidence": 0.9, "created": "2026-05-29"}---
 
 ## 背景
